@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 1 &ndash; Saturday, July 4 &ndash; Arrival in Yerevan</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+</head>
+<body>
+<div class="navbar"><span></span><a href="index.html">&#8962; Overview</a><a href="day2.html">Next day &rarr;</a><a class="lang-switch" href="../tag1.html" lang="de">DE</a></div>
+<h1>Day 1 &ndash; Saturday, July 4 &ndash; Arrival in Yerevan</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map1" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+    { name: "Vernissage Market", lat: 40.1758116, lng: 44.5183504, note: "Handicrafts, antiques", anchor: "vernissage" },
+    { name: "Republic Square", lat: 40.1776945, lng: 44.5126511, note: "Tuff stone ensemble, water show at 9 pm", anchor: "republic-square" },
+    { name: "Blue Mosque", lat: 40.1782416, lng: 44.5055163, note: "Armenia's only active mosque", anchor: "blue-mosque" },
+    { name: "Sergei Parajanov Museum", lat: 40.1788107, lng: 44.5001506, note: "Collages, assemblages", anchor: "parajanov" },
+    { name: "Kond", lat: 40.1823607, lng: 44.5023181, note: "Yerevan's oldest quarter", anchor: "kond" }
+    ];
+    const map = L.map('map1').setView([40.1758116, 44.5183504], 13);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      const popupHtml = '<strong>' + stop.name + '</strong><br>' + stop.note +
+        '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>';
+      marker.bindPopup(popupHtml);
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+
+<p>Entry into the country without any problems, though the border officers check passports very thoroughly. Installed the Uber app in Armenian, support only in Armenian. Everyday signage is consistently trilingual: English, Russian (Cyrillic), Armenian. Armenians friendly across the board.</p>
+
+<p id="ueberblick"><strong>Country and culture &ndash; a brief overview:</strong> Armenia lies in the South Caucasus, wedged between Turkey, Georgia, Azerbaijan and Iran, completely landlocked, with an average elevation of over 1,800 m. The historical "Armenian Highlands" were once considerably larger than today's republic &ndash; the national mountain, Mount Ararat, has been on the Turkish side since the border was drawn in 1921, visible but out of reach.</p>
+
+<p>In 301 AD, King Trdat III, at the urging of Gregory the Illuminator, made Christianity the state religion &ndash; making Armenia the first Christian state in history, with its own apostolic church independent of Rome and Byzantium. In 405 AD the monk Mesrop Mashtots devised the distinctive 36-letter Armenian alphabet, still in use today and a central pillar of national identity.</p>
+
+<p>After centuries of shifting foreign rule (Persian, Byzantine, Ottoman, Russian), it is above all the genocide of the Armenians in 1915/16 in the Ottoman Empire (up to 1.5 million dead) that shapes today's self-image &ndash; the starting point of the large diaspora that remains active to this day. From 1922 to 1991 part of the Soviet Union, an independent republic since 1991. The conflict with Azerbaijan over Nagorno-Karabakh dominated foreign policy for three decades, until Azerbaijan's complete recapture in 2023 and the flight of the Armenian population there.</p>
+
+<p>Culturally defining: the church as an anchor of identity, a millennia-old winemaking tradition (the world's oldest known winery near Areni), hospitality towards strangers, and a very close, often painful bond between the roughly 3 million people in the country and the 8&ndash;12 million Armenians in the worldwide diaspora.</p>
+
+<p id="vernissage"><strong>Vernissage Market:</strong> Arts and crafts of every kind. Price curiosity: a fridge magnet at the airport costs 40,000 AMD, the identical magnet at the market 1,000 AMD (a factor of 40). Found old German books at the flea market.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Yerevan_Vernissage" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag1/01.jpg" alt="Traditional Armenian fur hat at the Vernissage Market">
+<p>Traditional Armenian fur hat (papakha-like, a type of headgear common throughout the Caucasus) available to try on at one of the carpet stalls.</p>
+<img src="../images/tag1/02.jpg" alt="Street art at the Vernissage Market">
+<p>Street-art mural at the edge of the market grounds &ndash; Yerevan's graffiti scene is smaller than, say, Tbilisi's, but keeps popping up in back courtyards and on derelict walls.</p>
+<img src="../images/tag1/03.jpg" alt="Book stall at the Vernissage Market">
+<p>Antiquarian book and art stalls: Soviet art volumes, Armenian literature, old postcards &ndash; a market section of its own alongside jewellery and carpets.</p>
+<img src="../images/tag1/04.jpg" alt="Militaria stall with armbands at the Vernissage Market">
+<p>Militaria stall with replicas of Soviet and Nazi armbands next to Armenia/Artsakh patches &ndash; not unusual at post-Soviet flea markets, sold here right beside patriotic memorabilia.</p>
+
+<p id="republic-square"><strong>Republic Square:</strong> An arrangement of dressed stone (pink and yellow tuff, some basalt in the plinths), round and angular forms, fountains. Planned by Alexander Tamanyan from 1924 onwards, its motifs quote medieval Armenian church architecture (Zvartnots, Dvin, Talin). The circular ground pattern depicts a traditional Armenian carpet (renovation 2003).</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Republic_Square,_Yerevan" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag1/05.jpg" alt="Republic Square">
+
+<p><strong>Street scene:</strong> An old Volga (GAZ-21) with a giant shoe on the roof &ndash; advertising for Kostan, an Armenian shoe manufacturer ("Made in Armenia", handcrafted).</p>
+<img src="../images/tag1/06.jpg" alt="Kostan car with shoe">
+
+<p><strong>German presence:</strong> Strikingly many German brands in supermarkets and advertising (Oldenburger butter, Ritter Sport). Within the EU, Germany is Armenia's most important trading partner; in 2024 German exports worth 433 million euros went to Armenia (chiefly motor vehicles, machinery, chemicals, electrical engineering). Add to that intensive development cooperation (Goethe-Institut, DAAD in Yerevan) and a town twinning between Halle (Saale) and Gyumri since 2023. <em>Source: German Federal Foreign Office, as of 2024/2025.</em></p>
+<img src="../images/tag1/07.jpg" alt="Paulaner and Hacker-Pschorr taps in a Yerevan bar">
+<p>At the restaurant that evening, nothing but German beer on tap &ndash; Paulaner and Hacker-Pschorr, both from Munich. No Armenian or Russian beer on offer.</p>
+<img src="../images/tag1/08.jpg" alt="Oldenburger advertisement">
+
+<p>Ritter Sport is widely available across the Russian-speaking retail area (here "&Rom, &Izjum, &Orech" &ndash; rum-raisin-nut), right next to local and Russian brands on the shelf.</p>
+<img src="../images/tag1/09.jpg" alt="Ritter Sport in hand">
+<img src="../images/tag1/10.jpg" alt="Chocolate shelf">
+
+<p><strong>Flower culture:</strong> Flower stalls are a very visible part of the streetscape. Giving flowers traditionally carries great weight in the post-Soviet world (visits, birthdays, anniversaries &ndash; usually an odd number of stems), which explains the density and elaborateness of these stalls.</p>
+<img src="../images/tag1/11.jpg" alt="Flower stall">
+
+<p id="kond"><strong>Kond &ndash; Yerevan's oldest quarter:</strong> A labyrinth of alleys from the 17th century, built under Persian rule, hence the occasional Islamic architectural features (including a former Persian mosque from 1687). Not a restored postcard-pretty old town, but lived-in, partly crumbling everyday life in the middle of the modern capital &ndash; threatened with demolition for years. Connected to the centre by the 460 m Kond pedestrian tunnel (built in 1936 under Stalin).</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Kentron_district" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag1/12.jpg" alt="Ruined room with table in Kond">
+<p>Half-collapsed vaulted room with a makeshift table and carpet &ndash; typical of Kond: an inhabited ruin rather than a museum piece.</p>
+<img src="../images/tag1/13.jpg" alt="Wall with historical portraits in Kond">
+<p>Private collection on a courtyard wall: Armenian church fathers, princes and military leaders (including General Andranik) next to a photo of the "&#1057;&#1090;&#1072;&#1088;&#1099;&#1081; &#1044;&#1074;&#1086;&#1088;&#1080;&#1082;" (Old Courtyard) &ndash; here, historical consciousness is displayed informally in everyday life, not in a museum.</p>
+<img src="../images/tag1/14.jpg" alt="Laid table in a Kond courtyard">
+<p>A break in one of the courtyards: cognac, gata (Armenian buttery pastry) and a glass of dark berry juice.</p>
+<img src="../images/tag1/15.jpg" alt="Street art KondGallery">
+<p>#KondGallery &ndash; a street-art project that takes over the quarter's facades while drawing attention to the looming demolition.</p>
+<img src="../images/tag1/16.jpg" alt="Worker taking a break in front of a blue door in Kond">
+<p>A workman's break in front of a caf&eacute; door, Armenian flag in the background &ndash; everyday Kond away from the photo spots.</p>
+
+<p id="parajanov"><strong>Sergei Parajanov Museum:</strong> Dedicated to the Soviet-Armenian film director and multi-disciplinary artist Sergei Parajanov (1924&ndash;1990, known among other things for "The Color of Pomegranates"). Around 1,500&ndash;1,700 exhibits: collages, assemblages, dolls, hats, prison drawings &ndash; some created during his 5 years in labour camps. The museum was initiated by the government in 1988 but, because of the 1988 earthquake, only opened in 1991, a year after his death. Many consider it Yerevan's most idiosyncratic and best museum, precisely because it is not a conventional art museum.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Sergei_Parajanov_Museum" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag1/17.jpg" alt="Assemblage Thalers in the Parajanov Museum">
+<p>Assemblage "Thalers" &ndash; metal relief with faces, embossed from aluminium foil/tin. Typical of Parajanov's technique of conjuring expressive faces from worthless material (packaging scraps, junk) with just a few deft moves.</p>
+<img src="../images/tag1/18.jpg" alt="Photo of Parajanov behind bars">
+<p>Parajanov behind bars &ndash; an allusion to his 5 years in labour camps (1974&ndash;1977, officially for "homosexuality" and currency offences, in reality politically motivated). A large part of the collages and drawings in the museum were made during exactly this period.</p>
+<img src="../images/tag1/19.jpg" alt="Selfie in art gallery">
+<p>Selfie in the Parajanov Museum, with one of the tapestries and a peacock feather from the collection in the background.</p>
+
+<p><strong>Water-light-music show, Republic Square, 9 pm:</strong> The "water organ" with its fountains was built in 1968 for the city's 2,750th anniversary and restored in 2007 for 1.4 million euros by the French company Aquatique Show International. From May to October, a computer-controlled choreography of water, light and music runs daily from about 9 to 11 pm &ndash; from Armenian folklore through classical music to pop, traditionally ending with Charles Aznavour's "Une vie d'amour" (Eternal Love). Locals gather here too, not just tourists.</p>
+
+<div class="tip"><strong>Local tip for the evening:</strong> After the official welcome meeting, if there is time left, a quick detour to one of the nardi tables in the parks is worthwhile &ndash; the older men play there late into the evening and usually don't mind you watching over their shoulders.</div>
+
+<p id="blue-mosque"><strong>Blue Mosque:</strong> Completed in 1766 under Persian rule, Yerevan's only surviving Islamic building. Secularised in Soviet times and used as the city museum, an active Shia mosque again since 1999 &ndash; today used mainly by Iranian migrants and travellers, maintained by the Iranian state.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Blue_Mosque,_Yerevan" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag1/20.jpg" alt="Facade of the Blue Mosque in Yerevan">
+<p>Tiled facade with classic Persian patterns &ndash; in colour and style a clear break from the pink tuff all around.</p>
+<img src="../images/tag1/21.jpg" alt="Banner in the courtyard of the Blue Mosque">
+<p>Banner in the courtyard with a portrait of Iran's revolutionary leader Ali Khamenei (in Armenian, Farsi and English) &ndash; a visible expression of the site's close cultural and religious ties to Iran.</p>
+
+<p><strong>Mural of a fallen soldier:</strong> Portrait mural on tuff stone, a medal depicted beside it &ndash; commemorating a soldier killed in the Nagorno-Karabakh war (Artsakh conflict). Murals like this are found throughout Yerevan's cityscape, especially since the Second Karabakh War of 2020 (over 3,800 Armenian soldiers killed) and the final loss of Nagorno-Karabakh in 2023. Unlike official monuments, these portraits are part of the everyday scenery &ndash; on house walls, in underpasses, in schoolyards &ndash; and thus, consciously or not, shape every walk through the city.</p>
+<img src="../images/tag1/22.jpg" alt="Mural of a soldier killed in the Karabakh war">
+
+<p><strong>Wall poem, city walk:</strong> Russian-language stencil poem on a house wall, damaged in places by the weathered facade. Its themes are war and separation: the hope that silence will one day turn back into music, that war will stop being heard, and that a loved one will return from the war. The highlighted words in the original are "&#1074;&#1086;&#1081;&#1085;&#1072;" (war), "&#1090;&#1080;&#1096;&#1080;&#1085;&#1072;" (silence) and "&#1086;&#1073;&#1085;&#1080;&#1084;&#1080;" (hold me). A find that without context would be a mere street-art footnote, but here ties directly back to the memorials to fallen soldiers from earlier.</p>
+<img src="../images/tag1/23.jpg" alt="Wall poem in Yerevan">
+
+<hr>
+
+<div class="navbar"><span></span><a href="index.html">&#8962; Overview</a><a href="day2.html">Next day &rarr;</a><a class="lang-switch" href="../tag1.html" lang="de">DE</a></div>
+</body>
+</html>

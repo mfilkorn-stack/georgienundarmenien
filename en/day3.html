@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 3 &ndash; Monday, July 6 &ndash; Khor Virap, Garni, Lavash Baking</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="day2.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day4.html">Next day &rarr;</a><a class="lang-switch" href="../tag3.html" lang="de">DE</a></div>
+<h1>Day 3 &ndash; Monday, July 6 &ndash; Khor Virap, Garni, Lavash Baking</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map3" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Khor Virap Monastery", lat: 39.8784349, lng: 44.5761266, note: "View of Mount Ararat, prison pit of Gregory the Illuminator", anchor: "chorvirap" },
+      { name: "Temple of Garni", lat: 40.1123984, lng: 44.7301426, note: "Only Hellenistic temple in the Caucasus", anchor: "garni" },
+      { name: "Symphony of the Stones", lat: 40.1159132, lng: 44.7413945, note: "Basalt-column gorge", anchor: "symphonie" },
+      { name: "Geghard Monastery", lat: 40.1406875, lng: 44.8178125, note: "Rock-hewn monastery, Holy Lance (relic now in Etchmiadzin)", anchor: "geghard" },
+      { name: "In Vino", lat: 40.187037, lng: 44.508926, note: "Wine bar, conversation with locals", anchor: "invino" }
+    ];
+    const map = L.map('map3').setView([stops[0].lat, stops[0].lng], 11);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+
+<p id="chorvirap"><strong>Khor Virap Monastery:</strong> According to tradition, King Trdat III had Gregory the Illuminator thrown into a pit on this hill in the Aras valley around 288 AD to make him renounce the Christian faith &ndash; for 13 years. When Gregory later healed the king, who had fallen ill, Trdat was baptized in 301 and made Armenia the first state in history to adopt Christianity as its state religion. The present monastery dates from the 17th century (Holy Mother of God Church 1661, St. George Chapel originally 642). Two openings in the floor of the St. George Chapel lead down a narrow ladder into the pit. The name "Khor Virap" means "deep dungeon". The hill lies less than a kilometer from the Aras, the border river with Turkey &ndash; from here you get the closest view of Mount Ararat, which for Armenians lies unreachable on the other side of the border.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Khor_Virap" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag3/01.jpg" alt="Stork nest in front of Mount Ararat on the way to Khor Virap">
+<p>Stork nest on the drive in, Mount Ararat in the background &ndash; storks are traditionally considered bringers of good luck in Armenia and enjoy special protection.</p>
+<img src="../images/tag3/02.jpg" alt="Exterior view of Khor Virap Monastery">
+<img src="../images/tag3/03.jpg" alt="Interior of the Holy Mother of God Church at Khor Virap">
+<p>Interior of the Holy Mother of God Church with altar and icons.</p>
+<img src="../images/tag3/04.jpg" alt="View of Khor Virap and Mount Ararat from the hill">
+<p>View from the hill across the monastery complex toward the Ararat plain &ndash; one of Armenia's most famous photo spots.</p>
+<img src="../images/tag3/05.jpg" alt="Elderly man in the Ararat plain near Khor Virap">
+<p>An older man from the area, wearing a camouflage-patterned shirt &ndash; in the Ararat plain, less than 2 km from the closed border with Turkey, military-style clothing is an everyday sight, and not just on soldiers.</p>
+<img src="../images/tag3/06.jpg" alt="Mount Ararat with lenticular cloud seen from afar">
+<p>Mount Ararat with its typical lenticular cloud &ndash; formed by moist air currents cooling at the summit, a well-known weather phenomenon on the mountain.</p>
+
+<p>Official program: Khor Virap (monastery view of Mount Ararat, prison pit of Gregory the Illuminator), the Roman temple of Garni, lunch with a family including a lavash-baking demonstration in the tonir. Afterwards free time at the market or in Yerevan's caf&eacute; streets.</p>
+<hr>
+
+<p id="garni"><strong>Temple of Garni:</strong> The only surviving Hellenistic temple in the Caucasus and the entire post-Soviet space, dedicated in the 1st century AD by King Trdat I to the sun god Mihr, later a summer residence of the Armenian royal family. 24 Ionic columns carry the entablature. Destroyed by an earthquake in 1679 and faithfully reconstructed between 1969 and 1975. Part of a fortress complex that served to defend the towns of the Ararat plain.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Garni_Temple" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag3/07.jpg" alt="Woman in traditional Armenian dress in front of the Garni temple">
+<p>Traditional Armenian wedding dress in front of the temple &ndash; Garni is a popular spot for photo shoots of this kind, and not just for tourists.</p>
+<img src="../images/tag3/08.jpg" alt="Columns of the Garni temple seen from below">
+<img src="../images/tag3/09.jpg" alt="Garni temple with mountain panorama">
+<p>View of the temple set against the barren mountain landscape of the Azat gorge.</p>
+<img src="../images/tag3/10.jpg" alt="Between the columns of the Garni temple looking into the valley">
+<p>Between the columns, looking down into the Azat gorge toward the Symphony of the Stones.</p>
+
+<p><strong>Duduk:</strong> A short concert on the duduk, the Armenian double-reed flute made of apricot wood &ndash; listed by UNESCO as intangible cultural heritage of humanity. Its soft, melancholy sound is regarded by many Armenians as the very essence of the country's soul, played at weddings and funerals alike.</p>
+<img src="../images/tag3/11.jpg" alt="Duduk player in the garden at Garni">
+
+<p id="symphonie"><strong>Symphony of the Stones:</strong> Hexagonal (and partly pentagonal) basalt columns in the Azat gorge below the temple, up to 100&ndash;200 m high. They formed as a lava flow cooled slowly &ndash; as it solidified, geometrically precise columns emerged, similar to the Giant's Causeway in Northern Ireland. The name comes from the sound the wind and the Azat river create between the columns.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Garni_Gorge" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag3/12.jpg" alt="Basalt columns of the Symphony of the Stones close up">
+<img src="../images/tag3/13.jpg" alt="Basalt columns of the Symphony of the Stones wide angle">
+<p>Up close, the cross-sections of the columns look like honeycombs &ndash; hence the older folk name "devil's beehive".</p>
+<img src="../images/tag3/14.jpg" alt="Azat river with basalt columns in the background">
+<p>The Azat river, which carved out the gorge over millennia, with the basalt columns in the background &ndash; from down here the sheer scale of the columns is far easier to grasp than from up by the temple.</p>
+
+<p><strong>Lavash baking in the village:</strong> Lunch with a family in Garni. Lavash is traditionally baked by women in the tonir &ndash; one sits at the dough table rolling it out, the other slaps the dough directly onto the glowing oven wall.</p>
+<img src="../images/tag3/15.jpg" alt="Two women baking lavash in a tonir in Garni">
+<img src="../images/tag3/16.jpg" alt="Self-filled lavash wrap with cheese and herbs">
+<p>Filling and rolling the freshly baked lavash yourself with herbs (tarragon, basil) and khorovats cheese (Armenian fresh cheese) &ndash; not just watching, but joining in.</p>
+
+<div class="tip"><strong>Local tip:</strong> For the free time, the GUM Market (food market) is more worthwhile than yet another souvenir stand &ndash; that's where everyday life happens, not the tourist route.</div>
+<p class="pending">(To be added.)</p>
+
+<hr>
+
+<p id="geghard"><strong>Geghard Monastery &ndash; an insider tip off the tour:</strong> Founded in the 4th century by Gregory the Illuminator at a pagan spring, originally called "Ayrivank" ("cave monastery"). After its destruction by Arab armies in the 9th century, it was rebuilt from 1215 by the Zakarian princes and expanded from 1250 under the Proshyan princes with several chapels carved directly into the rock. The current name Geghardavank means "Monastery of the Holy Lance": according to tradition, the Apostle Thaddeus brought the Spear of Longinus (which, according to the Bible, pierced the side of Christ) here &ndash; it was kept at the monastery for centuries before being moved to the treasury of Etchmiadzin (Day 2). A UNESCO World Heritage Site since 2000.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Geghard" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag3/17.jpg" alt="Geghard rock-hewn facade with khachkars">
+<p>Facade carved directly into the rock face with sculpted khachkars (cross-stones) &ndash; from the outside barely distinguishable from the mountain itself.</p>
+<img src="../images/tag3/18.jpg" alt="Proshyan coat of arms in the rock at Geghard with lions and eagle">
+<p>The coat of arms of the princely Proshyan family above the entrance: two chained lions held by a bull's head, with an eagle clutching a lamb in its talons between them &ndash; a medieval symbol of protection and power.</p>
+<img src="../images/tag3/19.jpg" alt="Beam of light through the dome opening in the gavit of Geghard">
+<p>The gavit (narthex) with its "stalactite-like" vaulting &ndash; daylight falls at an angle into the room through the light dome in the center, the only source of light in the otherwise dark interior.</p>
+<img src="../images/tag3/20.jpg" alt="Candle table in the rock-hewn church of Geghard">
+<img src="../images/tag3/21.jpg" alt="Portrait in front of candles at Geghard">
+<p>Candles are an integral part of prayer in the Armenian Apostolic Church &ndash; lit with a silent intention, not only in Etchmiadzin but in every active church.</p>
+
+<hr>
+
+<p id="invino"><strong>In Vino, Yerevan &ndash; winding down the evening:</strong> A wine bar on Saryan Street, one of the lively going-out streets of the city center. Got talking with a few locals &ndash; the part of the evening no tour can organize for you.</p>
+<img src="../images/tag3/22.jpg" alt="Busy lane with restaurants in the evening in Yerevan">
+<img src="../images/tag3/23.jpg" alt="Facade of the In Vino wine bar in Yerevan">
+
+<p><strong>What stuck from the conversation:</strong> A country that describes itself as torn &ndash; tied to Russia in matters of security and history (Russia still maintains a military base in Gyumri as a deterrent against NATO power Turkey), while economically and culturally orienting itself increasingly toward the West, plus close ties to Iran as its third neighbor, with joint energy projects underway. Landlocked between four neighbors, two of which (Turkey, Azerbaijan) keep their borders closed &ndash; a situation the conversation itself described as a "powder keg between East and West".</p>
+
+<p><strong>Diaspora:</strong> Estimates vary, but the order of magnitude is consistent: around 3 million Armenians live in the Republic of Armenia itself, while worldwide, depending on the source, 8 to 12 million ethnic Armenians are counted &ndash; the largest communities in Russia, the USA and France. A direct consequence of the genocide of 1915/16 and the Soviet waves of emigration. Practically every Armenian family has relatives abroad, and to this day the diaspora finances a considerable share of the country's reconstruction.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Armenian_diaspora" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<p><strong>Wine instead of vodka &ndash; a small countermovement:</strong> With Areni-1, Armenia is home to the oldest known winery in the world (ca. 4100 BC, clay jars and a grape press in a cave in the south of the country). Even so, everyday consumption shifted heavily toward vodka and Armenian cognac during the Soviet era (Churchill, so the story goes, had Stalin ship it to him by the crate). For some years now there has been a small but visible return to wine &ndash; small natural-wine producers, above all in the Vayots Dzor region around Areni, often working by hand and in tiny batches.</p>
+<img src="../images/tag3/24.jpg" alt="Hand-labeled bottle of natural wine from Crows Rock Winery, Vayots Dzor">
+<p>Crow's Rock Winery, Vayots Dzor: "Nouveau", Sev Areni grape, dry, natural wine made with full carbonic maceration, hand-written label &ndash; a micro-production (batch size noted on the bottle), not a big brand.</p>
+
+<hr>
+
+<div class="navbar"><a href="day2.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day4.html">Next day &rarr;</a><a class="lang-switch" href="../tag3.html" lang="de">DE</a></div>
+</body>
+</html>

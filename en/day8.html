@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 8 &ndash; Saturday, July 11 &ndash; Tbilisi</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+
+<div class="navbar"><a href="day7.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day9.html">Next day &rarr;</a><a class="lang-switch" href="../tag8.html" lang="de">DE</a></div>
+<h1>Day 8 &ndash; Saturday, July 11 &ndash; Tbilisi</h1>
+<p>Last full day of the trip: the flea market at the Dry Bridge, the funicular up Mtatsminda, coffee, a wine tasting and one last evening together in Tbilisi.</p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map8" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Dry Bridge flea market", lat: 41.6977, lng: 44.7937, note: "Soviet antiques and handicrafts", anchor: "flohmarkt" },
+      { name: "Mtatsminda", lat: 41.6935, lng: 44.7748, note: "Funicular, TV tower, Pantheon", anchor: "mtazminda" }
+    ];
+    const map = L.map('map8').setView([41.695, 44.785], 13);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<h3>Dry Bridge flea market</h3>
+<p id="flohmarkt"><strong>Dry Bridge Market:</strong> Tbilisi&rsquo;s best-known flea market, named after a historic bridge over a riverbed that dried up long ago. It emerged in the chaotic 1990s, when many Georgians, after the collapse of the Soviet Union, were forced to sell heirlooms, medals and personal belongings just to get by. Out of that hardship grew a sprawling market that is now open daily (except when it rains) &ndash; an open-air museum of Soviet nostalgia, handicrafts, and antiques both genuine and not so genuine.</p>
+<img src="../images/tag8/01.jpg" alt="Market stall with knitted goods and felt hats at the Dry Bridge Market">
+<p>A stall with knitted socks, felt hats and crocheted animal figures &ndash; handicrafts like these form the market&rsquo;s second big theme alongside the Soviet memorabilia.</p>
+<img src="../images/tag8/02.jpg" alt="Delivery van packed full of antiques at the Dry Bridge Market">
+<p>A delivery van crammed to the roof with vases, icons, candlesticks and curiosities &ndash; a rolling antique shop in the middle of the market. A word of caution that circulates among travelers to Georgia: not everything &ldquo;Soviet&rdquo; here is actually old &ndash; some of the goods are now reproduced specifically for the market.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Tbilisi" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<h3>Mtatsminda &ndash; funicular and TV tower</h3>
+<p id="mtazminda"><strong>Mtatsminda (&ldquo;Holy Mountain&rdquo;):</strong> At 770 meters the highest point in Tbilisi, named in reference to Mount Athos. A funicular has run to the top since 1905 &ndash; at the time a Belgian-French-Polish joint venture, financed by a Belgian consortium that received a 45-year operating concession in return. After a serious accident in 2000, in which a cable snapped and a car carrying Japanese tourists crashed back into the lower station, the funicular was out of service for 12 years; it has been running again since 2013, with an intermediate stop at the Pantheon of Georgian writers and statesmen (where, incidentally, Stalin&rsquo;s mother is buried).</p>
+<img src="../images/tag8/03.jpg" alt="Interior of the Tbilisi funicular with passengers and a view over the city">
+<p>Packed tightly into the funicular car during the roughly three-minute ride on a gradient of 28 to 33 degrees &ndash; below, Tbilisi spreads out in the afternoon sun.</p>
+<img src="../images/tag8/04.jpg" alt="Tbilisi TV tower on Mount Mtatsminda">
+<p>The 274.5-meter TV tower from 1972, occasionally called the &ldquo;Eiffel Tower of Tbilisi&rdquo; for its striking silhouette &ndash; closed to visitors since a fire in 2004, but elaborately lit at night and visible from practically every point in the city.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Tbilisi_Funicular" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<h3>Coffee break</h3>
+<img src="../images/tag8/05.jpg" alt="Courtyard of a coffee roastery in Tbilisi with painted gates">
+<p>A hidden backyard with brightly painted gates, graffiti and improvised wooden benches &ndash; typical of the informal caf&eacute; culture away from the old town&rsquo;s tourist trails.</p>
+<img src="../images/tag8/06.jpg" alt="Group in front of the Shavi coffee roastery in Tbilisi">
+<p>&ldquo;Shavi&rdquo; (Georgian for &ldquo;black&rdquo;) &ndash; a small specialty roastery, emblematic of the young, internationally minded caf&eacute; scene that has taken hold in Tbilisi in recent years.</p>
+
+<hr>
+
+<h3>Last evening: wine and winding down</h3>
+<img src="../images/tag8/07.jpg" alt="Person wearing a white papakha fur hat with Georgian wine bottles and a drinking horn">
+<p>To finish, Georgian drinking culture in full regalia one more time: a white papakha fur hat, several open bottles and a silver-mounted drinking horn (kantsi) &ndash; traditionally emptied in one go, since its pointed shape means it cannot be set down without spilling the contents.</p>
+<img src="../images/tag8/08.jpg" alt="Group photo in a wine shop in Tbilisi with fully stocked shelves">
+<p>One last wine tasting together in a specialty shop with shelves full of Georgian wines from every growing region &ndash; a fitting finale after eight days among khachkars, monasteries and qvevri cellars.</p>
+<img src="../images/tag8/09.jpg" alt="Evening bar scene in Tbilisi with the tour group">
+<p>The group&rsquo;s last evening together in one of the many small, dark and cozy bars of Tbilisi &ndash; after eight days in Armenia and Georgia, a fitting way to end.</p>
+
+<hr>
+
+<div class="navbar"><a href="day7.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day9.html">Next day &rarr;</a><a class="lang-switch" href="../tag8.html" lang="de">DE</a></div>
+</body>
+</html>

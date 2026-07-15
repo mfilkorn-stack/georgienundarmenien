@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 2 &ndash; Sunday, July 5 &ndash; Etchmiadzin &amp; Yerevan</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="day1.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day3.html">Next day &rarr;</a><a class="lang-switch" href="../tag2.html" lang="de">DE</a></div>
+<h1>Day 2 &ndash; Sunday, July 5 &ndash; Etchmiadzin &amp; Yerevan</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map2" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+    { name: "Etchmiadzin Cathedral", lat: 40.1618439, lng: 44.29112089999996, note: "Seat of the Catholicos, treasury", anchor: "etschmiadzin" },
+    { name: "Cascade & Cafesjian Sculpture Garden", lat: 40.1894674, lng: 44.515414, note: "572 steps, Botero sculptures", anchor: "kaskade" },
+    { name: "Mother Armenia / Victory Park", lat: 40.195669599999995, lng: 44.5202987, note: "Military museum, T-34 tank", anchor: "mutter-armenien" },
+    { name: "Tsitsernakaberd Genocide Memorial", lat: 40.1857877, lng: 44.4904934, note: "Eternal flame, view of Mount Ararat", anchor: "genozid" }
+    ];
+    const map = L.map('map2').setView([40.1618439, 44.29112089999996], 13);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      const popupHtml = '<strong>' + stop.name + '</strong><br>' + stop.note +
+        '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>';
+      marker.bindPopup(popupHtml);
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>Official program: Etchmiadzin Cathedral (seat of the Catholicos, founded 301/303 AD), Yerevan city walk, Tsitsernakaberd Genocide Memorial. Evening free.</p>
+<hr>
+<p id="etschmiadzin"><strong>Etchmiadzin Cathedral:</strong> According to legend, Christ appeared to Gregory the Illuminator in a vision and showed him the spot where the first church was to be built &ndash; hence the name &ldquo;Etchmiadzin&rdquo;, &ldquo;the Only-Begotten descended&rdquo;. Construction began in 301, consecration followed in 303 over the foundations of a pagan fire temple, making it the oldest state-built church in Christendom. Seat of the Catholicos of All Armenians, a UNESCO World Heritage Site since 2000.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Etchmiadzin_Cathedral" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag2/20.jpg" alt="Etchmiadzin Cathedral exterior view">
+<img src="../images/tag2/21.jpg" alt="Wrap skirt as dress code at Etchmiadzin">
+<p>Dress code: no shorts allowed &ndash; wrap cloths are available at the entrance.</p>
+<p><strong>Treasury:</strong> The Manukian Museum on the monastery grounds holds the most important relics of the Armenian Apostolic Church: the tip of the Holy Lance, a splinter of the True Cross, a fragment of Noah's Ark, and the right arm of Gregory the Illuminator.</p>
+<img src="../images/tag2/22.jpg" alt="Carved wooden cross in the Etchmiadzin treasury">
+<img src="../images/tag2/23.jpg" alt="Silver reliquary panel in the Etchmiadzin treasury">
+<p><strong>Clergy on site:</strong> A deacon in liturgical vestments (red-and-gold cape over a black cassock, vardapet cross in hand) and a monk wearing the pointed hood (veghar) typical of Armenian Apostolic clergy.</p>
+<img src="../images/tag2/24.jpg" alt="Deacon in liturgical vestments at Etchmiadzin">
+<img src="../images/tag2/25.jpg" alt="Monk in front of a church at Etchmiadzin">
+<hr>
+<p><strong>Passing through the city:</strong> Walked past a monument decorated with Armenian flags at an intersection. A shopping street with a restored tsarist-era tuff-stone facade and modern retail rows at street level &ndash; the typical Yerevan juxtaposition of historic shell and present-day commerce.</p>
+<img src="../images/tag2/01.jpg" alt="Monument decorated with flags in Yerevan">
+<img src="../images/tag2/02.jpg" alt="Historic facade with row of shops in Yerevan">
+<hr>
+<p id="kaskade"><strong>Cascade &amp; Cafesjian Sculpture Garden:</strong> 572 steps, 118 m high, built of light-colored travertine. It goes back to Alexander Tamanian's 1920s master plan, but construction only began in 1971; after the 1988 earthquake and the end of the Soviet Union, the complex sat unfinished for decades. Armenian-American collector Gerard Cafesjian financed its completion, along with a museum of contemporary art, with 128 million US dollars between 2002 and 2009.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Cascade_Complex" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag2/11.jpg" alt="Cascade in Yerevan, overall view">
+<img src="../images/tag2/12.jpg" alt="Cascade detail with circular patterns">
+<img src="../images/tag2/13.jpg" alt="View over Yerevan from the Cascade">
+<p>The circular ornaments echo Armenian carpet patterns &ndash; the same motif as on Republic Square (Day 1).</p>
+<p><strong>Tamanian monument:</strong> At the foot of the Cascade stands the 1974 statue of city planner Alexander Tamanian by Artashes Hovsepyan, showing him bent over a stone slab &ndash; it rests on two unequal stones representing old and new Armenian architecture.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Alexander_Tamanian" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag2/14.jpg" alt="Tamanian monument at the foot of the Cascade">
+<p><strong>Sculpture garden:</strong> The Cafesjian sculpture park displays works by international sculptors (Botero, Chadwick, Plensa, Flanagan) &ndash; most eye-catching are two oversized bronzes by Fernando Botero: a reclining woman and a &ldquo;Roman Warrior&rdquo;.</p>
+<img src="../images/tag2/15.jpg" alt="Botero sculpture of a reclining woman at the Cascade in Yerevan">
+<img src="../images/tag2/16.jpg" alt="Botero sculpture Roman Warrior">
+<hr>
+<p id="mutter-armenien"><strong>Mother Armenia (Victory Park):</strong> Inaugurated in 1950 as a Stalin monument; the Stalin statue was taken down in 1962, and since 1967 the present Mother Armenia figure (sculptor Ara Harutyunyan) has stood here. A copper statue, 22 m tall, on a 32 m pedestal that houses a five-story military museum &ndash; dedicated to the roughly 650,000 Armenian soldiers of the Second World War and to those killed in the Karabakh conflict. The interior of the pedestal is modeled on the Sarkis Cathedral in Etchmiadzin.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Mother_Armenia" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag2/03.jpg" alt="Rocket launcher in the open-air military museum">
+<img src="../images/tag2/04.jpg" alt="At the tank in front of the Mother Armenia statue">
+<img src="../images/tag2/05.jpg" alt="At the tank in front of the Mother Armenia statue, second shot">
+<img src="../images/tag2/06.jpg" alt="Mother Armenia statue, front view with eternal flame">
+<p>Open-air exhibition: a Soviet anti-aircraft missile and rocket launchers mounted on Armenian gravestone-style pedestals. A T-34 tank you can climb on. Eternal flame at the tomb of the unknown soldier.</p>
+<hr>
+<p id="genozid"><strong>Tsitsernakaberd Genocide Memorial:</strong> Built in 1967 on Tsitsernakaberd hill (&ldquo;swallow's fortress&rdquo;), with an adjoining museum since 1995. Twelve inward-leaning basalt slabs form a circle around the eternal flame, set 1.5 m below ground &ndash; they stand for the twelve lost provinces of Western Armenia in what is now Turkey. Next to it rises a 44 m stele split in two by a narrow gap: the larger half represents the Republic of Armenia, the smaller one the lost western territories.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Tsitsernakaberd" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag2/07.jpg" alt="Genocide memorial with view of Mount Ararat">
+<img src="../images/tag2/08.jpg" alt="Eternal flame surrounded by flowers at the genocide memorial">
+<img src="../images/tag2/09.jpg" alt="View through the slabs toward the obelisk">
+<img src="../images/tag2/10.jpg" alt="Obelisk and slabs from a distance">
+<p>View of twin-peaked Mount Ararat. The eternal flame is ringed with fresh flowers every day.</p>
+<hr>
+<p><strong>Lavash &amp; khorovats:</strong> Lavash is baked right inside the tonir clay oven &ndash; the dough is slapped onto the glowing-hot inner wall. Afterwards a classic grill platter: lula kebab, grilled fish, eggplant and peppers roasted directly on the embers &ndash; typical Armenian &ldquo;khorovats&rdquo;.</p>
+<img src="../images/tag2/17.jpg" alt="Baking lavash in a tonir oven">
+<img src="../images/tag2/18.jpg" alt="Armenian grill platter khorovats">
+<img src="../images/tag2/19.jpg" alt="Meat counter with kebab skewers">
+<p>Meat counter with skewers prepped for grilling at home &ndash; standard in Yerevan's butcher shops, not just in restaurants.</p>
+<hr>
+<div class="navbar"><a href="day1.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day3.html">Next day &rarr;</a><a class="lang-switch" href="../tag2.html" lang="de">DE</a></div>
+</body>
+</html>

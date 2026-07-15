@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 7 &ndash; Friday, July 10 &ndash; Uplistsikhe, Stalin Museum Gori, Mtskheta</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+
+<div class="navbar"><a href="day6.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day8.html">Next day &rarr;</a><a class="lang-switch" href="../tag7.html" lang="de">DE</a></div>
+<h1>Day 7 &ndash; Friday, July 10 &ndash; Uplistsikhe, Stalin Museum Gori, Mtskheta</h1>
+<p>Heading west from Tbilisi: first stop at the cave city of Uplistsikhe near Gori.</p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map7" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Uplistsikhe", lat: 41.9989, lng: 44.2261, note: "Cave city on the Silk Road", anchor: "uplisziche" },
+      { name: "Stalin Museum Gori", lat: 41.9847, lng: 44.1108, note: "Birth house, museum palace, railway carriage", anchor: "stalinmuseum" },
+      { name: "Mtskheta", lat: 41.8408, lng: 44.7192, note: "Svetitskhoveli Cathedral and Jvari Monastery", anchor: "mzcheta" }
+    ];
+    const map = L.map('map7').setView([41.9, 44.4], 9);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<p id="uplisziche"><strong>Uplistsikhe:</strong> &ldquo;Fortress of God&rdquo; &ndash; the oldest of Georgia&rsquo;s three cave cities, set on a rocky plateau above the Mtkvari (Kura) river about 10 km east of Gori. First settled as early as the Bronze Age, the rock-hewn town proper took shape from the 6th century BC onwards and, as a trading post on the Silk Road, grew to as many as 20,000 inhabitants. Before Christianization, pagan gods were worshipped here &ndash; a sun god, an earth god, a god of the underworld and a water god, each with its own temple and priesthood.</p>
+
+<img src="../images/tag7/01.jpg" alt="Rock facade of Uplistsikhe with column-supported halls">
+<p>The central rock facade with its columned halls carved out of the sandstone &ndash; among them, presumably, Tamaris Darbasi (&ldquo;Tamar&rsquo;s Hall&rdquo;), the largest surviving room of the complex with its coffered vaulted ceiling.</p>
+
+<p><strong>Golden age and decline:</strong> Between the 9th and 11th centuries Uplistsikhe reached its peak as a political and religious center of Georgia, complete with an amphitheater, a pharmacy, bakeries and a sophisticated system of channels. When the Georgians recaptured Tbilisi in 1122, Uplistsikhe abruptly lost its importance; in the 13th century the Mongol commander &Ouml;gedei Khan largely destroyed the city. The last inhabitants only left at the end of the 18th century &ndash; and an earthquake in 1920 caused many additional caves to collapse.</p>
+
+<img src="../images/tag7/02.jpg" alt="Cave kitchen in Uplistsikhe with clay jars and fireplace">
+<p>One of the better-preserved dwelling caves with a fireplace, clay jars and storage ledges cut into the rock &ndash; probably part of a living or kitchen area. Details like these give a far more tangible sense of everyday life than the bare facades alone.</p>
+
+<img src="../images/tag7/03.jpg" alt="Panorama of Uplistsikhe with basilica on the rock plateau">
+<p>View across the entire plateau up to the three-nave Prince&rsquo;s Church (a basilica, 9th/10th century) at its highest point &ndash; the landmark of Uplistsikhe, built when the city had already been Christianized, its interior walls once entirely covered in frescoes.</p>
+
+<p class="tip"><strong>Secret tunnel:</strong> A tunnel roughly 50 meters long and about 3 meters in diameter, driven through the rock, once connected the upper town with the riverbank &ndash; officially for the water supply, but in the event of a siege it could also serve as an unnoticed escape route. Anyone climbing through the site&rsquo;s narrow, well-worn rock passages today gets a good sense of just how claustrophobic that must have been.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Uplistsikhe" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<img src="../images/tag7/04.jpg" alt="Person in a narrow rock passage of Uplistsikhe">
+<p>Through one of the narrow rock passages connecting the individual cave complexes &ndash; in places so tight that you have to squeeze through sideways.</p>
+
+<img src="../images/tag7/05.jpg" alt="Person looking out of a small rock opening in Uplistsikhe">
+<p>Small square rock windows like this one originally served as light slits and smoke vents for individual dwelling caves &ndash; today they are a popular photo spot.</p>
+
+<img src="../images/tag7/06.jpg" alt="Man playfully jumping out of a cave entrance in Uplistsikhe">
+<p>The cave city also offers plenty of opportunity for a bit of climbing fun &ndash; the soft sandstone niches practically invite you to clamber around.</p>
+
+<h3>Stalin Museum, Gori</h3>
+<p id="stalinmuseum"><strong>Joseph Stalin Museum:</strong> Gori, about a 25-minute drive from Uplistsikhe, is the birthplace of Ioseb Besarionis dze Jughashvili &ndash; better known by his revolutionary alias Stalin. First set up in his birth house in 1937, the large museum palace in &ldquo;Stalinist Gothic&rdquo; style was built from 1951 onwards and ceremonially opened in 1957, four years after Stalin&rsquo;s death. The museum presents his life in chronologically arranged halls &ndash; from his childhood in Gori to his rise to become the most powerful man in the Soviet Union.</p>
+
+<img src="../images/tag7/07.jpg" alt="Painted portrait of the young Stalin as Jughashvili">
+<p>Portrait of the young Ioseb Jughashvili from the early halls &ndash; still a bohemian-looking revolutionary with a neckerchief, long before he adopted the name &ldquo;Stalin&rdquo; (&ldquo;man of steel&rdquo;).</p>
+
+<img src="../images/tag7/08.jpg" alt="Large exhibition hall in the Stalin Museum Gori with photo panels and wall frieze">
+<p>One of the large exhibition halls: a continuous frieze of black-and-white photographs below the ceiling, and beneath it monumental, partly gilded murals on the &ldquo;Great Patriotic War&rdquo;. The entire museum building is single-mindedly designed for glorification &ndash; you will search the regular exhibition in vain for any critical reckoning with the millions of victims of purges, deportations and famines.</p>
+
+<p><strong>Propaganda art:</strong> Numerous woven tapestries and paintings in the style of &ldquo;Socialist Realism&rdquo; dominate the halls &ndash; Stalin as military leader, as provider for the people, as friend of children. This visual language was an integral part of the cult built around his person during his lifetime, and the museum continues to display it without comment.</p>
+<img src="../images/tag7/09.jpg" alt="Woven tapestry with Stalin portrait in uniform and medals">
+<p>Woven tapestry showing Stalin in a marshal&rsquo;s uniform, framed by the coats of arms of the Soviet republics &ndash; a classic example of Caucasian carpet weaving, here placed entirely in the service of the personality cult.</p>
+<img src="../images/tag7/10.jpg" alt="Tapestry of Lenin and Stalin in Gorki">
+<p>&ldquo;Lenin and Stalin in Gorki&rdquo; &ndash; one of countless depictions of a close personal bond between the two men, which historians today judge with considerably more skepticism than Soviet iconography would suggest.</p>
+<img src="../images/tag7/11.jpg" alt="Painting of Stalin embracing a girl in front of the Kremlin">
+<p>Stalin as caretaker: a painting showing him embracing a child in front of the Kremlin, surrounded by cheering crowds with red flags &ndash; a recurring propaganda motif that staged the dictator as the loving &ldquo;father of the peoples&rdquo;.</p>
+
+<p class="tip"><strong>Controversy:</strong> After the 2008 war in the Caucasus, Georgia&rsquo;s then culture minister announced that the museum would be turned into a &ldquo;Museum of Russian Aggression&rdquo;. For years, a sign at the entrance warned of the falsification of history. In late 2012, however, Gori&rsquo;s city council voted against a redesign &ndash; and the museum stayed as it was. To this day it is the town&rsquo;s most important source of tourism revenue; according to the museum, around 85% of visitors in 2019 came from abroad, a large share of them from Russia.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Joseph_Stalin_Museum,_Gori" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<img src="../images/tag7/12.jpg" alt="Photo exhibition on war and occupation of Georgia 2008 Abkhazia Samachablo">
+<p>A separate exhibition area documents, with at times graphic photographs, the armed conflicts over Abkhazia (1992&ndash;93), South Ossetia/Samachablo (1991) and the Russo-Georgian War of 2008 &ndash; a far more critical, explicit counterpoint to the uncritical veneration of Stalin in the main building next door.</p>
+
+<p><strong>The railway carriage:</strong> Next to the museum stands Stalin&rsquo;s personal green Pullman carriage &ndash; 83 tonnes, armor-plated &ndash; which he used for travel from 1941 onwards because of his fear of flying, including to the Tehran and Yalta conferences. The carriage was handed over to the museum in 1985; today visitors can view the sleeping compartment, bathroom and meeting room.</p>
+<img src="../images/tag7/13.jpg" alt="Soviet coat of arms and builder's plate on a locomotive in Gori">
+<p>Soviet state emblem and builder&rsquo;s plate &ldquo;&Phi;&Delta; 3878&rdquo; on one of the historic locomotives on the museum grounds &ndash; &ldquo;&Phi;&Delta;&rdquo; stands for Felix Dzerzhinsky, after whom this Soviet locomotive class of the 1930s was named.</p>
+
+<img src="../images/tag7/14.jpg" alt="Stalin's death mask on a marble pedestal">
+<p>The tour traditionally ends with Stalin&rsquo;s death mask on its own pedestal &ndash; one of the best-known of twelve copies made after his death in 1953, staged almost like a relic.</p>
+
+<h3>Mtskheta &ndash; Svetitskhoveli Cathedral and Jvari Monastery</h3>
+<p id="mzcheta"><strong>Mtskheta:</strong> About 20 km north of Tbilisi, at the confluence of the Mtkvari (Kura) and Aragvi rivers &ndash; for almost 1,000 years, until the 6th century, the capital of the Kingdom of Iberia, and to this day the spiritual heart of Georgia. Together with Jvari, the historical monuments of Mtskheta have been on the UNESCO World Heritage list since 1994/96.</p>
+
+<p><strong>Svetitskhoveli Cathedral:</strong> The &ldquo;Cathedral of the Living Pillar&rdquo;, built in 1010&ndash;1029 by the Georgian architect Arsukidze, is the second-largest church in Georgia and for centuries served as the coronation and burial church of the Georgian kings. The name goes back to a legend: a resident of Mtskheta is said to have brought Christ&rsquo;s robe home after the crucifixion; his sister Sidonia died at the sight of it, the robe could not be pried from her hands, and she was buried with it. A cedar grew over her grave, and from its wood Saint Nino had a pillar made for the first church &ndash; but one pillar simply refused to be raised, until an angel appeared at night and lifted it into place. It has been considered &ldquo;life-giving&rdquo; ever since.</p>
+<img src="../images/tag7/15.jpg" alt="Exterior view of Svetitskhoveli Cathedral in Mtskheta">
+<p>The cathedral of yellow sandstone, surrounded by a five-meter-high crenellated defensive wall built in 1787 under King Erekle II &ndash; half church, half fortress.</p>
+
+<img src="../images/tag7/16.jpg" alt="Painted iconostasis doors with depictions of saints in Svetitskhoveli">
+<p>Richly decorated doors of the iconostasis with painted figures of saints, framed by classic Georgian stonemasonry &ndash; tendril ornaments, crosses and rosettes in the finest relief.</p>
+
+<img src="../images/tag7/17.jpg" alt="Christ Pantocrator apse fresco in Svetitskhoveli">
+<p>Christ Pantocrator in the apse, surrounded by angels and an inscription in the old Georgian Asomtavruli script &ndash; one of the most striking frescoes inside the cathedral.</p>
+<img src="../images/tag7/18.jpg" alt="Dome fresco with angels and depictions of saints in Svetitskhoveli">
+<p>Looking up into one of the dome niches with depictions of angels &ndash; most of the painted decoration dates from later phases, as the cathedral was destroyed and rebuilt several times over the centuries (among others during Timur&rsquo;s invasions).</p>
+
+<img src="../images/tag7/19.jpg" alt="Monk mowing the lawn on the grounds of Svetitskhoveli">
+<p>Monastic everyday life beyond the grand history: a monk mowing the lawn on the cathedral grounds &ndash; an image that pleasantly grounds one&rsquo;s awe at 1,000 years of history.</p>
+<img src="../images/tag7/20.jpg" alt="Cleric greeting a group of tourists in front of the monastery wall">
+<p>A cleric warmly welcomes our group in front of the defensive wall &ndash; for all its reverence for the holy sites, the Georgian Orthodox Church has a remarkably open, easygoing way with visitors.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Svetitskhoveli_Cathedral" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<p><strong>Jvari Monastery:</strong> Perched high on a rocky spur above the confluence of the Mtkvari and Aragvi, with one of Georgia&rsquo;s most famous panoramic views. According to tradition, Saint Nino erected a wooden cross here as early as the 4th century; the present cross-domed church, built between 586 and 605, is considered the oldest of its kind in Georgia and served as the architectural model for countless later churches across the country. The Georgian name &ldquo;Jvari&rdquo; simply means &ldquo;cross&rdquo;.</p>
+<img src="../images/tag7/21.jpg" alt="View from Jvari Monastery of Mtskheta at the confluence of the Mtkvari and Aragvi">
+<p>The view that makes Jvari one of the most photographed places in Georgia: down onto Mtskheta and the confluence, where the murky Mtkvari and the clearer Aragvi merge. The Russian poet Mikhail Lermontov set his 1839 poem &ldquo;Mtsyri&rdquo; here, in which a young novice flees from this very monastery.</p>
+<img src="../images/tag7/22.jpg" alt="Exterior view of Jvari Monastery with cross dome">
+<p>The plain, octagonal cross dome of 6th-century Jvari &ndash; in contrast to the richly painted Svetitskhoveli Cathedral down in the valley, deliberately kept bare and unadorned.</p>
+<img src="../images/tag7/23.jpg" alt="Icon corner in the plain interior of Jvari">
+<p>In the austere interior, a small corner adorned with icons and candles marks the spot where Saint Nino&rsquo;s original cross is said to have once stood &ndash; to this day a place of pilgrimage and one of the most spiritually charged sites in Georgia.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Jvari_Monastery" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<div class="navbar"><a href="day6.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day8.html">Next day &rarr;</a><a class="lang-switch" href="../tag7.html" lang="de">DE</a></div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 5 &ndash; Wednesday, July 8 &ndash; Border Crossing into Georgia, Kakheti, Telavi</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+
+<div class="navbar"><a href="day4.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day6.html">Next day &rarr;</a><a class="lang-switch" href="../tag5.html" lang="de">DE</a></div>
+<h1>Day 5 &ndash; Wednesday, July 8 &ndash; Border Crossing into Georgia, Kakheti, Telavi</h1>
+<p>Official itinerary: crossing the border from Armenia into Georgia at the Bagratashen/Sadakhlo checkpoint, then continuing on towards Tbilisi.</p>
+
+<h3>Georgia &ndash; a brief historical overview</h3>
+<p>Georgia, together with Armenia, is one of the oldest Christian nations in the world &ndash; Christianity became the state religion here as early as 337 AD, according to tradition through the missionary Saint Nino. Historically the country consisted of two kingdoms: Colchis in the west (setting of the Greek legend of the Argonauts and the Golden Fleece) and Iberia in the east, around Tbilisi. A unique alphabet unrelated to any other script (Mkhedruli) emerged as early as the 4th/5th century &ndash; to this day an expression of a distinctly independent cultural identity.</p>
+<p>Georgia&rsquo;s political golden age came in the 12th/13th century under Queen Tamar, when the kingdom stretched from sea to sea. There followed centuries of Mongol, Persian and Ottoman rule, annexation by the Russian Empire in 1801, a brief independence from 1918&ndash;1921, then Soviet rule until 1991 &ndash; with Georgia, of all places, producing the most prominent Soviet dictator in Joseph Stalin (born in Gori). Independence in 1991 was followed by civil war, the &ldquo;Rose Revolution&rdquo; of 2003 and the 2008 war with Russia over the breakaway regions of Abkhazia and South Ossetia, which remain under the control of Russian troops to this day.</p>
+<p class="tip"><strong>Current situation:</strong> Georgia was granted EU candidate status at the end of 2023 &ndash; with roughly 80&nbsp;percent public approval, one of the highest figures of any candidate country. At the end of November 2024, the &ldquo;Georgian Dream&rdquo; party, in power since 2012 (informally steered by the oligarch Bidzina Ivanishvili), declared the accession process suspended until at least 2028 &ndash; sparking ongoing pro-European protests in Tbilisi and other cities ever since. The EU flags that greet you just beyond the border thus stand in a certain tension with the current government line.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Georgia_(country)" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map5" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Bagratashen/Sadakhlo border crossing", lat: 41.2086, lng: 44.8144, note: "Border crossing Armenia-Georgia", anchor: "grenze" },
+      { name: "Telavi", lat: 41.9169, lng: 45.4736, note: "Capital of Kakheti, Erekle II monument, qvevri wine tasting", anchor: "telavi" }
+    ];
+    const map = L.map('map5').setView([41.55, 45.15], 8);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<p id="grenze"><strong>Bagratashen/Sadakhlo border crossing:</strong> The busiest of the three border crossings between Armenia and Georgia open to foreigners, close to the Debed River and only a few kilometres from Haghpat. The border processing itself is considered one of the most relaxed in the entire Caucasus &ndash; no luggage checks, no unnecessary questions, just a stamp in the passport.</p>
+<img src="../images/tag5/01.jpg" alt="Waiting area in the Bagratashen border building with Ararat coffee advertising">
+<p>The waiting area in the border building &ndash; bilingual signage in Armenian and Russian, interspersed with advertising for Armenian Ararat coffee. An architecturally sober place that nevertheless works as a small window in time between two cultural spheres.</p>
+
+<img src="../images/tag5/02.jpg" alt="Armenian recruits in formation near the border">
+<p>Armenian recruits in formation right by the border compound &ndash; Armenia has universal conscription (normally two years), and border regions like this one have a correspondingly strong military presence. An image that underscores the tense geopolitical situation of the whole region, even though this particular stretch of border is considered quiet.</p>
+
+<p><strong>Arrival in Georgia:</strong> Barely across the border, the first Georgian townscape greets you with a familiar motif: a fountain with a clock, surrounded by fluttering flags.</p>
+<img src="../images/tag5/03.jpg" alt="Fountain with clock, Georgian and EU flags just beyond the border">
+<p>Georgian national flags (the &ldquo;five-cross flag&rdquo;, reinstated as the official national symbol in 2004) alternating with EU flags &ndash; an image that, given the current political situation, almost reads as a quiet statement of intent.</p>
+
+<img src="../images/tag5/04.jpg" alt="Soviet war memorial of a mother with two children and a sword">
+<p>A typical Soviet war memorial by the roadside: a mother figure handing a sword to two children &ndash; iconography from the same visual tradition as the better-known &ldquo;Mother Homeland&rdquo; monuments in Volgograd, Kyiv or Yerevan, here on a smaller scale commemorating those who fell in the Second World War (the &ldquo;Great Patriotic War&rdquo;). Memorials like this still stand in practically every larger town across the post-Soviet space.</p>
+
+<p class="tip"><strong>Curiosity by the roadside:</strong> In the middle of Georgian traffic, an old Ford Transit with Berlin advertising lettering suddenly appears &ndash; &ldquo;7 Fachm&auml;rkte unter einem Dach&rdquo; (&ldquo;7 specialist stores under one roof&rdquo;), complete with a German email address.</p>
+<img src="../images/tag5/05.jpg" alt="Old Ford Transit with German advertising lettering and Georgian licence plate">
+<p>Used German commercial vehicles have been exported to the Caucasus and Central Asia in large numbers for years &ndash; often with their original lettering intact, as here: a tradesman&rsquo;s van from Berlin-Rudow, now driving through the province of Kvemo Kartli with Georgian plates. A small, unintentional greeting from home.</p>
+
+<h3>Kakheti &ndash; arrival in the wine region</h3>
+<p id="telavi"><strong>Telavi:</strong> Capital of the Kakheti wine region and historic residence of the Kakhetian kings, around 70 km east of Tbilisi in the Alazani Valley. The valley is considered the true &ldquo;cradle of winemaking&rdquo; &ndash; the oldest known traces of wine production anywhere were found here, with an unbroken tradition going back some 8,000 years.</p>
+<img src="../images/tag5/06.jpg" alt="Equestrian statue of King Erekle II in Telavi">
+<p>The equestrian statue of King Erekle II (1720&ndash;1798) in the town centre &ndash; an 8.5-metre bronze from 1971 and one of Telavi&rsquo;s landmarks. Erekle II was the last great Georgian king, who united Kakheti and Kartli, fought against the Persians and Ottomans, and placed himself under Russian protection in the 1783 Treaty of Georgievsk &ndash; a step that, in hindsight, paved the way for the later Russian annexation. His personal courage made him so popular with his people that he was nicknamed &ldquo;Patara Kakhi&rdquo; (&ldquo;Little Kakhetian&rdquo;), in the spirit of Napoleon&rsquo;s &ldquo;Little Corporal&rdquo;.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Heraclius_II_of_Georgia" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<h3>Qvevri wine tasting</h3>
+<p id="qvevri"><strong>Wine from the qvevri:</strong> The traditional Georgian method of making wine in egg-shaped clay vessels (qvevri) holding up to 3,000 litres was declared part of humanity&rsquo;s intangible cultural heritage by UNESCO in 2013. The vessels are buried in the ground up to the neck &ndash; the earth keeps the temperature constantly cool during the weeks- to months-long fermentation on the skins (skin contact). In white wines, this extended skin contact produces the characteristic amber to golden hue &ndash; hence the internationally used term &ldquo;amber wine&rdquo; for Georgian orange wines.</p>
+<img src="../images/tag5/07.jpg" alt="Qvevri sunk into the floor of a wine cellar">
+<p>The floor room of a wine cellar with sunken qvevri &ndash; the round openings are buried flush with the ground so that only the neck rims remain visible. A well-fired qvevri can last for several decades, sometimes generations.</p>
+
+<img src="../images/tag5/08.jpg" alt="Large clay jars covered with guests' signatures in the wine cellar">
+<p>Larger clay jars in the tasting room, densely covered with signatures and greetings from past groups of visitors in dozens of languages &ndash; an informal guestbook made of clay.</p>
+
+<img src="../images/tag5/09.jpg" alt="Traditional woven protective covers for wine bottles">
+<p>Woven wicker covers around large glass demijohns &ndash; a traditional way of protecting wine or chacha (Georgian grape brandy) from breakage in transit, much like the Italian fiasco basket bottles used for Chianti.</p>
+
+<img src="../images/tag5/10.jpg" alt="Tasting table in the wine cellar with bottle racks in brick niches">
+<p>The tasting room itself: a long wooden table surrounded by brick niches full of resting bottles &ndash; an image that reveals the seriousness behind Georgian hospitality. Wine here is not an accessory but a cultural treasure.</p>
+
+<img src="../images/tag5/11.jpg" alt="Wine tasting with ORGO Mtsvane sparkling wine on the table">
+<p>Among the wines tasted is ORGO Mtsvane Brut &ndash; a sparkling wine made from the indigenous white grape variety Mtsvane, bottle-fermented in the traditional method. Mtsvane (Georgian for &ldquo;green&rdquo;) is, alongside Rkatsiteli, one of Kakheti&rsquo;s most important white grape varieties.</p>
+<img src="../images/tag5/12.jpg" alt="Emptied bottles in the wine cellar, including a cognac bottle">
+<p>Emptied bottles as a little shelf memorial to the evening &ndash; the cognac bottle beside them betrays that it did not stop at the wine tasting.</p>
+
+<hr>
+
+<div class="navbar"><a href="day4.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day6.html">Next day &rarr;</a><a class="lang-switch" href="../tag5.html" lang="de">DE</a></div>
+</body>
+</html>

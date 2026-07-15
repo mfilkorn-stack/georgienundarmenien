@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 4 &ndash; Tuesday, July 7 &ndash; Lake Sevan, Molokans, Dilijan, Alaverdi, Sanahin, Haghpat</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="day3.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day5.html">Next day &rarr;</a><a class="lang-switch" href="../tag4.html" lang="de">DE</a></div>
+<h1>Day 4 &ndash; Tuesday, July 7 &ndash; Lake Sevan, Molokans, Dilijan, Alaverdi, Sanahin, Haghpat</h1>
+<p>Official programme: drive to Lake Sevan (the largest lake in the Caucasus) with monastery stops, then on through Molokan villages with a traditional tea break, overnight stay in Haghpat overlooking the Debed Gorge.</p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map4" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Sevanavank Monastery", lat: 40.5638675, lng: 45.0110434, note: "Peninsula monastery, originally an island", anchor: "sevanavank" },
+      { name: "Dilijan", lat: 40.7419, lng: 44.8635, note: "Armenian Switzerland, Sharambeyan Street", anchor: "dilijan" },
+      { name: "Alaverdi", lat: 41.1039, lng: 44.6511, note: "Abandoned copper smelter in the Debed Gorge", anchor: "alaverdi" },
+      { name: "Sanahin Monastery", lat: 41.1067, lng: 44.6931, note: "Sister monastery of Haghpat, birthplace of the Mikoyan brothers", anchor: "sanahin" },
+      { name: "Haghpat Monastery", lat: 41.0975, lng: 44.7042, note: "UNESCO World Heritage Site, our overnight stop", anchor: "haghpat" }
+    ];
+    const map = L.map('map4').setView([40.9, 44.8], 8);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<p id="sevanavank"><strong>Lake Sevan &amp; Sevanavank Monastery:</strong> At 1,272 km&sup2; the largest freshwater lake in the Caucasus, and at 1,900 m elevation one of the largest high-altitude lakes in the world. The monastery was founded in 874 by Princess Mariam, daughter of the future King Ashot I, originally on an island &ndash; a place of exile for monks and nobles who had fallen from grace, so strict that neither meat nor wine was permitted. Massive water diversion for Soviet irrigation projects from 1936 onwards lowered the lake level by 22 m by 1988 &ndash; turning the island into today's peninsula. The last monks were forced to leave in 1930 under Stalin; today the Armenian Apostolic Church runs a seminary here. 230 steps lead up to the monastery, and locals jokingly call climbing them three times a "pilgrimage to Mecca".</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Sevanavank" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/tag4/01.jpg" alt="In front of the Surb Arakelots church on Lake Sevan">
+<img src="../images/tag4/02.jpg" alt="Horse with Armenian flag in front of Sevanavank">
+<p>A horse posing for photos at the monastery entrance, with both churches of the complex in the background &ndash; Surb Arakelots and the smaller Surb Astvatsatsin.</p>
+<img src="../images/tag4/03.jpg" alt="Liturgy in the Sevanavank church with priest and congregation">
+<p>A service in progress inside the church &ndash; Sevanavank is not a museum but still an active place of pilgrimage with regular services.</p>
+<img src="../images/tag4/04.jpg" alt="Khachkar cross-stone detail at Sevanavank">
+<p>Close-up of a khachkar (cross-stone) &ndash; several of these intricately carved stones stand on the monastery grounds.</p>
+<img src="../images/tag4/05.jpg" alt="Two women posing at Lake Sevan">
+
+<hr>
+
+<p><strong>Background on the Molokans:</strong> A Russian religious community exiled to the Caucasus in the 19th century for deviating from the Orthodox Church. The name comes from "moloko" (milk) &ndash; they drank milk even during Orthodox fasting periods. To this day they maintain their own villages with their own culture in Armenia.</p>
+<p><strong>Lunch with the Molokan community:</strong> A stop at a Molokan house in one of the villages north of Lake Sevan &ndash; group photo in the courtyard, plus a local book about the community ("Молокане: Маленькая Россия на севере Армении" &ndash; "Molokans: Little Russia in the North of Armenia") showing everyday photos from the villages: tractors, field work, home-baked bread.</p>
+<img src="../images/tag4/06.jpg" alt="Group photo in the courtyard of a Molokan house">
+<img src="../images/tag4/07.jpg" alt="Book about the Molokans in Armenia">
+<img src="../images/tag4/08.jpg" alt="Children playing on the village street in the Molokan village">
+<p>Children on the village street &ndash; everyday life in a Molokan village, just a few kilometres from Yerevan and yet a different world.</p>
+
+<hr>
+
+<hr>
+
+<p id="dilijan"><strong>Dilijan &ndash; the &ldquo;Armenian Switzerland&rdquo;:</strong> A spa town set in coniferous forest at 1,500 m, a summer retreat for Moscow officials since Soviet times and a refuge for artists and writers. According to legend, it is named after a shepherd called Dili, whom his master had killed because he had fallen in love with the master's daughter &ndash; his mother is said to have wandered the valleys for days, wailing &ldquo;Dili jan, Dili jan&rdquo; (&ldquo;jan&rdquo; is an Armenian term of endearment, roughly &ldquo;dear&rdquo;).</p>
+
+<img src="../images/tag4/09.jpg" alt="Rooftops of Dilijan with solar thermal panels and mountain panorama">
+<p>View across the rooftops: solar panels and solar water heaters are now part of the streetscape &ndash; a visible sign of how much investment capital has flowed into this small town over the past two decades.</p>
+
+<p><strong>Sharambeyan Street:</strong> The supposed &ldquo;old town&rdquo; in the centre is, to be honest, not an organically grown quarter but a stage set reconstructed by the Tufenkian Foundation, made up of early-20th-century houses with wooden balconies &ndash; hotel, museum and souvenir lanes all in one. If you know that, you can still enjoy it &ndash; just with a more realistic eye than the average guidebook suggests.</p>
+<img src="../images/tag4/10.jpg" alt="Sharambeyan Street in Dilijan with wooden balconies">
+<p>Reception of the Tufenkian hotel complex on Sharambeyan Street &ndash; carved balconies, rough stone, a recreated 19th century.</p>
+
+<p class="tip"><strong>Insider fact:</strong> At the roundabout in the centre stands a Soviet monument to the cult film <em>Mimino</em> (1977) &ndash; even though the film wasn't shot in Dilijan at all. The town is mentioned in just a single line of dialogue: an Armenian boasts that his tap water is the second best in the world after San Francisco's. That one sentence was enough for the locals to build their town its own monument &ndash; a very Armenian blend of self-irony and local pride.</p>
+
+<p><strong>Revival with oligarch money:</strong> The strikingly good infrastructure &ndash; solar installations, renovated parks, the elite private school UWC Dilijan with students from more than 80 countries &ndash; is largely down to the IDeA Foundation of investment banker Ruben Vardanyan and his wife Veronika Zonabend, who have poured around 236 million US dollars into the town since the 2000s. A bitter footnote to the current situation: Vardanyan has been imprisoned in Baku since 2023 &ndash; one of the most prominent Armenian detainees in the context of the Karabakh conflict, while his town continues to be regarded as Armenia's showcase for education and tourism.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Dilijan" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<img src="../images/tag4/11.jpg" alt="On an old Soviet GAZ truck in Dilijan">
+<p>A bit of clowning around is part of the culture too: an old Soviet GAZ truck with a crane mount, parked in the middle of the street as a photo prop &ndash; not a museum piece, but simply part of the townscape.</p>
+
+<p id="alaverdi"><strong>Alaverdi &ndash; the dead copper town:</strong> Driving through the Debed Gorge, this scene suddenly appears: an entire industrial town built into a narrowing canyon, dominated by a brick chimney, with the snow-capped peaks of the Lesser Caucasus behind it. The copper smelter was founded in 1770 under the Georgian king Erekle II and around 1900 supplied roughly a quarter of all the copper in the Russian Empire. In Soviet times, Alaverdi was one of the most important industrial sites in the South Caucasus.</p>
+
+<img src="../images/tag4/12.jpg" alt="Abandoned Alaverdi copper smelter in the Debed Gorge">
+<p>Operations ceased for good in 2018 &ndash; officially for failing to meet environmental standards, after decades of smelting had contaminated the soil, air and the Debed river. What remains is one of the most striking industrial ruins in the Caucasus: too big and too toxic to demolish, too expensive to clean up. A symbol of the rupture that many regions of Armenia have experienced since 1991 &ndash; whole towns that lived off a single Soviet enterprise and were left without an alternative when it closed.</p>
+
+<p class="tip"><strong>Context:</strong> Directly above this gorge sit the UNESCO monasteries of Haghpat and Sanahin &ndash; so within a single field of view you have millennia-old church architecture and the ruins of a 250-year-old copper industry. This contrast of spirituality and heavy industry packed into such a small space is typical of the Lori region and rarely experienced as compactly as here.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Alaverdi" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<p id="sanahin"><strong>Sanahin Monastery:</strong> Just four kilometres from Haghpat, on the other side of the same gorge, lies its sister monastery Sanahin &ndash; both founded around 966/976 by Queen Khosrovanush. The name literally means &ldquo;this one is older than that one&rdquo; &ndash; a still-unresolved rivalry between the two monasteries over which is the elder. A UNESCO World Heritage Site since 1996, together with Haghpat.</p>
+
+<img src="../images/tag4/13.jpg" alt="Sanahin Monastery with mountain panorama and clouds">
+<p>Church and conical dome of Sanahin, with the same ranges of the Lesser Caucasus in the background as over at Haghpat &ndash; the two monasteries are literally within sight of each other.</p>
+
+<p><strong>Gavit and book depository:</strong> The three-nave gavit in front of the Surb Astvatsatsin church was built in 1211 by Prince Vache Vachutyan &ndash; two rows of three differently decorated columns divide the space. Also remarkable is the book depository built in 1063, with its richly decorated dome and central light shaft, where khachkars and liturgical stone fragments are on display today.</p>
+<img src="../images/tag4/14.jpg" alt="Book depository of Sanahin with dome and displayed khachkars">
+<p>Sanahin's book depository: tiered dome rings above a room full of khachkars and stone fragments &ndash; once a storehouse for precious manuscripts, today a kind of lapidarium.</p>
+
+<img src="../images/tag4/15.jpg" alt="Gavit of Sanahin with arcades and candlelight">
+<p>The gavit of Sanahin by candlelight &ndash; three naves, countless columns, every single one topped with a different capital.</p>
+
+<img src="../images/tag4/16.jpg" alt="Arcade passage in Sanahin with a view of khachkars">
+<p>View through the tiered round-arched arcades out to the khachkars in the monastery courtyard &ndash; the interplay of light and shadow is just as striking in Sanahin as in Haghpat.</p>
+
+<p class="tip"><strong>Insider fact:</strong> The brothers Anastas and Artem Mikoyan were born in the village of Sanahin, right next to the monastery. Anastas rose to become the long-serving head of state of the Soviet Union (chairman of the Supreme Soviet, serving from Lenin to Brezhnev &ndash; hence the Russian saying &ldquo;from Ilyich to Ilyich without heart attack or stroke&rdquo;). His brother Artem, together with Mikhail Gurevich, developed the legendary MiG fighter jets &ndash; the &ldquo;Mi&rdquo; in MiG stands for Mikoyan. As a child he learned to read and write from a monk at Sanahin Monastery. A small Mikoyan brothers museum in the village today displays, among other things, a MiG-21.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Sanahin_Monastery" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<img src="../images/tag4/17.jpg" alt="Wearing a liturgical cloth as headgear in Sanahin">
+<p>Being a bit silly is part of it too: a liturgical cloth from the church repurposed on the spot as headgear &ndash; the monastery walls of Sanahin as a photo backdrop.</p>
+
+<p id="haghpat"><strong>Haghpat Monastery:</strong> Built halfway up the slope above the Debed Gorge, founded in 976 by Queen Khosrovanush &ndash; wife of the Bagratid king Ashot III and also the founder of the sister monastery Sanahin, four kilometres away on the other side of the gorge. The name roughly means &ldquo;strong wall&rdquo; or &ldquo;solid roof&rdquo; &ndash; Haghpat was always a fortified monastery, not just a place of prayer. A UNESCO World Heritage Site since 1996, together with Sanahin.</p>
+
+<img src="../images/tag4/18.jpg" alt="Haghpat Monastery overall view with conical dome and mountain panorama">
+<p>The Surb Nshan church (Church of the Holy Cross, 976&ndash;991) with its characteristic conical dome is the oldest part of the complex &ndash; in the background the Lesser Caucasus, which separates Georgia from Armenia.</p>
+
+<p><strong>The gavit:</strong> Built around 1210 on the site of a mausoleum, Haghpat's narthex is a gavit typical of medieval Armenian church architecture but unusually large &ndash; assembly hall, lecture room and burial place in one. The roof rests on four central columns, pierced by the &ldquo;yerdik&rdquo;, a central roof opening through which light falls in tiered rings onto the stone floor &ndash; a design that goes straight back to the Armenian tradition of building in wood.</p>
+<img src="../images/tag4/19.jpg" alt="Gavit of Haghpat with light falling through the yerdik roof opening">
+<p>Light shaft in the gavit: tiered, richly decorated stone rings around the central roof opening &ndash; one of the most impressive constructions of medieval Armenian architecture.</p>
+
+<p><strong>Apse fresco:</strong> In the main church, the apse fresco shows Christ as Pantocrator (ruler of the world), commissioned by the Armenian prince Khutulukhaga, whose own portrait can be found in the southern transept &ndash; an early example of secular donors immortalising themselves in religious imagery.</p>
+<img src="../images/tag4/20.jpg" alt="Apse fresco of Christ Pantocrator in the church of Haghpat">
+<p>Christ Pantocrator in the apse of the Surb Nshan church, surrounded by figures of saints &ndash; the pigments are more than 900 years old and still clearly visible.</p>
+
+<p class="tip"><strong>Insider fact:</strong> Sayat-Nova, Armenia's most famous poet and troubadour of the 18th century (known for his love songs in Armenian, Georgian and Azerbaijani), spent his final years as a monk behind the walls of Haghpat &ndash; fleeing court intrigues in Tbilisi. If you're interested in Armenian-Georgian cultural history: the director Sergei Parajanov (museum in Yerevan, see Day 1) dedicated the 1968 film &ldquo;The Color of Pomegranates&rdquo; to him.</p>
+
+<img src="../images/tag4/21.jpg" alt="Bell tower and monastery complex of Haghpat from an elevated perspective">
+<p>The free-standing, three-storey bell tower (1245) at the highest point of the complex &ndash; one of the oldest of its kind in Armenia, together with the identical tower at Sanahin.</p>
+
+<img src="../images/tag4/22.jpg" alt="Haghpat church and bell tower framed by treetops">
+<p>Church and bell tower, framed by the foliage of the monastery trees &ndash; evening light shortly before we drove on towards Georgia.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Haghpat_Monastery" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<div class="navbar"><a href="day3.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day5.html">Next day &rarr;</a><a class="lang-switch" href="../tag4.html" lang="de">DE</a></div>
+</body>
+</html>

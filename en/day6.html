@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 6 &ndash; Thursday, July 9 &ndash; Sighnaghi, Kakheti, Tbilisi Old Town</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+
+<div class="navbar"><a href="day5.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day7.html">Next day &rarr;</a><a class="lang-switch" href="../tag6.html" lang="de">DE</a></div>
+<h1>Day 6 &ndash; Thursday, July 9 &ndash; Sighnaghi, Kakheti, Tbilisi Old Town</h1>
+<p>From Telavi onward to Sighnaghi, the &ldquo;City of Love&rdquo; on the hill above the Alazani Valley, followed by a khinkali cooking class.</p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map6" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Sighnaghi", lat: 41.6199, lng: 45.9186, note: "City wall, old town, war memorial", anchor: "signagi" },
+      { name: "Tbilisi Old Town", lat: 41.6934, lng: 44.8085, note: "Clock tower, Bridge of Peace, Narikala, Abanotubani", anchor: "tiflis-altstadt" }
+    ];
+    const map = L.map('map6').setView([41.66, 45.36], 8);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<p id="signagi"><strong>Sighnaghi:</strong> Perched on a mountain spur above the Alazani Valley, with views stretching to the snow-capped peaks of the Greater Caucasus &ndash; on a clear day supposedly all the way into Russia. The city wall with its 23 defensive towers was built in 1762 under King Erekle II, originally as protection against raids by Dagestani mountain tribes from the north. Today Sighnaghi markets itself as the &ldquo;City of Love&rdquo;: the registry office is open around the clock, even for foreign couples &ndash; a clever tourism slogan to which the little Kakheti town owes most of its present-day reputation.</p>
+
+<img src="../images/tag6/01.jpg" alt="City gate of Sighnaghi with defensive towers and market stalls">
+<p>One of the seven gates in the 4.5 km defensive wall &ndash; just beyond it, the first souvenir stalls with textiles and handicrafts, a seamless transition from fortress to pedestrian zone.</p>
+
+<img src="../images/tag6/02.jpg" alt="Walkway along the Sighnaghi city wall with tower and view">
+<p>The accessible walkway along the city wall &ndash; from up here the view sweeps far across the Alazani Valley. Of the original 23 towers, most have survived to this day and some have been restored.</p>
+
+<img src="../images/tag6/03.jpg" alt="Tower and church steeple in the old town of Sighnaghi with market stall">
+<p>View of one of the defensive towers and the church steeple in the town center &ndash; in front of it, a stall with embroidered tablecloths and scarves of the kind found all over the old town.</p>
+
+<p class="tip"><strong>War memorial:</strong> In a small park behind the National Museum stretches a relief wall a good 20 meters long, commemorating the Georgian Red Army soldiers who fell in the Second World War, alongside long lists of names of the fallen from the surrounding villages. One of the few places in Sighnaghi that points not to romance but to the country&rsquo;s wartime history.</p>
+<img src="../images/tag6/04.jpg" alt="Soviet war memorial relief wall in Sighnaghi">
+<p>Detail of the relief wall: mounted soldiers, interspersed with lists of names of the fallen from the surrounding villages, carved in stone.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Sighnaghi" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<img src="../images/tag6/05.jpg" alt="Traditional white sheep's wool hat as a photo prop in Sighnaghi">
+<p>Classic souvenir photo: a white, fluffy sheep&rsquo;s wool hat borrowed from a market stall &ndash; a bit silly, but for exactly that reason an obligatory stop.</p>
+
+<hr>
+
+<h3>Khinkali cooking class</h3>
+<p id="khinkali"><strong>Khinkali:</strong> Georgia&rsquo;s best-known dumpling, originally from the mountain regions of Khevsureti and Pshavi in the north of the country, where it served as a hearty, easily portable meal for shepherds and travelers. They are usually filled with seasoned minced meat (beef, pork, or a mixture) and plenty of broth, which stays sealed inside the dough as they cook &ndash; which is why khinkali are traditionally eaten with the hands: grip the ridged &ldquo;handle&rdquo; at the top, take a careful first bite, slurp the broth, and only then eat the rest. Eating the dough knot itself is considered impolite, and it traditionally stays on the plate &ndash; the number of leftover knots jokingly serves as a tally of the khinkali consumed.</p>
+
+<img src="../images/tag6/06.jpg" alt="Hands folding khinkali dumplings">
+<p>The characteristic pleats are formed by pinching the edge of the dough together from the outside in &ndash; a well-folded khinkali traditionally has 18 to 20 pleats, and in many Georgian families they really do count.</p>
+
+<img src="../images/tag6/07.jpg" alt="Dough for khinkali being rolled out">
+<p>Preparing the dough: thinly rolled-out circles that are then spread with the meat filling and closed into the characteristic bundles.</p>
+
+<img src="../images/tag6/08.jpg" alt="Group photo at the khinkali cooking class under a tree">
+<p>The whole travel group in aprons under the walnut tree &ndash; cooking together turned out to be one of the most convivial parts of the entire trip.</p>
+
+<h3>Tbilisi &ndash; Old Town walking tour</h3>
+<p id="tiflis-altstadt"><strong>Tbilisi:</strong> After the border crossing and the Kakheti wine region, the arrival point of the trip &ndash; a city that, according to legend, was founded by King Vakhtang Gorgasali in the 5th century, when his falcon plunged into a hot sulfur spring while hunting. &ldquo;Tbili&rdquo; means &ldquo;warm&rdquo; &ndash; hence the name. Persians, Byzantines, Arabs, Mongols, and Russians have all left their mark here, which gives the old town its layered character to this day.</p>
+
+<img src="../images/tag6/09.jpg" alt="Leaning clock tower of the Gabriadze puppet theater in Tbilisi">
+<p>The leaning clock tower of Rezo Gabriadze&rsquo;s puppet theater &ndash; not a historic structure at all, but designed by the puppeteer himself only in 2010 and deliberately built askew, as a stylized homage to the crooked old-town houses all around. On the hour, an angel steps out of a small door and strikes the bell with a hammer; at noon and at 7 p.m. a mechanism performs the puppet show &ldquo;The Circle of Life&rdquo;.</p>
+
+<img src="../images/tag6/10.jpg" alt="Ceramic mosaic on the base of the Gabriadze clock tower">
+<p>At the base of the clock tower: a ceramic mosaic hand-painted by Gabriadze himself, made up of countless small individual tiles &ndash; grapes, animals, ornaments, each tile its own little picture. It is precisely this playful, artisanal attention to detail that makes the tower more than just a curiosity.</p>
+
+<img src="../images/tag6/11.jpg" alt="Bridge of Peace in Tbilisi at sunset with balloon">
+<p>The Bridge of Peace (2010, Italian architect Michele De Lucchi) over the Mtkvari &ndash; initiated by President Saakashvili as a gesture of reconciliation after the Georgian-Russian war of 2008. In the evening, some 30,000 LEDs transmit encrypted light messages in Morse code, encoding the chemical elements found in the human body &ndash; symbolism for the idea that, in the end, all people are made of the same building blocks. Because of its shape, locals have given it the mocking nickname &ldquo;Always Ultra&rdquo;.</p>
+
+<p><strong>Old town churches:</strong> Several churches in the old town still display well-preserved interior frescoes, classically rendered with gold backgrounds and Byzantine-influenced imagery.</p>
+<img src="../images/tag6/12.jpg" alt="Apse fresco with the Mother of God and angels in a Tbilisi church">
+<p>Apse fresco of the enthroned Mother of God, flanked by angels &ndash; a classic Deesis arrangement with a gold background and floral scrollwork ornaments in the vault.</p>
+<img src="../images/tag6/13.jpg" alt="Fresco of Saint Queen Ketevan">
+<p>Saint Queen Ketevan of Kakheti (c. 1560&ndash;1624) &ndash; in 1614 she went into Persian captivity as a voluntary hostage to avert an attack on her country, and in 1624 she was tortured to death for refusing to convert to Islam. Her relics still rest beneath the altar of the Alaverdi Cathedral, not far from the route of the past few days. Part of her arm reached Goa in India via Portuguese monks in the 17th century and was only returned to Georgia in 2021.</p>
+<img src="../images/tag6/14.jpg" alt="Dome fresco of Christ Pantocrator with a starry sky">
+<p>Christ Pantocrator in the dome, surrounded by a deep blue, star-spangled vault &ndash; one of the most striking combinations of icon painting and decorative ornamentation in Tbilisi&rsquo;s old town.</p>
+
+<img src="../images/tag6/15.jpg" alt="Bronze statue of a boy with bread in Tbilisi's old town">
+<p>One of the many small bronze figures scattered around the old town, inviting you to linger &ndash; here a boy sitting casually on a stone. Tbilisi has a soft spot for exactly these unobtrusive, humorous everyday sculptures in its streetscape.</p>
+
+<img src="../images/tag6/16.jpg" alt="Wine shop La Bodega Historica in a vaulted cellar in Tbilisi">
+<p>&ldquo;La Bodega Historica&rdquo;: a wine shop in a vaulted cellar, crammed with bottles, historical equipment, and curiosities &ndash; half shop, half small museum. Cellars like this define the look of the old-town lanes around Leselidze Street.</p>
+
+<p><strong>Souvenirs with substance:</strong> Alongside wine and magnets, the old town also offers more sophisticated handcrafted keepsakes &ndash; icon painting and watercolor art that go far beyond the usual shelf of dome-shaped kitsch.</p>
+<img src="../images/tag6/17.jpg" alt="Hand-painted Georgian Orthodox icon of Saint Gabriel">
+<p>Hand-painted icon of Saint Gabriel in the Georgian Orthodox tradition &ndash; gold background, gold-leaf halo, Old Georgian lettering. In Georgia, icon painting remains a living craft to this day, not merely museum art.</p>
+<img src="../images/tag6/18.jpg" alt="Watercolor illustration of Georgian musicians against the backdrop of Tbilisi's old town">
+<p>Watercolor illustration of three musicians with duduk and doli drum against the backdrop of Tbilisi&rsquo;s old town, with the city wall behind them &ndash; a small piece of local color to take home, well away from the standard postcard.</p>
+
+<img src="../images/tag6/19.jpg" alt="Domes of the Abanotubani sulfur baths with a church in the background">
+<p>The characteristic brick domes of the sulfur baths in the Abanotubani district &ndash; this, legend has it, is where King Vakhtang&rsquo;s injured falcon plunged into the hot spring. The baths have been in operation since at least the 5th century; Alexandre Dumas and the poet Pushkin already bathed here.</p>
+
+<img src="../images/tag6/20.jpg" alt="Narikala Fortress with cable car above Tbilisi's old town">
+<p>View up to Narikala Fortress (3rd/4th century, founded under Persian-Sasanian rule) high above the old town, complete with the cable car from Rike Park. The name comes from Persian and means &ldquo;impregnable fortress&rdquo; &ndash; in Georgian it was originally called the &ldquo;Fortress of Envy&rdquo;. A lightning strike destroyed the powder magazine and large parts of the complex in 1827; since then it has been mostly a ruin, but freely accessible.</p>
+
+<p class="tip"><strong>Street art:</strong> In between the historic sights, the old town keeps surprising you with everyday humor &ndash; for instance a decommissioned small van, completely repurposed as a rolling flower box and decorated with a small mural.</p>
+<img src="../images/tag6/21.jpg" alt="Old small van converted into a flower bed in Tbilisi">
+<p>Art meets recycling: an old small van whose cargo bed has been entirely planted over &ndash; a small, lovingly tended detail at the edge of the old-town lanes.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Tbilisi" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+
+<hr>
+
+<div class="navbar"><a href="day5.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><a href="day7.html">Next day &rarr;</a><a class="lang-switch" href="../tag6.html" lang="de">DE</a></div>
+</body>
+</html>

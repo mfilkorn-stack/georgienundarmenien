@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Day 9 &ndash; Sunday, July 12 &ndash; Tbilisi on Our Own</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+
+<div class="navbar"><a href="day8.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../tag9.html" lang="de">DE</a></div>
+<h1>Day 9 &ndash; Sunday, July 12 &ndash; Tbilisi on Our Own</h1>
+<p>Bazaar, bakery, Balenciaga heirs and the Sunday liturgy at Sameba &ndash; a day without an itinerary, on foot through Tbilisi.</p>
+
+<p>No bus, no time slot, no &ldquo;we&rsquo;re moving on in ten minutes&rdquo;. Tbilisi works best precisely when you close the list of sights and simply walk. The city then delivers everything at once: Soviet concrete edges, grapevines over courtyards, a bakery below street level, a fashion label with a global reputation and, two streets on, a cathedral bigger than anything ever built here.</p>
+
+<h2 class="map-heading">Map</h2>
+<div id="map9" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Sameba Cathedral", lat: 41.6977, lng: 44.8181, note: "Holy Trinity, consecrated in 2004, 84 m", anchor: "sameba" },
+      { name: "Old Town / concept stores", lat: 41.6900, lng: 44.8080, note: "Georgian fashion scene, Demna Gvasalia", anchor: "modelabel" },
+      { name: "Dezerter Bazaar", lat: 41.7203, lng: 44.7930, note: "The city&rsquo;s largest market", anchor: "basar" },
+      { name: "Bakery / tone oven", lat: 41.6940, lng: 44.8025, note: "Shotis puri, baked upright on the clay wall", anchor: "baeckerei" },
+      { name: "Street finds", lat: 41.6930, lng: 44.8010, note: "RTG-21 street art, Moskvitch, EU mural", anchor: "rtg-streetart" }
+    ];
+    const map = L.map('map9').setView([41.700, 44.805], 13);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+    });
+  })();
+</script>
+
+<hr>
+
+<h3>&ldquo;Not From Paris Madame&rdquo;</h3>
+<p id="modelabel"><strong>Fashion as self-assertion:</strong> The slogan is stolen &ndash; and that is exactly the point. The French label Drôle de Monsieur made &ldquo;Not From Paris Madame&rdquo; famous; in Tbilisi it becomes &ldquo;It&rsquo;s From Tbilisi&rdquo;. This is more than a T-shirt gag. With Demna (Vetements, Balenciaga), Georgia has produced one of the most influential designers of the past decade, and ever since, Tbilisi has counted as an address in its own right in the fashion world &ndash; post-Soviet look, hard silhouettes, irony as a default attitude. The city knows it sits on the periphery, and turns that into a statement rather than an apology.</p>
+<p>&ldquo;Persona non grata&rdquo; on the back strikes the same note: self-irony with a political double meaning, in a country that has been caught between Brussels and Moscow for years.</p>
+<img src="../images/tag9/01.jpg" alt="Concept store in the Old Town  the shirt made it home">
+<p>Concept store in the Old Town &ndash; the shirt made it home.</p>
+<img src="../images/tag9/02.jpg" alt="The bag as a souvenir  the entire self-assertion joke in three lines">
+<p>The bag as a souvenir: the entire self-assertion joke in three lines.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Demna_Gvasalia" target="_blank" rel="noopener noreferrer">Learn more: Demna Gvasalia and the Georgian fashion scene</a></p>
+
+<hr>
+
+<h3>&ldquo;We are Europe&rdquo;</h3>
+<p id="we-are-europe"><strong>A mural with a question mark:</strong> Georgian flag, EU flag, between them &ldquo;Sakartvelo&rdquo; &ndash; the country&rsquo;s own name for itself. On the right edge someone has painted a question mark over the stars, and that is the real commentary. Georgia was granted EU candidate status in 2023; since then the relationship has cooled noticeably: the Russian-style law on &ldquo;foreign influence&rdquo; drove tens of thousands onto Rustaveli Avenue in 2024. Polls have consistently shown approval ratings of over 70 percent for EU accession for years &ndash; the wall says it louder than any statistic.</p>
+<p>Half of the text on the left is sarcasm aimed at Russian-speaking newcomers, tens of thousands of whom have lived in Tbilisi since 2022. That, too, is part of this city&rsquo;s picture: refuge and flashpoint at the same time.</p>
+<img src="../images/tag9/03.jpg" alt="Georgian flag, EU flag, question mark  the country&rsquo;s mood on a wall">
+<p>Georgian flag, EU flag, question mark &ndash; the country&rsquo;s mood on a wall.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Georgia%E2%80%93European_Union_relations" target="_blank" rel="noopener noreferrer">Learn more: Georgia and the EU</a></p>
+
+<hr>
+
+<h3>Khinkali, Eaten Properly</h3>
+<p id="khinkali-etikette"><strong>Basic culinary rule:</strong> You hold them by the topknot (the <em>kudi</em>, the &ldquo;tail&rdquo;), bite in from the side, drink the broth, eat the rest &ndash; and put the topknot on the plate. At the end every Georgian counts the topknots: that is how you know who managed how many. Cutlery is essentially forbidden. The fork in this photo would raise eyebrows in Tusheti &ndash; in Tbilisi they turn a blind eye.</p>
+<img src="../images/tag9/04.jpg" alt="Three khinkali, a glass of Saperavi  lunch needs nothing more">
+<p>Three khinkali, a glass of Saperavi &ndash; lunch needs nothing more.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Khinkali" target="_blank" rel="noopener noreferrer">Learn more: Khinkali</a></p>
+
+<hr>
+
+<h3>RTG-21, 45 MVt.</h3>
+<p id="rtg-streetart"><strong>Street find:</strong> A wooden box by the roadside, carefully painted: radiation warning sign, mushroom cloud, &ldquo;Georgian Atomic Energy Agency&rdquo;. None of it is real &ndash; it is art in public space, a utility cabinet that someone with dry humor has redeclared a reactor facility. The joke runs deeper than it looks: RTGs &ndash; radioisotope thermoelectric generators &ndash; really were in use in the Soviet Union, and in Georgia orphaned strontium-90 sources were found several times after 1991. In 2001, three woodcutters near Lia suffered severe radiation injuries after warming themselves at night against two warm metal cylinders. The IAEA spent years cleaning up afterwards.</p>
+<img src="../images/tag9/05.jpg" alt="Street art with a hidden meaning  and a very real historical reference">
+<p>Street art with a hidden meaning &ndash; and a very real historical reference.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Lia_radiological_accident" target="_blank" rel="noopener noreferrer">Learn more: the Lia radiological accident (2001)</a></p>
+
+<hr>
+
+<h3>The Bakery Below Street Level</h3>
+<p id="baeckerei"><strong>Tonis puri:</strong> Half below street level, window open, a direct view into the bakehouse. The dough is beaten, shaped and slapped against the inner wall of the <em>tone</em> &ndash; a cylindrical clay oven in which the bread clings upright to the wall until it comes loose. It is fished out with a hook. <em>Shotis puri</em>, the canoe-shaped flatbread, costs one to two lari and, eaten hot, beats every restaurant in town. You don&rsquo;t buy it as a side dish, you buy it as a staple &ndash; and eat half of it on the way home.</p>
+<img src="../images/tag9/06.jpg" alt="Bakehouse at eye level with the sidewalk">
+<p>Bakehouse at eye level with the sidewalk.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Shoti" target="_blank" rel="noopener noreferrer">Learn more: shotis puri and the tone oven</a></p>
+
+<hr>
+
+<h3>Market Instead of Supermarket</h3>
+<p id="basar"><strong>Corrugated iron, watermelons, order within chaos:</strong> Between corrugated-iron roofs and stacked plastic crates runs this city&rsquo;s real retail trade. Cherries, apricots, peaches, watermelons &ndash; all seasonal, all regional, all without price tags. A little further on, sponges, wooden spoons and skipping ropes hang next to coriander, garlic and tarragon.</p>
+<p>What takes up three meters of shelving in a German supermarket is here one square meter of table and a woman who has been sitting in the same spot for thirty years. No self-service concept, no refrigerated counter &ndash; but basil you can smell from three meters away.</p>
+<img src="../images/tag9/07.jpg" alt="The market as an extension of the sidewalk">
+<p>The market as an extension of the sidewalk.</p>
+<img src="../images/tag9/08.jpg" alt="Herbs, garlic, peppers  and household goods next to them  product boundaries are negotiable here">
+<p>Herbs, garlic, peppers &ndash; and household goods right next to them. Product-range boundaries are negotiable here.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Dezerter_Bazaar" target="_blank" rel="noopener noreferrer">Learn more: bazaar culture in Tbilisi</a></p>
+
+<hr>
+
+<h3>Moskvitch with Cat</h3>
+<p id="moskwitsch"><strong>Leftover Soviet inventory:</strong> Orange, rusted through, unmoved for years, on the hood a raisin bun of cat and plastic bag &ndash; next to it a discarded office chair. The Moskvitch was the car of the Soviet middle class; in Tbilisi the last specimens stand around as flower planters, spare-parts depots for workshops or, as here, as a cat sofa. Behind it, the construction fence with a rendering: right next door, the next boutique hotel is going up. Both Georgias in one picture.</p>
+<img src="../images/tag9/09.jpg" alt="Soviet sheet metal, Georgian cat, investor brochure in the background">
+<p>Soviet sheet metal, Georgian cat, investor brochure in the background.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Moskvitch" target="_blank" rel="noopener noreferrer">Learn more: Moskvitch</a></p>
+
+<hr>
+
+<h3>Sameba &ndash; the Holy Trinity Cathedral</h3>
+<p id="sameba"><strong>Sunday liturgy:</strong> Sameba is new, and it shows: consecrated in 2004, 84 meters tall, the largest church in the South Caucasus. It was built in the years after the collapse of the Soviet Union, when Georgia had to work out for itself what it wanted to be &ndash; and the answer came back: Orthodox, sovereign, visible. Financed largely by donations, erected on a hill from which it overlooks the entire city. Not uncontroversial: the building site lay on an Armenian cemetery.</p>
+<p>Inside, then, something no architecture critique captures: it is full. Not a museum operation, but a church service. Women in headscarves, men in everyday clothes, candles, incense, a priest in purple at the iconostasis, phone cameras in between. Georgia is among the most religious countries in Europe &ndash; the Church is by far the most trusted institution in the country, well ahead of government and parliament.</p>
+<img src="../images/tag9/10.jpg" alt="In front of the portal  conversations, not tourism">
+<p>In front of the portal: conversations, not tourism.</p>
+<img src="../images/tag9/11.jpg" alt="Among the olive trees of the cathedral garden, after the rain">
+<p>Among the olive trees of the cathedral garden, after the rain.</p>
+<img src="../images/tag9/12.jpg" alt="At the entrance  this too is part of the picture of a church that towers over everything">
+<p>At the entrance. This too is part of the picture of a church that towers over everything.</p>
+<img src="../images/tag9/13.jpg" alt="Icon of the Mother of God with silver oklad  filigree work, pearls, applied metal hands">
+<p>Icon of the Mother of God with silver oklad &ndash; filigree work, pearls, applied metal hands.</p>
+<img src="../images/tag9/14.jpg" alt="Liturgy at the iconostasis  and a phone in the foreground  both at once, without contradiction">
+<p>Liturgy at the iconostasis &ndash; and a phone in the foreground. Both at once, without contradiction.</p>
+<img src="../images/tag9/15.jpg" alt="Looking up  Georgian flags in the vault  five crosses, nation and church in one symbol">
+<p>Looking up: Georgian flags in the vault &ndash; five crosses, nation and church in one symbol.</p>
+<img src="../images/tag9/16.jpg" alt="Interior  not a museum operation, but a working church">
+<p>Interior: not a museum operation, but a working church.</p>
+<img src="../images/tag9/17.jpg" alt="Sameba from outside  84 meters, golden dome, wet forecourt">
+<p>Sameba from outside &ndash; 84 meters, golden dome, wet forecourt.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Holy_Trinity_Cathedral_of_Tbilisi" target="_blank" rel="noopener noreferrer">Learn more: Holy Trinity Cathedral (Sameba)</a></p>
+
+<hr>
+
+<p><em>A day that ticked off no sights and was still the densest of the trip. Tbilisi doesn&rsquo;t explain itself, it simply happens: the oven below street level, the vendor behind the coriander, the question mark over the EU stars, the incense in Sameba and a T-shirt poking fun at Paris. All within two kilometers.</em></p>
+
+<hr>
+
+<div class="navbar"><a href="day8.html">&larr; Previous day</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../tag9.html" lang="de">DE</a></div>
+</body>
+</html>
