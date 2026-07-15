@@ -2,38 +2,17 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
 <title>Tag 5 &ndash; Mittwoch, 8. Juli &ndash; Grenze nach Georgien, Kachetien, Telawi</title>
-<style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #2b2b2b; background: #fdfcf9; }
-  h1 { font-size: 1.8em; border-bottom: 3px solid #a33; padding-bottom: 8px; }
-  h2 { font-size: 1.3em; margin-top: 2.2em; color: #a33; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  .meta { color: #666; font-style: italic; margin-bottom: 2em; }
-  img { max-width: 100%; border-radius: 6px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .tip { background: #fff6e8; border-left: 4px solid #d99b2b; padding: 10px 16px; margin: 14px 0; }
-  .pending { color: #999; font-style: italic; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2.5em 0; }
-  strong { color: #333; }
-</style>
-
-<style>
-  .navbar { display: flex; justify-content: space-between; margin: 20px 0 30px 0; font-family: Georgia, serif; }
-  .navbar a { text-decoration: none; color: #a33; font-weight: bold; }
-  .navbar a:hover { text-decoration: underline; }
-</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-  #map5 { height: 380px; width: 100%; border-radius: 8px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .more-info { font-size: 0.85em; margin: -10px 0 16px 0; }
-  .more-info a { color: #a33; text-decoration: none; font-weight: bold; }
-  .more-info a:hover { text-decoration: underline; }
-</style>
 </head>
 <body>
 
-<div class="navbar"><a href="tag4.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag6.html">N&auml;chster Tag &rarr;</a></div>
-<h2>Tag 5 &ndash; Mittwoch, 8. Juli &ndash; Grenze nach Georgien, Kachetien, Telawi</h2>
+<div class="navbar"><a href="tag4.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag6.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day5.html" lang="en">EN</a></div>
+<h1>Tag 5 &ndash; Mittwoch, 8. Juli &ndash; Grenze nach Georgien, Kachetien, Telawi</h1>
 <p>Offizielles Programm: Grenz&uuml;bertritt von Armenien nach Georgien am &Uuml;bergang Bagrataschen/Sadakhlo, Weiterfahrt Richtung Tiflis.</p>
 
 <h3>Georgien &ndash; ein kurzer historischer Abriss</h3>
@@ -42,8 +21,8 @@
 <p class="tip"><strong>Aktueller Stand:</strong> Georgien erhielt Ende 2023 den EU-Beitrittskandidatenstatus &ndash; bei rund 80&nbsp;Prozent Zustimmung in der Bev&ouml;lkerung einer der h&ouml;chsten Werte aller Beitrittsl&auml;nder. Ende November 2024 erkl&auml;rte die seit 2012 regierende Partei &bdquo;Georgischer Traum&ldquo; (informell gesteuert vom Oligarchen Bidsina Iwanischwili) den Beitrittsprozess bis mindestens 2028 f&uuml;r ausgesetzt &ndash; seither kommt es zu anhaltenden pro-europ&auml;ischen Protesten in Tiflis und anderen St&auml;dten. Die EU-Flaggen, die einem gleich hinter der Grenze begegnen, stehen damit in einem gewissen Spannungsverh&auml;ltnis zur aktuellen Regierungslinie.</p>
 <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Georgien" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
 
-<h3>Karte</h3>
-<div id="map5"></div>
+<h2 class="map-heading">Karte</h2>
+<div id="map5" class="map"></div>
 <script>
   (function() {
     const stops = [
@@ -82,7 +61,7 @@
 
 <h3>Kachetien &ndash; Ankunft in der Weinregion</h3>
 <p id="telavi"><strong>Telawi:</strong> Hauptstadt der Weinregion Kachetien und historische Residenzstadt der kachetischen K&ouml;nige, rund 70 km &ouml;stlich von Tiflis im Alasani-Tal. Das Tal gilt als eigentliche &bdquo;Wiege des Weinbaus&ldquo; &ndash; hier wurden die &auml;ltesten bislang bekannten Spuren der Weinherstellung &uuml;berhaupt gefunden, mit einer durchgehenden Tradition von rund 8000 Jahren.</p>
-<img src="images/tag5/06.jpg" alt="Reiterstandbild Koenig Erekle II in Telavi">
+<img src="images/tag5/06.jpg" alt="Reiterstandbild Koenig Erekle II in Telawi">
 <p>Das Reiterstandbild K&ouml;nig Erekles II. (1720&ndash;1798) im Stadtzentrum &ndash; 8,5 Meter hohe Bronzestatue von 1971, eines der Wahrzeichen Telawis. Erekle II. war der letzte gro&szlig;e georgische K&ouml;nig, der Kachetien und Kartlien vereinte, gegen Perser und Osmanen k&auml;mpfte und sich 1783 im Vertrag von Georgijewsk unter russischen Schutz stellte &ndash; ein Schritt, der r&uuml;ckblickend den Weg zur sp&auml;teren russischen Annexion ebnete. Bei der Bev&ouml;lkerung war er wegen seines pers&ouml;nlichen Mutes so beliebt, dass er den Spitznamen &bdquo;Patara Kachi&ldquo; (&bdquo;Kleiner Kachetier&ldquo;) erhielt, in Anlehnung an Napoleons &bdquo;Kleinen Korporal&ldquo;.</p>
 <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Erekle_II." target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
 
@@ -107,6 +86,6 @@
 
 <hr>
 
-<div class="navbar"><a href="tag4.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag6.html">N&auml;chster Tag &rarr;</a></div>
+<div class="navbar"><a href="tag4.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag6.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day5.html" lang="en">EN</a></div>
 </body>
 </html>

@@ -2,46 +2,25 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Tag 6 &ndash; Donnerstag, 9. Juli &ndash; Signagi, Kachetien, Tiflis Altstadt</title>
-<style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #2b2b2b; background: #fdfcf9; }
-  h1 { font-size: 1.8em; border-bottom: 3px solid #a33; padding-bottom: 8px; }
-  h2 { font-size: 1.3em; margin-top: 2.2em; color: #a33; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  .meta { color: #666; font-style: italic; margin-bottom: 2em; }
-  img { max-width: 100%; border-radius: 6px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .tip { background: #fff6e8; border-left: 4px solid #d99b2b; padding: 10px 16px; margin: 14px 0; }
-  .pending { color: #999; font-style: italic; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2.5em 0; }
-  strong { color: #333; }
-</style>
-
-<style>
-  .navbar { display: flex; justify-content: space-between; margin: 20px 0 30px 0; font-family: Georgia, serif; }
-  .navbar a { text-decoration: none; color: #a33; font-weight: bold; }
-  .navbar a:hover { text-decoration: underline; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<title>Tag 6 &ndash; Donnerstag, 9. Juli &ndash; Sighnaghi, Kachetien, Tiflis Altstadt</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-  #map6 { height: 380px; width: 100%; border-radius: 8px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .more-info { font-size: 0.85em; margin: -10px 0 16px 0; }
-  .more-info a { color: #a33; text-decoration: none; font-weight: bold; }
-  .more-info a:hover { text-decoration: underline; }
-</style>
 </head>
 <body>
 
-<div class="navbar"><a href="tag5.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag7.html">N&auml;chster Tag &rarr;</a></div>
-<h2>Tag 6 &ndash; Donnerstag, 9. Juli &ndash; Signagi, Kachetien, Tiflis Altstadt</h2>
-<p>Von Telawi weiter nach Signagi, der &bdquo;Stadt der Liebe&ldquo; auf dem H&uuml;gel &uuml;ber dem Alasani-Tal, anschlie&szlig;end Khinkali-Kochkurs.</p>
+<div class="navbar"><a href="tag5.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag7.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day6.html" lang="en">EN</a></div>
+<h1>Tag 6 &ndash; Donnerstag, 9. Juli &ndash; Sighnaghi, Kachetien, Tiflis Altstadt</h1>
+<p>Von Telawi weiter nach Sighnaghi, der &bdquo;Stadt der Liebe&ldquo; auf dem H&uuml;gel &uuml;ber dem Alasani-Tal, anschlie&szlig;end Khinkali-Kochkurs.</p>
 
-<h3>Karte</h3>
-<div id="map6"></div>
+<h2 class="map-heading">Karte</h2>
+<div id="map6" class="map"></div>
 <script>
   (function() {
     const stops = [
-      { name: "Signagi", lat: 41.6199, lng: 45.9186, note: "Stadtmauer, Altstadt, Kriegerdenkmal", anchor: "signagi" },
+      { name: "Sighnaghi", lat: 41.6199, lng: 45.9186, note: "Stadtmauer, Altstadt, Kriegerdenkmal", anchor: "signagi" },
       { name: "Tiflis Altstadt", lat: 41.6934, lng: 44.8085, note: "Uhrturm, Friedensbruecke, Narikala, Abanotubani", anchor: "tiflis-altstadt" }
     ];
     const map = L.map('map6').setView([41.66, 45.36], 8);
@@ -56,23 +35,23 @@
   })();
 </script>
 
-<p id="signagi"><strong>Signagi:</strong> Auf einem Bergsporn &uuml;ber dem Alasani-Tal gelegen, mit Blick bis zu den schneebedeckten Gipfeln des Gro&szlig;en Kaukasus &ndash; bei guter Sicht angeblich bis nach Russland hinein. Die Stadtmauer mit ihren 23 Wehrt&uuml;rmen wurde 1762 unter K&ouml;nig Erekle II. errichtet, urspr&uuml;nglich als Schutz vor Einf&auml;llen dagestanischer Bergst&auml;mme aus dem Norden. Signagi vermarktet sich heute als &bdquo;Stadt der Liebe&ldquo;: Das Standesamt hat rund um die Uhr ge&ouml;ffnet, auch f&uuml;r ausl&auml;ndische Paare &ndash; ein findiger Fremdenverkehrs-Slogan, dem das kleine Kachetien-St&auml;dtchen seinen heutigen Ruf gr&ouml;&szlig;tenteils verdankt.</p>
+<p id="signagi"><strong>Sighnaghi:</strong> Auf einem Bergsporn &uuml;ber dem Alasani-Tal gelegen, mit Blick bis zu den schneebedeckten Gipfeln des Gro&szlig;en Kaukasus &ndash; bei guter Sicht angeblich bis nach Russland hinein. Die Stadtmauer mit ihren 23 Wehrt&uuml;rmen wurde 1762 unter K&ouml;nig Erekle II. errichtet, urspr&uuml;nglich als Schutz vor Einf&auml;llen dagestanischer Bergst&auml;mme aus dem Norden. Sighnaghi vermarktet sich heute als &bdquo;Stadt der Liebe&ldquo;: Das Standesamt hat rund um die Uhr ge&ouml;ffnet, auch f&uuml;r ausl&auml;ndische Paare &ndash; ein findiger Fremdenverkehrs-Slogan, dem das kleine Kachetien-St&auml;dtchen seinen heutigen Ruf gr&ouml;&szlig;tenteils verdankt.</p>
 
-<img src="images/tag6/01.jpg" alt="Stadttor von Signagi mit Wehrtuermen und Marktstaenden">
+<img src="images/tag6/01.jpg" alt="Stadttor von Sighnaghi mit Wehrtuermen und Marktstaenden">
 <p>Eines der sieben Stadttore in der 4,5 km langen Wehrmauer &ndash; dahinter die ersten Souvenirst&auml;nde mit Textilien und Handwerkskunst, ein flie&szlig;ender &Uuml;bergang von Festungsanlage zu Fu&szlig;g&auml;ngerzone.</p>
 
-<img src="images/tag6/02.jpg" alt="Wehrgang der Stadtmauer Signagi mit Turm und Ausblick">
+<img src="images/tag6/02.jpg" alt="Wehrgang der Stadtmauer Sighnaghi mit Turm und Ausblick">
 <p>Der begehbare Wehrgang entlang der Stadtmauer &ndash; von hier oben reicht der Blick weit &uuml;ber das Alasani-Tal. Von den urspr&uuml;nglich 23 T&uuml;rmen sind die meisten bis heute erhalten und teilweise restauriert.</p>
 
-<img src="images/tag6/03.jpg" alt="Turm und Kirchturm in der Altstadt von Signagi mit Marktstand">
+<img src="images/tag6/03.jpg" alt="Turm und Kirchturm in der Altstadt von Sighnaghi mit Marktstand">
 <p>Blick auf einen der Wehrt&uuml;rme und den Kirchturm im Zentrum &ndash; davor ein Stand mit bestickten Tischdecken und Schals, wie sie &uuml;berall in der Altstadt zu finden sind.</p>
 
-<p class="tip"><strong>Kriegerdenkmal:</strong> In einem kleinen Park hinter dem Nationalmuseum erstreckt sich eine gut 20 Meter lange Reliefwand zum Gedenken an die gefallenen georgischen Soldaten der Roten Armee im Zweiten Weltkrieg, daneben lange Namenslisten der Gefallenen aus den umliegenden D&ouml;rfern. Eine der wenigen Stellen in Signagi, die nicht auf Romantik, sondern auf die Kriegsgeschichte des Landes verweist.</p>
-<img src="images/tag6/04.jpg" alt="Sowjetisches Kriegerdenkmal Reliefwand Signagi">
+<p class="tip"><strong>Kriegerdenkmal:</strong> In einem kleinen Park hinter dem Nationalmuseum erstreckt sich eine gut 20 Meter lange Reliefwand zum Gedenken an die gefallenen georgischen Soldaten der Roten Armee im Zweiten Weltkrieg, daneben lange Namenslisten der Gefallenen aus den umliegenden D&ouml;rfern. Eine der wenigen Stellen in Sighnaghi, die nicht auf Romantik, sondern auf die Kriegsgeschichte des Landes verweist.</p>
+<img src="images/tag6/04.jpg" alt="Sowjetisches Kriegerdenkmal Reliefwand Sighnaghi">
 <p>Ausschnitt der Reliefwand: berittene Soldaten, dazwischen in Stein gemei&szlig;elte Namenslisten der Gefallenen aus den D&ouml;rfern der Umgebung.</p>
 <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Sighnaghi" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
 
-<img src="images/tag6/05.jpg" alt="Traditioneller weisser Schafwollhut als Fotorequisite in Signagi">
+<img src="images/tag6/05.jpg" alt="Traditioneller weisser Schafwollhut als Fotorequisite in Sighnaghi">
 <p>Klassisches Souvenirfoto: wei&szlig;er, flauschiger Schafwollhut vom Marktstand aufgesetzt &ndash; ein bisschen albern, aber genau deswegen Pflichtprogramm.</p>
 
 <hr>
@@ -134,6 +113,6 @@
 
 <hr>
 
-<div class="navbar"><a href="tag5.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag7.html">N&auml;chster Tag &rarr;</a></div>
+<div class="navbar"><a href="tag5.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag7.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day6.html" lang="en">EN</a></div>
 </body>
 </html>

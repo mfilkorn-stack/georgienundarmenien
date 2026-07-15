@@ -2,42 +2,19 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
 <title>Tag 1 &ndash; Samstag, 4. Juli &ndash; Ankunft Jerewan</title>
-<style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #2b2b2b; background: #fdfcf9; }
-  h1 { font-size: 1.8em; border-bottom: 3px solid #a33; padding-bottom: 8px; }
-  h2 { font-size: 1.3em; margin-top: 2.2em; color: #a33; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  .meta { color: #666; font-style: italic; margin-bottom: 2em; }
-  img { max-width: 100%; border-radius: 6px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .tip { background: #fff6e8; border-left: 4px solid #d99b2b; padding: 10px 16px; margin: 14px 0; }
-  .pending { color: #999; font-style: italic; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2.5em 0; }
-  strong { color: #333; }
-</style>
-
-<style>
-  .navbar { display: flex; justify-content: space-between; margin: 20px 0 30px 0; font-family: Georgia, serif; }
-  .navbar a { text-decoration: none; color: #a33; font-weight: bold; }
-  .navbar a:hover { text-decoration: underline; }
-</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-  #map1, #map2 { height: 380px; width: 100%; border-radius: 8px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-</style>
 
-<style>
-  .more-info { font-size: 0.85em; margin: -10px 0 16px 0; }
-  .more-info a { color: #a33; text-decoration: none; font-weight: bold; }
-  .more-info a:hover { text-decoration: underline; }
-</style>
 </head>
 <body>
-<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag2.html">N&auml;chster Tag &rarr;</a></div>
-<h2>Tag 1 &ndash; Samstag, 4. Juli &ndash; Ankunft Jerewan</h2>
-<h3>Karte</h3>
-<div id="map1"></div>
+<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag2.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day1.html" lang="en">EN</a></div>
+<h1>Tag 1 &ndash; Samstag, 4. Juli &ndash; Ankunft Jerewan</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map1" class="map"></div>
 <script>
   (function() {
     const stops = [
@@ -65,7 +42,6 @@
   })();
 </script>
 
-
 <p>Einreise problemlos, Grenzbeamte kontrollieren P&auml;sse sehr gr&uuml;ndlich. Uber-App auf Armenisch installiert, Support nur auf Armenisch. Beschriftungen im Alltag durchg&auml;ngig dreisprachig: Englisch, Russisch (kyrillisch), Armenisch. Armenier durchweg sehr freundlich.</p>
 
 <p id="ueberblick"><strong>Land und Kultur &ndash; kurzer &Uuml;berblick:</strong> Armenien liegt im S&uuml;dkaukasus, eingeklemmt zwischen T&uuml;rkei, Georgien, Aserbaidschan und Iran, komplett landlocked, im Schnitt &uuml;ber 1.800 m hoch. Das historische "armenische Hochland" war einst deutlich gr&ouml;&szlig;er als die heutige Republik &ndash; der Nationalberg Ararat liegt seit der Grenzziehung 1921 auf t&uuml;rkischer Seite, sichtbar, aber unerreichbar.</p>
@@ -75,7 +51,6 @@
 <p>Nach Jahrhunderten wechselnder Fremdherrschaft (persisch, byzantinisch, osmanisch, russisch) pr&auml;gt vor allem der V&ouml;lkermord an den Armeniern 1915/16 im Osmanischen Reich (bis zu 1,5 Mio. Tote) das heutige Selbstverst&auml;ndnis &ndash; Ausgangspunkt der gro&szlig;en, bis heute aktiven Diaspora. 1922&ndash;1991 Teil der Sowjetunion, seit 1991 unabh&auml;ngige Republik. Der Konflikt um Bergkarabach mit Aserbaidschan bestimmte drei Jahrzehnte lang die Au&szlig;enpolitik, bis zur vollst&auml;ndigen R&uuml;ckeroberung durch Aserbaidschan 2023 und der Flucht der dortigen armenischen Bev&ouml;lkerung.</p>
 
 <p>Kulturell pr&auml;gend: die Kirche als Identit&auml;tsanker, eine jahrtausendealte Weinbautradition (&auml;lteste bekannte Weinkellerei der Welt bei Areni), Gastfreundschaft gegen&uuml;ber Fremden, und eine sehr enge, oft schmerzhafte Verbindung zwischen den rund 3 Mio. Menschen im Land und den 8&ndash;12 Mio. Armeniern in der weltweiten Diaspora.</p>
-
 
 <p id="vernissage"><strong>Vernissage-Markt:</strong> Kunst- und Kleinkunsthandwerk. Preis-Kuriosum: K&uuml;hlschrankmagnet am Flughafen 40.000 AMD, identischer Magnet auf dem Markt 1.000 AMD (Faktor 40). Alte deutsche B&uuml;cher auf dem Flohmarkt gefunden.</p>
 <p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Yerevan_Vernissage" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
@@ -107,7 +82,6 @@
 <p><strong>Blumenkultur:</strong> Blumenst&auml;nde sind im Stra&szlig;enbild sehr pr&auml;sent. Das Blumenschenken hat im postsowjetischen Raum traditionell hohen Stellenwert (Besuche, Geburtstage, Jahrestage &ndash; meist in ungerader Anzahl), was Dichte und Aufwendigkeit solcher St&auml;nde erkl&auml;rt.</p>
 <img src="images/tag1/11.jpg" alt="Blumenstand">
 
-
 <p id="kond"><strong>Kond &ndash; das &auml;lteste Viertel Jerewans:</strong> Gassen-Labyrinth aus dem 17. Jh., unter persischer Herrschaft erbaut, daher vereinzelt islamische Architekturmerkmale (u.a. eine ehemalige persische Moschee von 1687). Kein restauriertes Altstadt-Postkartenmotiv, sondern gelebter, teils verfallener Alltag mitten in der modernen Hauptstadt &ndash; seit Jahren von Abriss bedroht. Verbunden mit dem Zentrum durch den 460 m langen Kond-Fu&szlig;g&auml;ngertunnel (1936 unter Stalin gebaut).</p>
 <p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Kentron_district" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
 <img src="images/tag1/12.jpg" alt="Ruinenraum mit Tisch in Kond">
@@ -134,7 +108,6 @@
 
 <div class="tip"><strong>Einheimischen-Tipp f&uuml;r den Abend:</strong> Nach dem offiziellen Welcome-Meeting lohnt sich, wenn Zeit bleibt, ein kurzer Abstecher zu einem Nardi-Tisch in einem der Parks &ndash; die &auml;lteren M&auml;nner spielen dort bis in den sp&auml;ten Abend und lassen sich meist gerne &uuml;ber die Schulter schauen.</div>
 
-
 <p id="blue-mosque"><strong>Blaue Moschee:</strong> 1766 unter persischer Herrschaft fertiggestellt, einziges erhaltenes islamisches Bauwerk Jerewans. Zu Sowjetzeiten profaniert und als Stadtmuseum genutzt, seit 1999 wieder aktive schiitische Moschee &ndash; heute vor allem f&uuml;r iranische Migranten und Reisende genutzt, unterhalten vom iranischen Staat.</p>
 <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Blaue_Moschee_(Jerewan)" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
 <img src="images/tag1/20.jpg" alt="Fassade der Blauen Moschee Jerewan">
@@ -142,17 +115,14 @@
 <img src="images/tag1/21.jpg" alt="Banner im Hof der Blauen Moschee">
 <p>Banner im Hof mit Portr&auml;t des iranischen Revolutionsf&uuml;hrers Ali Khamenei (armenisch, farsi, englisch) &ndash; sichtbarer Ausdruck der engen kulturellen und religi&ouml;sen Anbindung des Geländes an den Iran.</p>
 
-
 <p><strong>Wandbild eines gefallenen Soldaten:</strong> Portrait-Mural auf Tuffstein, Medaille daneben abgebildet &ndash; Gedenken an einen im Berg-Karabach-Krieg (Artsakh-Konflikt) gefallenen Soldaten. Solche Wandbilder sind im gesamten Stadtbild Jerewans verbreitet, vor allem seit dem Zweiten Karabach-Krieg 2020 (&uuml;ber 3.800 gefallene armenische Soldaten) und dem endg&uuml;ltigen Verlust von Bergkarabach 2023. Anders als offizielle Denkm&auml;ler sind diese Portraits Teil des Alltagsbilds &ndash; an Hauswänden, Unterf&uuml;hrungen, Schulh&ouml;fen &ndash; und pr&auml;gen so bewusst oder unbewusst jeden Spaziergang durch die Stadt.</p>
 <img src="images/tag1/22.jpg" alt="Wandbild eines im Karabach-Krieg gefallenen Soldaten">
-
 
 <p><strong>Wandgedicht, Stadtspaziergang:</strong> Russischsprachiges Stencil-Gedicht auf einer Hauswand, stellenweise durch die verwitterte Fassade besch&auml;digt. Thematisch geht es um Krieg und Trennung: die Hoffnung, dass Stille eines Tages wieder zu Musik wird, dass Krieg zu h&ouml;ren aufh&ouml;rt, und dass ein geliebter Mensch aus dem Krieg zur&uuml;ckkehrt. Die hervorgehobenen Worte im Original sind "&#1074;&#1086;&#1081;&#1085;&#1072;" (Krieg), "&#1090;&#1080;&#1096;&#1080;&#1085;&#1072;" (Stille) und "&#1086;&#1073;&#1085;&#1080;&#1084;&#1080;" (umarme mich). Ein Fund, der ohne Kontext eine reine Straßenkunst-Notiz w&auml;re, hier aber unmittelbar an das Gedenken an gefallene Soldaten von vorhin ankn&uuml;pft.</p>
 <img src="images/tag1/23.jpg" alt="Wandgedicht in Jerewan">
 
 <hr>
 
-
-<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag2.html">N&auml;chster Tag &rarr;</a></div>
+<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag2.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day1.html" lang="en">EN</a></div>
 </body>
 </html>

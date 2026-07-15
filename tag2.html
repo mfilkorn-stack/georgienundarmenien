@@ -2,214 +2,17 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
 <title>Tag 2 &ndash; Sonntag, 5. Juli &ndash; Etschmiadzin &amp; Jerewan</title>
-<style>
-  :root {
-    --stone-rose: #C17A5E;
-    --basalt: #2A2420;
-    --travertine: #EDE3D0;
-    --pomegranate: #7A1F2B;
-    --carpet-gold: #B98A34;
-    --sky-tile: #3E6E86;
-    --flag-red: #D90012;
-    --flag-blue: #0033A0;
-    --flag-apricot: #F2A800;
-    --paper: #F7F2E7;
-  }
-  * { box-sizing: border-box; }
-  body {
-    font-family: 'Karla', Verdana, sans-serif;
-    background: var(--paper);
-    color: #2B2420;
-    margin: 0;
-    padding: 0 0 60px 0;
-  }
-  .display, h1, h2, h3 {
-    font-family: 'Fraunces', Georgia, serif;
-  }
-
-  /* Navbar */
-  .navbar { display: flex; justify-content: space-between; padding: 16px 24px; font-size: 0.95em; }
-  .navbar a { text-decoration: none; color: var(--pomegranate); font-weight: bold; }
-  .navbar a:hover { text-decoration: underline; }
-
-  /* Hero */
-  .hero {
-    background: var(--basalt);
-    color: var(--paper);
-    padding: 44px 24px 28px 24px;
-    text-align: center;
-  }
-  .hero .kicker {
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.8em;
-    color: var(--travertine);
-    opacity: 0.75;
-    margin: 0 0 8px 0;
-  }
-  .hero h1 {
-    margin: 0;
-    font-size: 2.1em;
-    font-weight: 600;
-    color: #fff;
-  }
-  .flag-rule {
-    display: flex;
-    height: 5px;
-    width: 180px;
-    margin: 20px auto 0 auto;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .flag-rule span { flex: 1; }
-  .flag-rule span:nth-child(1) { background: var(--flag-red); }
-  .flag-rule span:nth-child(2) { background: var(--flag-blue); }
-  .flag-rule span:nth-child(3) { background: var(--flag-apricot); }
-
-  /* Map section */
-  .map-section {
-    max-width: 1000px;
-    margin: 32px auto 0 auto;
-    padding: 0 24px;
-  }
-  .map-section h3 {
-    font-size: 1.1em;
-    color: var(--basalt);
-    margin-bottom: 10px;
-  }
-  #map2 {
-    height: 380px;
-    width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-    border: 3px solid var(--travertine);
-  }
-
-  /* Grid */
-  .grid {
-    max-width: 1000px;
-    margin: 40px auto 0 auto;
-    padding: 0 24px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    grid-auto-flow: dense;
-  }
-  @media (max-width: 900px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    .grid { grid-template-columns: 1fr; }
-    .card.wide { grid-column: span 1 !important; }
-  }
-  .card.wide { grid-column: span 2; }
-
-  /* Card */
-  .card {
-    position: relative;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 4px 16px rgba(42,36,32,0.14);
-    padding: 30px 22px 22px 26px;
-    border-left: 5px solid var(--stone-rose);
-  }
-  .card.accent-basalt { border-left-color: var(--basalt); }
-  .card.accent-gold { border-left-color: var(--carpet-gold); }
-  .card.accent-pomegranate { border-left-color: var(--pomegranate); }
-  .card.accent-sky { border-left-color: var(--sky-tile); }
-
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 12px;
-    background: inherit;
-    background-color: var(--stone-rose);
-    clip-path: polygon(0% 100%, 4% 35%, 9% 100%, 13% 45%, 18% 100%, 23% 30%, 28% 100%, 33% 50%, 38% 100%,
-      43% 25%, 48% 100%, 53% 40%, 58% 100%, 63% 20%, 68% 100%, 73% 45%, 78% 100%, 83% 35%, 88% 100%, 93% 50%, 100% 100%, 100% 0%, 0% 0%);
-  }
-  .card.accent-basalt::before { background-color: var(--basalt); }
-  .card.accent-gold::before { background-color: var(--carpet-gold); }
-  .card.accent-pomegranate::before { background-color: var(--pomegranate); }
-  .card.accent-sky::before { background-color: var(--sky-tile); }
-
-  .card .kicker {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.72em;
-    color: var(--stone-rose);
-    font-weight: 700;
-    margin: 0 0 4px 0;
-  }
-  .card.accent-basalt .kicker { color: var(--basalt); }
-  .card.accent-gold .kicker { color: var(--carpet-gold); }
-  .card.accent-pomegranate .kicker { color: var(--pomegranate); }
-  .card.accent-sky .kicker { color: var(--sky-tile); }
-
-  .card h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.25em;
-    color: var(--basalt);
-  }
-  .card p { line-height: 1.55; font-size: 0.96em; margin: 0 0 12px 0; }
-  .card .more-info { font-size: 0.85em; margin: -4px 0 12px 0; }
-  .card .more-info a { color: var(--pomegranate); font-weight: 700; text-decoration: none; }
-  .card .more-info a:hover { text-decoration: underline; }
-
-  .card-imgs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 8px;
-    margin-top: 12px;
-  }
-  .card-imgs img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-  }
-  .card.wide .card-imgs img { height: 200px; }
-  .img-caption {
-    font-size: 0.82em;
-    color: #6b6259;
-    font-style: italic;
-    margin: 6px 0 12px 0;
-  }
-
-  .sub-cluster {
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px dashed #d8cfc0;
-  }
-  .sub-cluster h3 {
-    font-size: 1.02em;
-    color: var(--basalt);
-    margin: 0 0 8px 0;
-  }
-
-  hr.section-break { display: none; }
-</style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Karla:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
-
-<div class="navbar"><a href="tag1.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag3.html">N&auml;chster Tag &rarr;</a></div>
-
-<div class="hero">
-  <p class="kicker">Best of Georgia &amp; Armenia &middot; Tag 2</p>
-  <h1>Etschmiadzin &amp; Jerewan</h1>
-  <p class="kicker" style="margin-top:8px;">Sonntag, 5. Juli 2026</p>
-  <div class="flag-rule"><span></span><span></span><span></span></div>
-</div>
-
-<div class="map-section">
-  <h3>Karte</h3>
-  <div id="map2"></div>
+<div class="navbar"><a href="tag1.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag3.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day2.html" lang="en">EN</a></div>
+<h1>Tag 2 &ndash; Sonntag, 5. Juli &ndash; Etschmiadzin &amp; Jerewan</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map2" class="map"></div>
 <script>
   (function() {
     const stops = [
@@ -235,130 +38,59 @@
     map.fitBounds(latlngs, { padding: [30, 30] });
   })();
 </script>
-</div>
-
-<div class="grid">
-
-  <div class="card wide accent-rose">
-    <p class="kicker">Programm</p>
-    <h2>Heute offiziell</h2>
-    <p>Kathedrale von Etschmiadzin (Sitz des Katholikos, gegr&uuml;ndet 301/303 n. Chr.), Stadtrundgang Jerewan, Genozid-Memorial Zizernakaberd. Abends freie Zeit.</p>
-  </div>
-
-  <div class="card wide">
-    <p class="kicker">Unterwegs</p>
-    <h2>Auf dem Weg durch die Stadt</h2>
-    <p>Denkmal, mit armenischen Fahnen geschm&uuml;ckt, an einer Kreuzung passiert. Handelsstra&szlig;e mit sanierter Tuffstein-Fassade aus der Zarenzeit, im Erdgeschoss moderne Ladenzeilen &ndash; typisches Jerewaner Nebeneinander von historischer H&uuml;lle und heutigem Einzelhandel.</p>
-    <div class="card-imgs">
-      <img src="images/tag2/01.jpg" alt="Mit Fahnen geschmuecktes Denkmal Jerewan">
-      <img src="images/tag2/02.jpg" alt="Historische Fassade mit Ladenzeile Jerewan">
-    </div>
-  </div>
-
-  <div id="mutter-armenien" class="card wide accent-basalt">
-    <p class="kicker">Siegespark</p>
-    <h2>Mutter Armenien</h2>
-    <p>1950 zun&auml;chst als Stalin-Monument eingeweiht, die Stalin-Statue 1962 abgebaut, seit 1967 steht hier die heutige Mutter-Armenien-Figur (Bildhauer Ara Harutjunjan). Kupferstatue, 22 m hoch, auf einem 32 m Sockel, der als f&uuml;nfst&ouml;ckiges Milit&auml;rmuseum genutzt wird &ndash; gewidmet den rund 650.000 armenischen Soldaten des Zweiten Weltkriegs sowie den Gefallenen des Karabach-Konflikts. Das Sockelinnere ist der Sarkis-Kathedrale in Etschmiadzin nachempfunden.</p>
-    <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Mutter_Armenien" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
-    <div class="card-imgs">
-      <img src="images/tag2/03.jpg" alt="Raketenwerfer im Freiluft-Militaermuseum">
-      <img src="images/tag2/04.jpg" alt="Am Panzer vor der Mutter-Armenia-Statue">
-      <img src="images/tag2/05.jpg" alt="Am Panzer vor der Mutter-Armenia-Statue, zweite Aufnahme">
-      <img src="images/tag2/06.jpg" alt="Mutter-Armenia-Statue Frontalansicht mit ewiger Flamme">
-    </div>
-    <p class="img-caption">Freiluft-Ausstellung: sowjetische Fla-Rakete und Raketenwerfer auf armenischen Grabsteinsockeln. T-34-Panzer frei zug&auml;nglich. Ewige Flamme am Grab des unbekannten Soldaten.</p>
-  </div>
-
-  <div id="genozid" class="card wide accent-basalt">
-    <p class="kicker">Gedenken</p>
-    <h2>Genozid-Memorial Zizernakaberd</h2>
-    <p>1967 auf dem Zizernakaberd-H&uuml;gel ("Schwalbenfestung") errichtet, seit 1995 mit angeschlossenem Museum. Zw&ouml;lf nach innen geneigte Basaltstelen bilden einen Kreis um die ewige Flamme in 1,5 m Tiefe &ndash; sie stehen f&uuml;r die zw&ouml;lf verlorenen Provinzen West-Armeniens im heutigen T&uuml;rkei-Gebiet. Daneben eine 44 m hohe, durch einen schmalen Spalt zweigeteilte Stele: die gr&ouml;&szlig;ere H&auml;lfte steht f&uuml;r die Republik Armenien, die kleinere f&uuml;r die verlorenen Westgebiete.</p>
-    <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Zizernakaberd" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
-    <div class="card-imgs">
-      <img src="images/tag2/07.jpg" alt="Genozid-Memorial mit Blick auf Ararat">
-      <img src="images/tag2/08.jpg" alt="Ewige Flamme mit Blumen im Genozid-Memorial">
-      <img src="images/tag2/09.jpg" alt="Blick durch die Stelen auf den Obelisken">
-      <img src="images/tag2/10.jpg" alt="Obelisk und Stelen aus der Distanz">
-    </div>
-    <p class="img-caption">Blick auf den zweigipfligen Ararat. Ewige Flamme, t&auml;glich neu mit Blumen umringt.</p>
-  </div>
-
-  <div id="kaskade" class="card wide accent-gold">
-    <p class="kicker">Kunst &amp; Architektur</p>
-    <h2>Kaskade &amp; Cafesjian-Skulpturengarten</h2>
-    <p>572 Stufen, 118 m hoch, aus hellem Travertin. Geht auf Alexander Tamanjans Masterplan der 1920er zur&uuml;ck, Baubeginn erst 1971, nach dem Erdbeben 1988 und dem Ende der Sowjetunion blieb die Anlage jahrzehntelang unfertig. Der armenisch-amerikanische Sammler Gerard Cafesjian finanzierte 2002&ndash;2009 mit 128 Mio. US-Dollar die Fertigstellung samt Museum f&uuml;r zeitgen&ouml;ssische Kunst.</p>
-    <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Kaskade_von_Jerewan" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
-    <div class="card-imgs">
-      <img src="images/tag2/11.jpg" alt="Kaskade Jerewan Gesamtansicht">
-      <img src="images/tag2/12.jpg" alt="Kaskade Detailansicht Kreismuster">
-      <img src="images/tag2/13.jpg" alt="Blick von der Kaskade auf Jerewan">
-    </div>
-    <p class="img-caption">Kreisornamente zitieren armenische Teppichmuster &ndash; dasselbe Motiv wie am Platz der Republik (Tag 1).</p>
-
-    <div class="sub-cluster">
-      <h3>Tamanjan-Denkmal</h3>
-      <p>Am Fu&szlig; der Kaskade steht die 1974 von Artaschess Howsepjan geschaffene Statue des Stadtplaners Alexander Tamanjan, der sich &uuml;ber eine Steinplatte beugt &ndash; sie ruht auf zwei ungleichen Steinen f&uuml;r alte und neue armenische Architektur.</p>
-      <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Alexander_Tamanjan" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
-      <div class="card-imgs">
-        <img src="images/tag2/14.jpg" alt="Tamanjan-Denkmal am Fuss der Kaskade">
-      </div>
-    </div>
-
-    <div class="sub-cluster">
-      <h3>Skulpturengarten</h3>
-      <p>Der Cafesjian-Skulpturenpark zeigt Werke internationaler Bildhauer (Botero, Chadwick, Plensa, Flanagan) &ndash; am auff&auml;lligsten zwei &uuml;bergro&szlig;e Bronzen von Fernando Botero: eine liegende Frau und ein "R&ouml;mischer Krieger".</p>
-      <div class="card-imgs">
-        <img src="images/tag2/15.jpg" alt="Botero-Skulptur liegende Frau Kaskade Jerewan">
-        <img src="images/tag2/16.jpg" alt="Botero-Skulptur Roemischer Krieger">
-      </div>
-    </div>
-  </div>
-
-  <div class="card wide accent-pomegranate">
-    <p class="kicker">Essen</p>
-    <h2>Lawasch &amp; Chorowaz</h2>
-    <p>Lawasch wird direkt im Tonir-Lehmofen gebacken &ndash; der Teig wird an die gl&uuml;hend hei&szlig;e Innenwand geklatscht. Danach ein klassischer Grillteller: Lula-Kebab, gegrillter Fisch, Auberginen und Paprika direkt auf der Glut geschmort &ndash; typisch armenisches "Chorowaz".</p>
-    <div class="card-imgs">
-      <img src="images/tag2/17.jpg" alt="Lawasch-Backen im Tonir-Ofen">
-      <img src="images/tag2/18.jpg" alt="Armenischer Grillteller Chorowaz">
-      <img src="images/tag2/19.jpg" alt="Fleischtheke mit Kebab-Spiessen">
-    </div>
-    <p class="img-caption">Fleischtheke mit vorbereiteten Spie&szlig;en zum Selbstgrillen &ndash; in Jerewans Fleischereien Standard, nicht nur im Restaurant.</p>
-  </div>
-
-  <div id="etschmiadzin" class="card wide accent-sky">
-    <p class="kicker">Glauben</p>
-    <h2>Kathedrale von Etschmiadzin</h2>
-    <p>Der Legende nach zeigte Christus dem Gregor dem Erleuchter in einer Vision die Stelle, an der die erste Kirche entstehen sollte &ndash; daher der Name "Etschmiadzin", "der Eingeborene stieg herab". Baubeginn 301, Weihe 303 &uuml;ber den Fundamenten eines heidnischen Feuertempels, damit die &auml;lteste von einem Staat errichtete Kirche der Christenheit. Sitz des Katholikos aller Armenier, seit 2000 UNESCO-Weltkulturerbe.</p>
-    <p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Kathedrale_von_Etschmiadsin" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
-    <div class="card-imgs">
-      <img src="images/tag2/20.jpg" alt="Kathedrale von Etschmiadzin Aussenansicht">
-      <img src="images/tag2/21.jpg" alt="Wickelrock als Kleidervorschrift Etschmiadzin">
-    </div>
-    <p class="img-caption">Kleidervorschrift: kurze Hosen nicht erlaubt, Wickelt&uuml;cher gibt's am Eingang.</p>
-
-    <div class="sub-cluster">
-      <h3>Schatzkammer</h3>
-      <p>Im Manukjan-Museum auf dem Klostergel&auml;nde liegen die bedeutendsten Reliquien der armenisch-apostolischen Kirche: die Spitze der Heiligen Lanze, ein Splitter vom Wahren Kreuz, ein Fragment der Arche Noah sowie der rechte Arm Gregors des Erleuchters.</p>
-      <div class="card-imgs">
-        <img src="images/tag2/22.jpg" alt="Geschnitztes Holzkreuz Schatzkammer Etschmiadzin">
-        <img src="images/tag2/23.jpg" alt="Silberne Reliquientafel Schatzkammer Etschmiadzin">
-      </div>
-    </div>
-
-    <div class="sub-cluster">
-      <h3>Klerus vor Ort</h3>
-      <p>Diakon in liturgischem Gewand (rot-goldener Umhang &uuml;ber schwarzer Kutte, Vardapet-Kreuz in der Hand) und ein M&ouml;nch mit der typischen spitzen Kapuze (Veghar) der armenisch-apostolischen Geistlichkeit.</p>
-      <div class="card-imgs">
-        <img src="images/tag2/24.jpg" alt="Diakon in liturgischem Gewand Etschmiadzin">
-        <img src="images/tag2/25.jpg" alt="Moench vor Kirche Etschmiadzin">
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="navbar" style="max-width:1000px; margin:40px auto 0 auto;"><a href="tag1.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag3.html">N&auml;chster Tag &rarr;</a></div>
-
+<p>Offizielles Programm: Kathedrale von Etschmiadzin (Sitz des Katholikos, gegr&uuml;ndet 301/303 n. Chr.), Stadtrundgang Jerewan, Genozid-Memorial Zizernakaberd. Abends freie Zeit.</p>
+<hr>
+<p id="etschmiadzin"><strong>Kathedrale von Etschmiadzin:</strong> Der Legende nach zeigte Christus dem Gregor dem Erleuchter in einer Vision die Stelle, an der die erste Kirche entstehen sollte &ndash; daher der Name &bdquo;Etschmiadzin&ldquo;, &bdquo;der Eingeborene stieg herab&ldquo;. Baubeginn 301, Weihe 303 &uuml;ber den Fundamenten eines heidnischen Feuertempels, damit die &auml;lteste von einem Staat errichtete Kirche der Christenheit. Sitz des Katholikos aller Armenier, seit 2000 UNESCO-Weltkulturerbe.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Kathedrale_von_Etschmiadsin" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/tag2/20.jpg" alt="Kathedrale von Etschmiadzin Aussenansicht">
+<img src="images/tag2/21.jpg" alt="Wickelrock als Kleidervorschrift Etschmiadzin">
+<p>Kleidervorschrift: kurze Hosen nicht erlaubt, Wickelt&uuml;cher gibt's am Eingang.</p>
+<p><strong>Schatzkammer:</strong> Im Manukjan-Museum auf dem Klostergel&auml;nde liegen die bedeutendsten Reliquien der armenisch-apostolischen Kirche: die Spitze der Heiligen Lanze, ein Splitter vom Wahren Kreuz, ein Fragment der Arche Noah sowie der rechte Arm Gregors des Erleuchters.</p>
+<img src="images/tag2/22.jpg" alt="Geschnitztes Holzkreuz Schatzkammer Etschmiadzin">
+<img src="images/tag2/23.jpg" alt="Silberne Reliquientafel Schatzkammer Etschmiadzin">
+<p><strong>Klerus vor Ort:</strong> Diakon in liturgischem Gewand (rot-goldener Umhang &uuml;ber schwarzer Kutte, Vardapet-Kreuz in der Hand) und ein M&ouml;nch mit der typischen spitzen Kapuze (Veghar) der armenisch-apostolischen Geistlichkeit.</p>
+<img src="images/tag2/24.jpg" alt="Diakon in liturgischem Gewand Etschmiadzin">
+<img src="images/tag2/25.jpg" alt="Moench vor Kirche Etschmiadzin">
+<hr>
+<p><strong>Auf dem Weg durch die Stadt:</strong> Denkmal, mit armenischen Fahnen geschm&uuml;ckt, an einer Kreuzung passiert. Handelsstra&szlig;e mit sanierter Tuffstein-Fassade aus der Zarenzeit, im Erdgeschoss moderne Ladenzeilen &ndash; typisches Jerewaner Nebeneinander von historischer H&uuml;lle und heutigem Einzelhandel.</p>
+<img src="images/tag2/01.jpg" alt="Mit Fahnen geschmuecktes Denkmal Jerewan">
+<img src="images/tag2/02.jpg" alt="Historische Fassade mit Ladenzeile Jerewan">
+<hr>
+<p id="kaskade"><strong>Kaskade &amp; Cafesjian-Skulpturengarten:</strong> 572 Stufen, 118 m hoch, aus hellem Travertin. Geht auf Alexander Tamanjans Masterplan der 1920er zur&uuml;ck, Baubeginn erst 1971, nach dem Erdbeben 1988 und dem Ende der Sowjetunion blieb die Anlage jahrzehntelang unfertig. Der armenisch-amerikanische Sammler Gerard Cafesjian finanzierte 2002&ndash;2009 mit 128 Mio. US-Dollar die Fertigstellung samt Museum f&uuml;r zeitgen&ouml;ssische Kunst.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Kaskade_von_Jerewan" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/tag2/11.jpg" alt="Kaskade Jerewan Gesamtansicht">
+<img src="images/tag2/12.jpg" alt="Kaskade Detailansicht Kreismuster">
+<img src="images/tag2/13.jpg" alt="Blick von der Kaskade auf Jerewan">
+<p>Kreisornamente zitieren armenische Teppichmuster &ndash; dasselbe Motiv wie am Platz der Republik (Tag 1).</p>
+<p><strong>Tamanjan-Denkmal:</strong> Am Fu&szlig; der Kaskade steht die 1974 von Artaschess Howsepjan geschaffene Statue des Stadtplaners Alexander Tamanjan, der sich &uuml;ber eine Steinplatte beugt &ndash; sie ruht auf zwei ungleichen Steinen f&uuml;r alte und neue armenische Architektur.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Alexander_Tamanjan" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/tag2/14.jpg" alt="Tamanjan-Denkmal am Fuss der Kaskade">
+<p><strong>Skulpturengarten:</strong> Der Cafesjian-Skulpturenpark zeigt Werke internationaler Bildhauer (Botero, Chadwick, Plensa, Flanagan) &ndash; am auff&auml;lligsten zwei &uuml;bergro&szlig;e Bronzen von Fernando Botero: eine liegende Frau und ein &bdquo;R&ouml;mischer Krieger&ldquo;.</p>
+<img src="images/tag2/15.jpg" alt="Botero-Skulptur liegende Frau Kaskade Jerewan">
+<img src="images/tag2/16.jpg" alt="Botero-Skulptur Roemischer Krieger">
+<hr>
+<p id="mutter-armenien"><strong>Mutter Armenien (Siegespark):</strong> 1950 zun&auml;chst als Stalin-Monument eingeweiht, die Stalin-Statue 1962 abgebaut, seit 1967 steht hier die heutige Mutter-Armenien-Figur (Bildhauer Ara Harutjunjan). Kupferstatue, 22 m hoch, auf einem 32 m Sockel, der als f&uuml;nfst&ouml;ckiges Milit&auml;rmuseum genutzt wird &ndash; gewidmet den rund 650.000 armenischen Soldaten des Zweiten Weltkriegs sowie den Gefallenen des Karabach-Konflikts. Das Sockelinnere ist der Sarkis-Kathedrale in Etschmiadzin nachempfunden.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Mutter_Armenien" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/tag2/03.jpg" alt="Raketenwerfer im Freiluft-Militaermuseum">
+<img src="images/tag2/04.jpg" alt="Am Panzer vor der Mutter-Armenia-Statue">
+<img src="images/tag2/05.jpg" alt="Am Panzer vor der Mutter-Armenia-Statue, zweite Aufnahme">
+<img src="images/tag2/06.jpg" alt="Mutter-Armenia-Statue Frontalansicht mit ewiger Flamme">
+<p>Freiluft-Ausstellung: sowjetische Fla-Rakete und Raketenwerfer auf armenischen Grabsteinsockeln. T-34-Panzer frei zug&auml;nglich. Ewige Flamme am Grab des unbekannten Soldaten.</p>
+<hr>
+<p id="genozid"><strong>Genozid-Memorial Zizernakaberd:</strong> 1967 auf dem Zizernakaberd-H&uuml;gel (&bdquo;Schwalbenfestung&ldquo;) errichtet, seit 1995 mit angeschlossenem Museum. Zw&ouml;lf nach innen geneigte Basaltstelen bilden einen Kreis um die ewige Flamme in 1,5 m Tiefe &ndash; sie stehen f&uuml;r die zw&ouml;lf verlorenen Provinzen West-Armeniens im heutigen T&uuml;rkei-Gebiet. Daneben eine 44 m hohe, durch einen schmalen Spalt zweigeteilte Stele: die gr&ouml;&szlig;ere H&auml;lfte steht f&uuml;r die Republik Armenien, die kleinere f&uuml;r die verlorenen Westgebiete.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Zizernakaberd" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/tag2/07.jpg" alt="Genozid-Memorial mit Blick auf Ararat">
+<img src="images/tag2/08.jpg" alt="Ewige Flamme mit Blumen im Genozid-Memorial">
+<img src="images/tag2/09.jpg" alt="Blick durch die Stelen auf den Obelisken">
+<img src="images/tag2/10.jpg" alt="Obelisk und Stelen aus der Distanz">
+<p>Blick auf den zweigipfligen Ararat. Ewige Flamme, t&auml;glich neu mit Blumen umringt.</p>
+<hr>
+<p><strong>Lawasch &amp; Chorowaz:</strong> Lawasch wird direkt im Tonir-Lehmofen gebacken &ndash; der Teig wird an die gl&uuml;hend hei&szlig;e Innenwand geklatscht. Danach ein klassischer Grillteller: Lula-Kebab, gegrillter Fisch, Auberginen und Paprika direkt auf der Glut geschmort &ndash; typisch armenisches &bdquo;Chorowaz&ldquo;.</p>
+<img src="images/tag2/17.jpg" alt="Lawasch-Backen im Tonir-Ofen">
+<img src="images/tag2/18.jpg" alt="Armenischer Grillteller Chorowaz">
+<img src="images/tag2/19.jpg" alt="Fleischtheke mit Kebab-Spiessen">
+<p>Fleischtheke mit vorbereiteten Spie&szlig;en zum Selbstgrillen &ndash; in Jerewans Fleischereien Standard, nicht nur im Restaurant.</p>
+<hr>
+<div class="navbar"><a href="tag1.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag3.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day2.html" lang="en">EN</a></div>
 </body>
 </html>

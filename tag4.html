@@ -2,41 +2,20 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
 <title>Tag 4 &ndash; Dienstag, 7. Juli &ndash; Sewansee, Molokanen, Dilidschan, Alawerdi, Sanahin, Haghpat</title>
-<style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #2b2b2b; background: #fdfcf9; }
-  h1 { font-size: 1.8em; border-bottom: 3px solid #a33; padding-bottom: 8px; }
-  h2 { font-size: 1.3em; margin-top: 2.2em; color: #a33; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  .meta { color: #666; font-style: italic; margin-bottom: 2em; }
-  img { max-width: 100%; border-radius: 6px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .tip { background: #fff6e8; border-left: 4px solid #d99b2b; padding: 10px 16px; margin: 14px 0; }
-  .pending { color: #999; font-style: italic; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2.5em 0; }
-  strong { color: #333; }
-</style>
-
-<style>
-  .navbar { display: flex; justify-content: space-between; margin: 20px 0 30px 0; font-family: Georgia, serif; }
-  .navbar a { text-decoration: none; color: #a33; font-weight: bold; }
-  .navbar a:hover { text-decoration: underline; }
-</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-  #map4 { height: 380px; width: 100%; border-radius: 8px; margin: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .more-info { font-size: 0.85em; margin: -10px 0 16px 0; }
-  .more-info a { color: #a33; text-decoration: none; font-weight: bold; }
-  .more-info a:hover { text-decoration: underline; }
-</style>
 </head>
 <body>
-<div class="navbar"><a href="tag3.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag5.html">N&auml;chster Tag &rarr;</a></div>
-<h2>Tag 4 &ndash; Dienstag, 7. Juli &ndash; Sewansee, Molokanen, Dilidschan, Alawerdi, Sanahin, Haghpat</h2>
+<div class="navbar"><a href="tag3.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag5.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day4.html" lang="en">EN</a></div>
+<h1>Tag 4 &ndash; Dienstag, 7. Juli &ndash; Sewansee, Molokanen, Dilidschan, Alawerdi, Sanahin, Haghpat</h1>
 <p>Offizielles Programm: Fahrt zum Sewansee (gr&ouml;&szlig;ter See des Kaukasus) mit Klosterstopps, weiter &uuml;ber Molokan-D&ouml;rfer mit traditioneller Tee-Einkehr, &Uuml;bernachtung in Haghpat mit Blick in die Debed-Schlucht.</p>
 
-<h3>Karte</h3>
-<div id="map4"></div>
+<h2 class="map-heading">Karte</h2>
+<div id="map4" class="map"></div>
 <script>
   (function() {
     const stops = [
@@ -154,6 +133,6 @@
 
 <hr>
 
-<div class="navbar"><a href="tag3.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag5.html">N&auml;chster Tag &rarr;</a></div>
+<div class="navbar"><a href="tag3.html">&larr; Vorheriger Tag</a><a href="index.html">&#8962; &Uuml;bersicht</a><a href="tag5.html">N&auml;chster Tag &rarr;</a><a class="lang-switch" href="en/day4.html" lang="en">EN</a></div>
 </body>
 </html>
