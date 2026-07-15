@@ -118,6 +118,21 @@ strong {
   background: #8b2b2b;
 }
 
+.book-download.book-custom {
+  background: #fff6e8;
+  color: #a33;
+  border: 2px solid #a33;
+  padding: 14px 16px;
+}
+
+.book-download.book-custom span {
+  color: #2b2b2b;
+}
+
+.book-download.book-custom:hover {
+  background: #ffe8c8;
+}
+
 /* ----- Übersichtsliste (index) ----- */
 ul.daylist {
   list-style: none;

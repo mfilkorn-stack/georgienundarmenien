@@ -1,0 +1,417 @@
+/* ===================================================================
+   Buch-Editor: Bedienleiste + Buchvorschau (Screen) und Druck-Layout
+   =================================================================== */
+
+body.editor-page {
+  max-width: none;
+  margin: 0;
+  padding: 0 20px 40px 20px;
+}
+
+body.editor-page > .navbar,
+body.editor-page > h1,
+body.editor-page > .meta {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.editor-page > .navbar {
+  margin-top: 20px;
+}
+
+.editor-layout {
+  display: flex;
+  gap: 28px;
+  max-width: 1240px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* ----- Bedienleiste ----- */
+#controls {
+  flex: 0 0 320px;
+  position: sticky;
+  top: 12px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.ctl-print {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #a33;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1.05em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ctl-print:hover {
+  background: #8b2b2b;
+}
+
+.ctl-hint {
+  font-size: 0.8em;
+  color: #666;
+  font-style: italic;
+  margin: 8px 0;
+}
+
+.ctl-section {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 14px 0;
+  padding: 10px 14px;
+  background: #fff;
+}
+
+.ctl-section legend {
+  font-weight: bold;
+  color: #a33;
+  padding: 0 6px;
+}
+
+.ctl-section label {
+  display: block;
+  margin: 8px 0;
+  font-size: 0.9em;
+}
+
+.ctl-section input[type="text"],
+.ctl-section select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 3px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 0.95em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fdfcf9;
+}
+
+.ctl-section input[type="color"] {
+  margin-left: 8px;
+  vertical-align: middle;
+  width: 48px;
+  height: 28px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  padding: 1px;
+}
+
+.ctl-radio {
+  cursor: pointer;
+}
+
+.ctl-radio input {
+  margin-right: 6px;
+}
+
+/* Tages-Bereiche mit Foto-Rastern */
+.ctl-day {
+  border-top: 1px solid #eee;
+  padding: 6px 0;
+}
+
+.ctl-day summary {
+  cursor: pointer;
+  font-size: 0.88em;
+  font-weight: bold;
+  color: #333;
+}
+
+.ctl-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.ctl-thumb {
+  position: relative;
+}
+
+.ctl-thumb img {
+  width: 100%;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 0;
+  box-shadow: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.ctl-thumb.off img {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+.ctl-thumb.is-cover img {
+  border-color: #d99b2b;
+}
+
+.ctl-cover-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #d99b2b;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ctl-thumb.is-cover .ctl-cover-btn {
+  background: #d99b2b;
+  color: #fff;
+}
+
+.ctl-upload {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #fff6e8;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.ctl-upload img {
+  width: 64px;
+  flex: 0 0 64px;
+}
+
+.ctl-upload input[type="text"] {
+  flex: 1;
+  margin: 0;
+}
+
+.ctl-remove-btn {
+  border: 1px solid #a33;
+  background: none;
+  color: #a33;
+  border-radius: 4px;
+  font-size: 0.75em;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.ctl-upload-label {
+  font-size: 0.85em;
+  color: #a33;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ctl-upload-label input {
+  display: block;
+  margin-top: 4px;
+  font-weight: normal;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.ctl-reset {
+  display: block;
+  margin: 20px 0;
+  border: 1px solid #999;
+  background: none;
+  color: #666;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ----- Buchvorschau ----- */
+#book {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 40px 48px;
+}
+
+/* Buch-Styles (Vorschau UND Druck) – parametrisiert per Custom-Properties */
+.book-inner {
+  font-family: var(--book-font, Georgia, serif);
+  color: #2b2b2b;
+  line-height: 1.55;
+}
+
+.book-inner .cover {
+  text-align: center;
+  padding: 2.5cm 0 0 0;
+  page-break-after: always;
+}
+
+.book-inner .cover h1 {
+  font-size: 2.4em;
+  border: none;
+  margin: 0 0 0.2em 0;
+  color: #2b2b2b;
+}
+
+.book-inner .cover .subtitle {
+  font-size: 1.5em;
+  color: var(--accent, #a33);
+  margin: 0 0 1.2em 0;
+}
+
+.book-inner .cover img {
+  max-width: 100%;
+  max-height: 14cm;
+  margin: 0 0 1.2em 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.book-inner .cover .meta {
+  color: #666;
+  font-style: italic;
+}
+
+.book-inner .toc {
+  page-break-after: always;
+}
+
+.book-inner .toc h2,
+.book-inner .chapter h1 {
+  font-size: 1.5em;
+  border-bottom: 3px solid var(--accent, #a33);
+  padding-bottom: 8px;
+  color: #2b2b2b;
+}
+
+.book-inner .toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 1.5em 0;
+}
+
+.book-inner .toc li {
+  margin: 0.9em 0;
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid #ddd;
+}
+
+.book-inner .chapter {
+  page-break-before: always;
+}
+
+.book-inner .chapter h2 {
+  font-size: 1.25em;
+  margin-top: 1.8em;
+  color: var(--accent, #a33);
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+  page-break-after: avoid;
+}
+
+.book-inner .chapter h3 {
+  font-size: 1.05em;
+  margin-top: 1.5em;
+  color: #333;
+  page-break-after: avoid;
+}
+
+.book-inner .chapter img {
+  max-width: 100%;
+  max-height: var(--img-max, 19cm);
+  display: block;
+  margin: 12px auto;
+  page-break-inside: avoid;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.book-inner.img-full .chapter img {
+  page-break-before: always;
+}
+
+.book-inner .tip {
+  background: #fff6e8;
+  border: 1px solid #d99b2b;
+  border-left: 4px solid #d99b2b;
+  padding: 8px 14px;
+  margin: 12px 0;
+  page-break-inside: avoid;
+}
+
+.book-inner .pending {
+  color: #999;
+  font-style: italic;
+}
+
+.book-inner hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2em 0;
+}
+
+/* ----- Mobil: Bedienleiste über der Vorschau ----- */
+@media (max-width: 860px) {
+  .editor-layout {
+    flex-direction: column;
+  }
+
+  #controls {
+    position: static;
+    max-height: none;
+    flex: none;
+    width: 100%;
+  }
+
+  #book {
+    padding: 20px;
+  }
+}
+
+/* ----- Druck: nur das Buch ----- */
+@media print {
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  body.editor-page {
+    padding: 0;
+    background: #fff;
+  }
+
+  body.editor-page > .navbar,
+  body.editor-page > h1,
+  body.editor-page > .meta,
+  #controls {
+    display: none;
+  }
+
+  .editor-layout {
+    display: block;
+    max-width: none;
+  }
+
+  #book {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+}
