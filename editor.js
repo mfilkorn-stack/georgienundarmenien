@@ -51,6 +51,17 @@
       removeUpload: 'Entfernen',
       toc: 'Inhalt',
       loading: 'Buch wird geladen …',
+      helpButton: '? Anleitung',
+      helpTitle: 'So funktioniert der Buch-Editor',
+      helpClose: 'Los geht’s!',
+      helpSteps: [
+        ['\u{1F4F7}', 'Fotos auswählen', 'Links in der Leiste einen Tag aufklappen. Klick auf eine Miniatur nimmt das Foto aus dem Buch (wird grau) – erneuter Klick holt es zurück. Mit dem ★ machst du ein Foto zum Coverfoto. Das Häkchen neben dem Tagesnamen nimmt den ganzen Tag heraus.'],
+        ['➕', 'Eigene Fotos hinzufügen', 'Unter jedem Tag gibt es „+ Eigene Fotos“. Sie erscheinen am Ende des Tages im Buch und bleiben nur in deinem Browser gespeichert – sie werden nicht ins Internet hochgeladen.'],
+        ['\u{1F91A}', 'Verschieben per Drag & Drop', 'Rechts im Buch: Fahre mit der Maus über ein Foto oder einen Text – links erscheint ein Griff (⠷). Ziehe daran, um den Block an eine andere Stelle des Tages zu schieben. Ein Foto nimmt seine Bildunterschrift automatisch mit.'],
+        ['✏️', 'Texte bearbeiten', 'Klicke rechts im Buch einfach in einen Text – Tagebuchtext, Überschriften, Tipp-Boxen und Bildunterschriften sind direkt beschreibbar. Auch unter Fotos ohne Unterschrift kannst du eine ergänzen.'],
+        ['\u{1F3A8}', 'Stil & Titelseite', 'In der Leiste stellst du Schrift, Akzentfarbe und Fotogröße ein und gibst dem Buch Titel und Untertitel. Über die Auswahl „Inhalt“ machst du z. B. ein reines Fotobuch daraus.'],
+        ['\u{1F5A8}', 'Als PDF speichern', 'Der rote Knopf öffnet den Druckdialog – dort „Als PDF speichern“ wählen. Alle deine Änderungen bleiben in diesem Browser erhalten, bis du sie zurücksetzt.'],
+      ],
     },
     en: {
       print: '\u{1F5A8} Print book / Save as PDF',
@@ -88,6 +99,17 @@
       removeUpload: 'Remove',
       toc: 'Contents',
       loading: 'Loading book …',
+      helpButton: '? How it works',
+      helpTitle: 'How the book editor works',
+      helpClose: 'Let’s go!',
+      helpSteps: [
+        ['\u{1F4F7}', 'Choose photos', 'Open a day in the left panel. Clicking a thumbnail removes the photo from the book (it turns grey) – click again to bring it back. The ★ makes a photo the cover photo. The checkbox next to the day name removes the whole day.'],
+        ['➕', 'Add your own photos', 'Each day has “+ Add your own photos”. They appear at the end of that day in the book and are stored only in your browser – nothing is uploaded to the internet.'],
+        ['\u{1F91A}', 'Reorder by drag & drop', 'In the book on the right: hover over a photo or text – a handle (⠷) appears on the left. Drag it to move the block to another position within the day. A photo automatically takes its caption along.'],
+        ['✏️', 'Edit texts', 'Simply click into any text in the book – diary text, headings, tip boxes and captions are directly editable. You can also add a caption under photos that don’t have one yet.'],
+        ['\u{1F3A8}', 'Style & cover page', 'In the panel you set the font, accent colour and photo size, and give the book its title and subtitle. The “Content” options turn it into a pure photo book, for example.'],
+        ['\u{1F5A8}', 'Save as PDF', 'The red button opens the print dialog – choose “Save as PDF” there. All your changes stay in this browser until you reset them.'],
+      ],
     },
   }[LANG];
 
@@ -510,6 +532,7 @@
     frag.append(
       el('button', { class: 'ctl-print', type: 'button', onclick: () => window.print() }, T.print),
       el('p', { class: 'ctl-hint' }, T.printHint),
+      el('button', { class: 'ctl-help', type: 'button', onclick: showHelp }, T.helpButton),
       el('p', { class: 'ctl-hint ctl-draghint' }, T.dragHint),
     );
 
@@ -654,6 +677,38 @@
     controlsEl.scrollTop = scrollTop;
   }
 
+  // ---------- Anleitung (Popup) ----------
+  const HELP_SEEN_KEY = 'bookEditor:helpSeen';
+
+  function showHelp() {
+    if (document.querySelector('.help-overlay')) return;
+    const overlay = el('div', { class: 'help-overlay', onclick: (e) => { if (e.target === overlay) closeHelp(); } });
+    const dialog = el('div', { class: 'help-dialog', role: 'dialog', 'aria-modal': 'true' },
+      el('h2', {}, T.helpTitle),
+      ...T.helpSteps.map(([icon, title, text]) =>
+        el('div', { class: 'help-step' },
+          el('span', { class: 'help-icon' }, icon),
+          el('div', {}, el('strong', {}, title), el('p', {}, text)))),
+      el('button', {
+        class: 'ctl-print help-close', type: 'button',
+        onclick: closeHelp,
+      }, T.helpClose));
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    document.addEventListener('keydown', helpEscape);
+  }
+
+  function helpEscape(e) {
+    if (e.key === 'Escape') closeHelp();
+  }
+
+  function closeHelp() {
+    const overlay = document.querySelector('.help-overlay');
+    if (overlay) overlay.remove();
+    document.removeEventListener('keydown', helpEscape);
+    localStorage.setItem(HELP_SEEN_KEY, '1');
+  }
+
   // Cover/Titel in der Vorschau aktualisieren, ohne alles neu zu bauen
   function updateCover() {
     const cover = bookEl.querySelector('.book-inner .cover');
@@ -673,5 +728,6 @@
     renderControls();
     renderBook();
     document.body.classList.add('editor-ready');
+    if (!localStorage.getItem(HELP_SEEN_KEY)) showHelp();
   })();
 })();
