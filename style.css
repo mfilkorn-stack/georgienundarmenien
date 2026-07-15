@@ -92,6 +92,32 @@ strong {
   font-weight: normal;
 }
 
+/* ----- PDF-Buch-Download (index) ----- */
+.book-download {
+  display: block;
+  margin: 0 0 2em 0;
+  padding: 16px 18px;
+  background: #a33;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.book-download span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8em;
+  font-weight: normal;
+  opacity: 0.85;
+}
+
+.book-download:hover {
+  background: #8b2b2b;
+}
+
 /* ----- Übersichtsliste (index) ----- */
 ul.daylist {
   list-style: none;
@@ -167,7 +193,8 @@ ul.daylist a:hover {
   .navbar,
   .map,
   .map-heading,
-  .more-info {
+  .more-info,
+  .book-download {
     display: none;
   }
 

@@ -1,9 +1,9 @@
 name: Publish to GitHub Pages
 
-# Veröffentlicht die Seite, indem main nach gh-pages gespiegelt wird.
-# GitHub Pages ist auf den gh-pages-Branch konfiguriert; die direkte
-# Pages-API (actions/deploy-pages) steht dem Workflow-Token in diesem
-# Repo nicht offen ("Resource not accessible by integration").
+# Baut die PDF-Bücher (DE/EN) und veröffentlicht die Seite, indem main
+# samt PDFs nach gh-pages gespiegelt wird. GitHub Pages ist auf den
+# gh-pages-Branch konfiguriert; die direkte Pages-API (actions/deploy-pages)
+# steht dem Workflow-Token in diesem Repo nicht offen.
 
 on:
   push:
@@ -22,5 +22,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Mirror main to gh-pages
-        run: git push --force origin HEAD:gh-pages
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install PDF toolchain
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ghostscript
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Build PDF books
+        run: node tools/build-book.js
+
+      - name: Publish to gh-pages (site + PDFs)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f reisetagebuch-de.pdf travel-diary-en.pdf
+          git commit -m "Pages-Build: Site + PDF-Bücher"
+          git push --force origin HEAD:gh-pages

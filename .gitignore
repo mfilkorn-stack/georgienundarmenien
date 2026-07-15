@@ -1,0 +1,4 @@
+# Generierte PDF-Bücher (werden im Pages-Workflow gebaut)
+*.pdf
+.book-*.html
+node_modules/
