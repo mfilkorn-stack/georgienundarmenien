@@ -293,6 +293,7 @@
 
   // ---------- Bedienleiste ----------
   const controlsEl = document.getElementById('controls');
+  const openDays = new Set(); // welche Tage aufgeklappt sind – bleibt über Re-Renders erhalten
 
   function el(tag, attrs, ...children) {
     const node = document.createElement(tag);
@@ -310,6 +311,7 @@
   }
 
   function renderControls() {
+    const scrollTop = controlsEl.scrollTop;
     const frag = document.createDocumentFragment();
 
     // Aktionen
@@ -369,6 +371,11 @@
     const photoSection = section(T.photosSection, el('p', { class: 'ctl-hint' }, T.photosHint));
     for (const n of DAYS) {
       const dayBox = el('details', { class: 'ctl-day' });
+      dayBox.open = openDays.has(n);
+      dayBox.addEventListener('toggle', () => {
+        if (dayBox.open) openDays.add(n);
+        else openDays.delete(n);
+      });
       const included = !state.excludedDays.includes(n);
 
       const dayToggle = el('input', {
@@ -446,6 +453,7 @@
     }, T.reset));
 
     controlsEl.replaceChildren(frag);
+    controlsEl.scrollTop = scrollTop;
   }
 
   // ---------- Start ----------
