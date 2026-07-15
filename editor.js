@@ -1,6 +1,10 @@
 // Buch-Editor: stellt aus den Tagesseiten ein individuelles Buch zusammen.
 // Läuft komplett im Browser; Konfiguration in localStorage, eigene Fotos in
 // IndexedDB (nur lokal auf diesem Gerät, nicht Teil der Website).
+//
+// Inhalt jedes Tages wird als Block-Liste modelliert (Foto+Bildunterschrift =
+// eine Einheit, Textblöcke, Trennlinien, Uploads). Diese Blöcke lassen sich in
+// der Vorschau per Drag & Drop umsortieren; Texte sind direkt editierbar.
 (function () {
   'use strict';
 
@@ -15,7 +19,7 @@
       print: '\u{1F5A8} Buch drucken / Als PDF speichern',
       printHint: 'Tipp: Im Druckdialog „Kopf- und Fußzeilen“ aktivieren, um Seitenzahlen zu bekommen.',
       reset: 'Alles zurücksetzen',
-      resetConfirm: 'Alle Einstellungen und hochgeladenen Fotos verwerfen?',
+      resetConfirm: 'Alle Einstellungen, Textänderungen und hochgeladenen Fotos verwerfen?',
       coverSection: 'Titelseite',
       titleLabel: 'Buchtitel',
       subtitleLabel: 'Untertitel',
@@ -37,11 +41,13 @@
       modePhotos: 'Nur Fotos mit Bildunterschriften',
       photosSection: 'Fotos auswählen',
       photosHint: 'Klick = Foto an/aus · ★ = als Coverfoto',
+      dragHint: 'Im Buch rechts: Fotos & Texte am Griff (⠿) ziehen zum Umsortieren, Text anklicken zum Bearbeiten.',
       dayLabel: 'Tag',
       includeDay: 'Tag im Buch',
       uploadLabel: '+ Eigene Fotos zu diesem Tag',
       uploadHint: 'Eigene Fotos bleiben nur lokal in diesem Browser gespeichert und erscheinen im gedruckten Buch – nicht auf der Website.',
       captionPlaceholder: 'Bildunterschrift …',
+      captionEmpty: 'Bildunterschrift hinzufügen …',
       removeUpload: 'Entfernen',
       toc: 'Inhalt',
       loading: 'Buch wird geladen …',
@@ -50,7 +56,7 @@
       print: '\u{1F5A8} Print book / Save as PDF',
       printHint: 'Tip: enable “Headers and footers” in the print dialog to get page numbers.',
       reset: 'Reset everything',
-      resetConfirm: 'Discard all settings and uploaded photos?',
+      resetConfirm: 'Discard all settings, text edits and uploaded photos?',
       coverSection: 'Cover page',
       titleLabel: 'Book title',
       subtitleLabel: 'Subtitle',
@@ -72,11 +78,13 @@
       modePhotos: 'Photos with captions only',
       photosSection: 'Choose photos',
       photosHint: 'Click = photo on/off · ★ = use as cover photo',
+      dragHint: 'In the book on the right: drag photos & texts by the handle (⠿) to reorder, click text to edit.',
       dayLabel: 'Day',
       includeDay: 'Include this day',
       uploadLabel: '+ Add your own photos to this day',
       uploadHint: 'Your own photos are stored only locally in this browser and appear in the printed book – not on the website.',
       captionPlaceholder: 'Caption …',
+      captionEmpty: 'Add a caption …',
       removeUpload: 'Remove',
       toc: 'Contents',
       loading: 'Loading book …',
@@ -100,6 +108,8 @@
     textMode: 'full',
     excludedDays: [],
     excludedPhotos: [],
+    blocks: {},      // day -> [block]
+    dayTitles: {},   // day -> überschriebener Tagestitel
   });
 
   let state = defaultState();
@@ -107,6 +117,8 @@
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (saved && typeof saved === 'object') state = Object.assign(defaultState(), saved);
   } catch (e) { /* defekter Speicher -> Defaults */ }
+  if (!state.blocks) state.blocks = {};
+  if (!state.dayTitles) state.dayTitles = {};
 
   const saveState = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 
@@ -144,7 +156,7 @@
     return new Promise((resolve) => {
       const finish = (id) => {
         uploads.push({ id, day, caption: '', url: URL.createObjectURL(file) });
-        resolve();
+        resolve(id);
       };
       if (!db) return finish('mem-' + Math.random().toString(36).slice(2));
       const store = db.transaction('photos', 'readwrite').objectStore('photos');
@@ -187,38 +199,84 @@
     });
   }
 
-  // ---------- Kapitel laden (gleiche Bereinigung wie tools/build-book.js) ----------
-  const chapters = {}; // day -> {title, node}
+  // ---------- Kapitel laden + Block-Modell ----------
+  const chapters = {}; // day -> {sourceTitle}
 
   async function loadChapter(n) {
     const res = await fetch(dayFile(n));
     const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
     const body = doc.body;
     body.querySelectorAll('.navbar, .map-heading, .map, script, .more-info').forEach((el) => el.remove());
-    const title = body.querySelector('h1') ? body.querySelector('h1').textContent : `${T.dayLabel} ${n}`;
-    const node = document.createElement('div');
-    while (body.firstChild) node.appendChild(body.firstChild);
-    chapters[n] = { title, node };
+    const h1 = body.querySelector('h1');
+    const sourceTitle = h1 ? h1.textContent : `${T.dayLabel} ${n}`;
+    chapters[n] = { sourceTitle };
+
+    // Blöcke nur einmalig aus der Quelle ableiten; danach ist state.blocks maßgeblich.
+    if (!state.blocks[n]) {
+      state.blocks[n] = extractBlocks(body, n);
+    }
+    // Uploads dieses Tages, die noch nicht als Block vertreten sind, anhängen.
+    const present = new Set(state.blocks[n].filter((b) => b.type === 'upload').map((b) => b.uploadId));
+    for (const u of uploads.filter((u) => u.day === n)) {
+      if (!present.has(u.id)) state.blocks[n].push({ id: 'u' + u.id, type: 'upload', uploadId: u.id });
+    }
   }
 
-  // Alle Fotos eines Kapitels: [{src, alt}]
+  function extractBlocks(body, n) {
+    const blocks = [];
+    let k = 0;
+    const children = Array.from(body.children);
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const tag = child.tagName.toLowerCase();
+      if (tag === 'h1') continue; // Tagestitel separat
+      if (tag === 'img') {
+        let caption = '';
+        const next = children[i + 1];
+        if (next && next.tagName === 'P' && !next.classList.length) {
+          caption = next.textContent;
+          i++; // Bildunterschrift verbrauchen
+        }
+        blocks.push({ id: `p${n}_${k++}`, type: 'photo', src: child.getAttribute('src'), alt: child.getAttribute('alt') || '', caption });
+      } else if (tag === 'hr') {
+        blocks.push({ id: `hr${n}_${k++}`, type: 'hr' });
+      } else {
+        blocks.push({ id: `t${n}_${k++}`, type: 'text', tag, className: child.getAttribute('class') || '', html: child.innerHTML });
+      }
+    }
+    return blocks;
+  }
+
+  const dayTitle = (n) => (state.dayTitles[n] != null ? state.dayTitles[n] : chapters[n].sourceTitle);
+
+  // Fotos (inkl. Uploads) eines Tages für die Sidebar-Miniaturen
   function chapterPhotos(n) {
-    return Array.from(chapters[n].node.querySelectorAll('img')).map((img) => ({
-      src: img.getAttribute('src'),
-      alt: img.getAttribute('alt') || '',
-    }));
+    const out = [];
+    for (const b of state.blocks[n] || []) {
+      if (b.type === 'photo') out.push({ kind: 'photo', src: b.src, alt: b.alt });
+      else if (b.type === 'upload') {
+        const u = uploads.find((u) => u.id === b.uploadId);
+        if (u) out.push({ kind: 'upload', upload: u });
+      }
+    }
+    return out;
   }
 
   // ---------- Buch rendern ----------
   const bookEl = document.getElementById('book');
+  let rootEl = null;
+
+  function applyStyle() {
+    if (!rootEl) return;
+    rootEl.style.setProperty('--accent', state.accent);
+    rootEl.style.setProperty('--book-font', FONTS[state.font] || FONTS.georgia);
+    rootEl.style.setProperty('--img-max', IMG_SIZES[state.imgSize] || IMG_SIZES.large);
+    rootEl.classList.toggle('img-full', state.imgSize === 'full');
+  }
 
   function renderBook() {
     const root = document.createElement('div');
     root.className = 'book-inner';
-    root.style.setProperty('--accent', state.accent);
-    root.style.setProperty('--book-font', FONTS[state.font] || FONTS.georgia);
-    root.style.setProperty('--img-max', IMG_SIZES[state.imgSize] || IMG_SIZES.large);
-    if (state.imgSize === 'full') root.classList.add('img-full');
 
     // Titelseite
     const cover = document.createElement('div');
@@ -235,56 +293,190 @@
     // Inhaltsverzeichnis
     const toc = document.createElement('div');
     toc.className = 'toc';
-    toc.innerHTML = `<h2>${T.toc}</h2><ol>` +
-      includedDays.map((n) => `<li>${escapeHtml(chapters[n].title)}</li>`).join('') + '</ol>';
+    const tocList = document.createElement('ol');
+    for (const n of includedDays) {
+      const li = document.createElement('li');
+      li.dataset.tocDay = n;
+      li.textContent = dayTitle(n);
+      tocList.appendChild(li);
+    }
+    toc.innerHTML = `<h2>${escapeHtml(T.toc)}</h2>`;
+    toc.appendChild(tocList);
     root.appendChild(toc);
 
     // Kapitel
     for (const n of includedDays) {
-      const ch = chapters[n].node.cloneNode(true);
-
-      // Abgewählte Fotos samt direkt folgender Bildunterschrift entfernen
-      ch.querySelectorAll('img').forEach((img) => {
-        if (!state.excludedPhotos.includes(img.getAttribute('src'))) return;
-        const next = img.nextElementSibling;
-        if (next && next.tagName === 'P' && !next.classList.length) next.remove();
-        img.remove();
-      });
-
-      if (state.textMode === 'notips') {
-        ch.querySelectorAll('.tip').forEach((el) => el.remove());
-      } else if (state.textMode === 'photos') {
-        // Nur h1, Fotos und deren direkt folgende Bildunterschriften behalten
-        const keep = new Set();
-        ch.querySelectorAll('h1').forEach((el) => keep.add(el));
-        ch.querySelectorAll('img').forEach((img) => {
-          keep.add(img);
-          const next = img.nextElementSibling;
-          if (next && next.tagName === 'P' && !next.classList.length) keep.add(next);
-        });
-        Array.from(ch.children).forEach((el) => { if (!keep.has(el)) el.remove(); });
-      }
-
-      // Eigene Fotos ans Kapitelende
-      for (const u of uploads.filter((u) => u.day === n)) {
-        const img = document.createElement('img');
-        img.src = u.url;
-        img.alt = u.caption;
-        ch.appendChild(img);
-        if (u.caption) {
-          const p = document.createElement('p');
-          p.textContent = u.caption;
-          ch.appendChild(p);
-        }
-      }
-
-      const wrap = document.createElement('div');
-      wrap.className = 'chapter';
-      wrap.appendChild(ch);
-      root.appendChild(wrap);
+      root.appendChild(renderChapter(n));
     }
 
     bookEl.replaceChildren(root);
+    rootEl = root;
+    applyStyle();
+  }
+
+  function renderChapter(n) {
+    const chapter = document.createElement('div');
+    chapter.className = 'chapter';
+    chapter.dataset.day = n;
+
+    const h1 = document.createElement('h1');
+    h1.textContent = dayTitle(n);
+    makeEditable(h1, (text) => {
+      state.dayTitles[n] = text;
+      saveState();
+      const li = bookEl.querySelector(`li[data-toc-day="${n}"]`);
+      if (li) li.textContent = text;
+    }, true);
+    chapter.appendChild(h1);
+
+    const container = document.createElement('div');
+    container.className = 'chapter-blocks';
+    container.dataset.day = n;
+    for (const block of state.blocks[n]) {
+      const node = renderBlock(n, block);
+      if (node) container.appendChild(node);
+    }
+    chapter.appendChild(container);
+    return chapter;
+  }
+
+  function renderBlock(n, block) {
+    if (block.type === 'photo' && state.excludedPhotos.includes(block.src)) return null;
+    if (state.textMode === 'photos' && block.type !== 'photo' && block.type !== 'upload') return null;
+    if (state.textMode === 'notips' && block.type === 'text' && /\btip\b/.test(block.className)) return null;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'block';
+    wrap.dataset.blockId = block.id;
+    wrap.appendChild(makeHandle(n));
+
+    if (block.type === 'photo' || block.type === 'upload') {
+      const fig = document.createElement('figure');
+      const img = document.createElement('img');
+      let caption;
+      if (block.type === 'photo') {
+        img.src = block.src;
+        img.alt = block.alt;
+        caption = block.caption || '';
+      } else {
+        const u = uploads.find((u) => u.id === block.uploadId);
+        if (!u) return null;
+        img.src = u.url;
+        img.alt = u.caption || '';
+        caption = u.caption || '';
+      }
+      fig.appendChild(img);
+      const cap = document.createElement('figcaption');
+      cap.textContent = caption;
+      cap.dataset.placeholder = T.captionEmpty;
+      makeEditable(cap, (text) => {
+        if (block.type === 'photo') {
+          block.caption = text;
+        } else {
+          const u = uploads.find((u) => u.id === block.uploadId);
+          if (u) { u.caption = text; updateUpload(u); }
+        }
+        saveState();
+      });
+      fig.appendChild(cap);
+      wrap.appendChild(fig);
+    } else if (block.type === 'hr') {
+      wrap.appendChild(document.createElement('hr'));
+    } else {
+      const el = document.createElement(block.tag);
+      if (block.className) el.className = block.className;
+      el.innerHTML = block.html;
+      makeEditable(el, (text, htmlVal) => { block.html = htmlVal; saveState(); });
+      wrap.appendChild(el);
+    }
+
+    attachDropTarget(wrap, n);
+    return wrap;
+  }
+
+  // ---------- Inline-Bearbeitung ----------
+  function makeEditable(el, onCommit, plainText) {
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+    el.classList.add('editable');
+    let timer = null;
+    const commit = () => {
+      onCommit(el.textContent, el.innerHTML);
+    };
+    el.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(commit, 400);
+    });
+    el.addEventListener('blur', () => { clearTimeout(timer); commit(); });
+    if (plainText) {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); el.blur(); }
+      });
+    }
+    // Drag am Editier-Element unterbinden, damit Textauswahl nicht zieht.
+    el.addEventListener('dragstart', (e) => e.preventDefault());
+  }
+
+  // ---------- Drag & Drop (nur innerhalb eines Tages) ----------
+  let dragState = null; // {id, day, wrap}
+
+  function makeHandle(n) {
+    const handle = document.createElement('span');
+    handle.className = 'drag-handle';
+    handle.textContent = '⠷'; // ⠷ Braille-Griff
+    handle.title = LANG === 'en' ? 'Drag to reorder' : 'Zum Umsortieren ziehen';
+    handle.draggable = true;
+    handle.addEventListener('dragstart', (e) => {
+      const wrap = handle.closest('.block');
+      dragState = { id: wrap.dataset.blockId, day: n, wrap };
+      wrap.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', wrap.dataset.blockId);
+      // Ganzen Block als Drag-Bild, nicht nur den Griff.
+      e.dataTransfer.setDragImage(wrap, 20, 20);
+    });
+    handle.addEventListener('dragend', () => {
+      if (dragState) dragState.wrap.classList.remove('dragging');
+      clearDropMarks();
+      dragState = null;
+    });
+    return handle;
+  }
+
+  function attachDropTarget(wrap, n) {
+    wrap.addEventListener('dragover', (e) => {
+      if (!dragState || dragState.day !== n) return; // nur gleicher Tag
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const rect = wrap.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      clearDropMarks();
+      wrap.classList.add(after ? 'drop-after' : 'drop-before');
+    });
+    wrap.addEventListener('dragleave', () => {
+      wrap.classList.remove('drop-before', 'drop-after');
+    });
+    wrap.addEventListener('drop', (e) => {
+      if (!dragState || dragState.day !== n || wrap === dragState.wrap) { clearDropMarks(); return; }
+      e.preventDefault();
+      const rect = wrap.getBoundingClientRect();
+      const after = e.clientY > rect.top + rect.height / 2;
+      const container = wrap.parentElement;
+      container.insertBefore(dragState.wrap, after ? wrap.nextSibling : wrap);
+      clearDropMarks();
+      syncOrderFromDom(n, container);
+    });
+  }
+
+  function clearDropMarks() {
+    bookEl.querySelectorAll('.drop-before, .drop-after').forEach((el) => el.classList.remove('drop-before', 'drop-after'));
+  }
+
+  function syncOrderFromDom(n, container) {
+    const order = Array.from(container.children).map((el) => el.dataset.blockId);
+    const byId = new Map(state.blocks[n].map((b) => [b.id, b]));
+    state.blocks[n] = order.map((id) => byId.get(id)).filter(Boolean);
+    saveState();
   }
 
   function escapeHtml(s) {
@@ -318,20 +510,21 @@
     frag.append(
       el('button', { class: 'ctl-print', type: 'button', onclick: () => window.print() }, T.print),
       el('p', { class: 'ctl-hint' }, T.printHint),
+      el('p', { class: 'ctl-hint ctl-draghint' }, T.dragHint),
     );
 
     // Titelseite
     frag.append(section(T.coverSection,
       el('label', {}, T.titleLabel,
-        el('input', { type: 'text', value: state.title, oninput: (e) => { state.title = e.target.value; saveState(); renderBook(); } })),
+        el('input', { type: 'text', value: state.title, oninput: (e) => { state.title = e.target.value; saveState(); updateCover(); } })),
       el('label', {}, T.subtitleLabel,
-        el('input', { type: 'text', value: state.subtitle, oninput: (e) => { state.subtitle = e.target.value; saveState(); renderBook(); } })),
+        el('input', { type: 'text', value: state.subtitle, oninput: (e) => { state.subtitle = e.target.value; saveState(); updateCover(); } })),
       el('p', { class: 'ctl-hint' }, T.coverHint),
     ));
 
     // Stil
     const fontSel = el('select', {
-      onchange: (e) => { state.font = e.target.value; saveState(); renderBook(); },
+      onchange: (e) => { state.font = e.target.value; saveState(); applyStyle(); },
     },
       el('option', { value: 'georgia' }, T.fontGeorgia),
       el('option', { value: 'palatino' }, T.fontPalatino),
@@ -339,7 +532,7 @@
     fontSel.value = state.font;
 
     const sizeSel = el('select', {
-      onchange: (e) => { state.imgSize = e.target.value; saveState(); renderBook(); },
+      onchange: (e) => { state.imgSize = e.target.value; saveState(); applyStyle(); },
     },
       el('option', { value: 'small' }, T.sizeSmall),
       el('option', { value: 'medium' }, T.sizeMedium),
@@ -350,7 +543,7 @@
     frag.append(section(T.styleSection,
       el('label', {}, T.fontLabel, fontSel),
       el('label', {}, T.accentLabel,
-        el('input', { type: 'color', value: state.accent, oninput: (e) => { state.accent = e.target.value; saveState(); renderBook(); } })),
+        el('input', { type: 'color', value: state.accent, oninput: (e) => { state.accent = e.target.value; saveState(); applyStyle(); } })),
       el('label', {}, T.sizeLabel, sizeSel),
     ));
 
@@ -390,13 +583,30 @@
       dayToggle.checked = included;
       dayToggle.addEventListener('click', (e) => e.stopPropagation());
 
-      dayBox.append(el('summary', {}, dayToggle, ` ${chapters[n].title}`));
+      dayBox.append(el('summary', {}, dayToggle, ` ${dayTitle(n)}`));
 
       const grid = el('div', { class: 'ctl-thumbs' });
       for (const photo of chapterPhotos(n)) {
+        if (photo.kind === 'upload') {
+          const u = photo.upload;
+          grid.append(el('div', { class: 'ctl-thumb ctl-upload' },
+            el('img', { src: u.url, alt: u.caption }),
+            el('input', {
+              type: 'text', placeholder: T.captionPlaceholder, value: u.caption,
+              oninput: (e) => { u.caption = e.target.value; updateUpload(u); },
+            }),
+            el('button', {
+              type: 'button', class: 'ctl-remove-btn',
+              onclick: () => {
+                state.blocks[n] = state.blocks[n].filter((b) => !(b.type === 'upload' && b.uploadId === u.id));
+                removeUpload(u); saveState(); renderControls(); renderBook();
+              },
+            }, T.removeUpload)));
+          continue;
+        }
         const off = state.excludedPhotos.includes(photo.src);
         const isCover = state.cover === photo.src;
-        const thumb = el('div', { class: 'ctl-thumb' + (off ? ' off' : '') + (isCover ? ' is-cover' : '') },
+        grid.append(el('div', { class: 'ctl-thumb' + (off ? ' off' : '') + (isCover ? ' is-cover' : '') },
           el('img', {
             src: photo.src, alt: photo.alt, loading: 'lazy', title: photo.alt,
             onclick: () => {
@@ -408,31 +618,19 @@
           }),
           el('button', {
             type: 'button', class: 'ctl-cover-btn', title: T.coverHint,
-            onclick: () => { state.cover = photo.src; saveState(); renderControls(); renderBook(); },
-          }, '★'));
-        grid.append(thumb);
-      }
-
-      // Eigene Fotos dieses Tags
-      for (const u of uploads.filter((u) => u.day === n)) {
-        grid.append(el('div', { class: 'ctl-thumb ctl-upload' },
-          el('img', { src: u.url, alt: u.caption }),
-          el('input', {
-            type: 'text', placeholder: T.captionPlaceholder, value: u.caption,
-            oninput: (e) => { u.caption = e.target.value; updateUpload(u); renderBook(); },
-          }),
-          el('button', {
-            type: 'button', class: 'ctl-remove-btn',
-            onclick: () => { removeUpload(u); renderControls(); renderBook(); },
-          }, T.removeUpload)));
+            onclick: () => { state.cover = photo.src; saveState(); renderControls(); updateCover(); },
+          }, '★')));
       }
 
       const fileInput = el('input', {
         type: 'file', accept: 'image/*', multiple: '',
         onchange: async (e) => {
-          for (const file of e.target.files) await addUpload(n, file);
+          for (const file of e.target.files) {
+            const id = await addUpload(n, file);
+            state.blocks[n].push({ id: 'u' + id, type: 'upload', uploadId: id });
+          }
           e.target.value = '';
-          renderControls(); renderBook();
+          saveState(); renderControls(); renderBook();
         },
       });
       dayBox.append(grid, el('label', { class: 'ctl-upload-label' }, T.uploadLabel, fileInput));
@@ -456,11 +654,22 @@
     controlsEl.scrollTop = scrollTop;
   }
 
+  // Cover/Titel in der Vorschau aktualisieren, ohne alles neu zu bauen
+  function updateCover() {
+    const cover = bookEl.querySelector('.book-inner .cover');
+    if (!cover) return;
+    cover.querySelector('h1').textContent = state.title;
+    cover.querySelector('.subtitle').textContent = state.subtitle;
+    cover.querySelector('img').src = state.cover;
+  }
+
   // ---------- Start ----------
   (async () => {
     bookEl.textContent = T.loading;
     db = await openDb();
-    await Promise.all([loadUploads(), ...DAYS.map(loadChapter)]);
+    await loadUploads();
+    await Promise.all(DAYS.map(loadChapter));
+    saveState(); // frisch abgeleitete Blöcke sichern
     renderControls();
     renderBook();
     document.body.classList.add('editor-ready');

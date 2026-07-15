@@ -367,6 +367,85 @@ body.editor-page > .navbar {
   margin: 2em 0;
 }
 
+/* Fotos + Bildunterschrift als Einheit */
+.book-inner figure {
+  margin: 0;
+}
+
+.book-inner figcaption {
+  text-align: inherit;
+}
+
+.book-inner figcaption:empty::before {
+  content: attr(data-placeholder);
+  color: #bbb;
+  font-style: italic;
+}
+
+/* ----- Drag & Drop / Inline-Bearbeitung (nur Bildschirm) ----- */
+.book-inner .block {
+  position: relative;
+}
+
+.drag-handle {
+  position: absolute;
+  left: -26px;
+  top: 4px;
+  width: 22px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.12s;
+  user-select: none;
+  font-size: 1.1em;
+}
+
+.book-inner .block:hover > .drag-handle {
+  opacity: 1;
+}
+
+.drag-handle:hover {
+  color: var(--accent, #a33);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.book-inner .block.dragging {
+  opacity: 0.4;
+}
+
+.book-inner .block.drop-before::before,
+.book-inner .block.drop-after::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, #a33);
+  border-radius: 2px;
+}
+
+.book-inner .block.drop-before::before { top: -2px; }
+.book-inner .block.drop-after::after { bottom: -2px; }
+
+.book-inner .editable:hover {
+  outline: 1px dashed rgba(170, 51, 51, 0.4);
+  outline-offset: 3px;
+  cursor: text;
+}
+
+.book-inner .editable:focus {
+  outline: 2px solid var(--accent, #a33);
+  outline-offset: 3px;
+}
+
 /* ----- Mobil: Bedienleiste über der Vorschau ----- */
 @media (max-width: 860px) {
   .editor-layout {
@@ -413,5 +492,23 @@ body.editor-page > .navbar {
     box-shadow: none;
     border-radius: 0;
     padding: 0;
+  }
+
+  /* Editier-Hilfen erscheinen nicht im Druck */
+  .drag-handle {
+    display: none;
+  }
+
+  .book-inner .editable:hover,
+  .book-inner .editable:focus {
+    outline: none;
+  }
+
+  .book-inner figcaption:empty {
+    display: none;
+  }
+
+  .book-inner figcaption:empty::before {
+    content: none;
   }
 }
