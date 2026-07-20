@@ -8,11 +8,20 @@
 (function () {
   'use strict';
 
+  // Trip-spezifische Werte kommen aus trip.js (window.TRIP_CONFIG),
+  // das jede Editor-Seite vor diesem Skript lädt.
+  const TRIP = window.TRIP_CONFIG;
   const LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
-  const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const DAYS = Array.from({ length: TRIP.chapters }, (_, i) => i + 1);
   const IMG_BASE = LANG === 'en' ? '../images/' : 'images/';
-  const dayFile = (n) => (LANG === 'en' ? `day${n}.html` : `tag${n}.html`);
-  const STORAGE_KEY = `bookEditor:${LANG}`;
+  const dayFile = (n) => `${TRIP.filePrefix[LANG]}${n}.html`;
+  const STORAGE_KEY = `bookEditor:${TRIP.slug}:${LANG}`;
+
+  // Migration: früher hieß der Georgien-Key schlicht bookEditor:<lang>
+  if (TRIP.slug === 'georgien-armenien' && !localStorage.getItem(STORAGE_KEY)) {
+    const legacy = localStorage.getItem(`bookEditor:${LANG}`);
+    if (legacy) localStorage.setItem(STORAGE_KEY, legacy);
+  }
 
   const T = {
     de: {
@@ -23,9 +32,6 @@
       coverSection: 'Titelseite',
       titleLabel: 'Buchtitel',
       subtitleLabel: 'Untertitel',
-      defaultTitle: 'Reisetagebuch',
-      defaultSubtitle: 'Best of Georgia & Armenia',
-      meta: 'Route: Jerewan → Tiflis, G Adventures Tour EXGA<br>Sa 4. – Sa 11. Juli 2026, plus ein Tag auf eigene Faust (So 12. Juli)',
       coverHint: 'Coverfoto: ★ an einem Foto anklicken.',
       styleSection: 'Stil',
       fontLabel: 'Schrift',
@@ -71,9 +77,6 @@
       coverSection: 'Cover page',
       titleLabel: 'Book title',
       subtitleLabel: 'Subtitle',
-      defaultTitle: 'Travel Diary',
-      defaultSubtitle: 'Best of Georgia & Armenia',
-      meta: 'Route: Yerevan → Tbilisi, G Adventures tour EXGA<br>Sat July 4 – Sat July 11, 2026, plus one day on our own (Sun July 12)',
       coverHint: 'Cover photo: click ★ on any photo.',
       styleSection: 'Style',
       fontLabel: 'Font',
@@ -113,6 +116,10 @@
     },
   }[LANG];
 
+  // Kapitel-Wort (Tag/Etappe …) aus der Trip-Konfiguration in die Labels einsetzen
+  T.includeDay = LANG === 'de' ? `${TRIP.chapterWord.de} im Buch` : `Include this ${TRIP.chapterWord.en.toLowerCase()}`;
+  T.uploadLabel = LANG === 'de' ? '+ Eigene Fotos hinzufügen' : '+ Add your own photos';
+
   const FONTS = {
     georgia: "Georgia, 'Times New Roman', serif",
     palatino: "'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif",
@@ -121,9 +128,9 @@
   const IMG_SIZES = { small: '8cm', medium: '12cm', large: '19cm', full: '23.5cm' };
 
   const defaultState = () => ({
-    title: T.defaultTitle,
-    subtitle: T.defaultSubtitle,
-    cover: IMG_BASE + 'tag3/04.jpg',
+    title: TRIP.title[LANG],
+    subtitle: TRIP.subtitle[LANG],
+    cover: TRIP.cover ? (LANG === 'en' ? '../' : '') + TRIP.cover : '',
     font: 'georgia',
     accent: '#aa3333',
     imgSize: 'large',
@@ -165,7 +172,7 @@
       const tx = db.transaction('photos', 'readonly').objectStore('photos').getAll();
       tx.onsuccess = () => {
         for (const rec of tx.result) {
-          if (rec.lang !== LANG) continue;
+          if (rec.lang !== LANG || (rec.trip || 'georgien-armenien') !== TRIP.slug) continue;
           uploads.push({ id: rec.id, day: rec.day, caption: rec.caption, url: URL.createObjectURL(rec.blob) });
         }
         resolve();
@@ -182,7 +189,7 @@
       };
       if (!db) return finish('mem-' + Math.random().toString(36).slice(2));
       const store = db.transaction('photos', 'readwrite').objectStore('photos');
-      const req = store.add({ lang: LANG, day, caption: '', blob: file });
+      const req = store.add({ trip: TRIP.slug, lang: LANG, day, caption: '', blob: file });
       req.onsuccess = () => finish(req.result);
       req.onerror = () => finish('mem-' + Math.random().toString(36).slice(2));
     });
@@ -214,7 +221,7 @@
       const store = db.transaction('photos', 'readwrite').objectStore('photos');
       const req = store.getAll();
       req.onsuccess = () => {
-        for (const rec of req.result) if (rec.lang === LANG) store.delete(rec.id);
+        for (const rec of req.result) if (rec.lang === LANG && (rec.trip || 'georgien-armenien') === TRIP.slug) store.delete(rec.id);
         resolve();
       };
       req.onerror = () => resolve();
@@ -230,7 +237,7 @@
     const body = doc.body;
     body.querySelectorAll('.navbar, .map-heading, .map, script, .more-info').forEach((el) => el.remove());
     const h1 = body.querySelector('h1');
-    const sourceTitle = h1 ? h1.textContent : `${T.dayLabel} ${n}`;
+    const sourceTitle = h1 ? h1.textContent : `${TRIP.chapterWord[LANG]} ${n}`;
     chapters[n] = { sourceTitle };
 
     // Blöcke nur einmalig aus der Quelle ableiten; danach ist state.blocks maßgeblich.
@@ -307,7 +314,7 @@
       `<h1>${escapeHtml(state.title)}</h1>` +
       `<p class="subtitle">${escapeHtml(state.subtitle)}</p>` +
       `<img src="${state.cover}" alt="">` +
-      `<p class="meta">${T.meta}</p>`;
+      `<p class="meta">${TRIP.meta[LANG]}</p>`;
     root.appendChild(cover);
 
     const includedDays = DAYS.filter((n) => !state.excludedDays.includes(n));
