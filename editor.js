@@ -240,9 +240,27 @@
     const sourceTitle = h1 ? h1.textContent : `${TRIP.chapterWord[LANG]} ${n}`;
     chapters[n] = { sourceTitle };
 
-    // Blöcke nur einmalig aus der Quelle ableiten; danach ist state.blocks maßgeblich.
+    // Blöcke einmalig aus der Quelle ableiten; danach ist state.blocks maßgeblich.
+    // Kommen später Fotos auf der Website hinzu (oder fallen weg), wird der
+    // gespeicherte Stand abgeglichen: neue Fotos werden ans Kapitelende
+    // angehängt, verschwundene entfernt – Umsortierungen und Textänderungen
+    // des Nutzers bleiben erhalten.
+    const sourceBlocks = extractBlocks(body, n);
     if (!state.blocks[n]) {
-      state.blocks[n] = extractBlocks(body, n);
+      state.blocks[n] = sourceBlocks;
+    } else {
+      const sourceSrcs = new Set(sourceBlocks.filter((b) => b.type === 'photo').map((b) => b.src));
+      const haveSrcs = new Set(state.blocks[n].filter((b) => b.type === 'photo').map((b) => b.src));
+      state.blocks[n] = state.blocks[n].filter((b) => b.type !== 'photo' || sourceSrcs.has(b.src));
+      const usedIds = new Set(state.blocks[n].map((b) => b.id));
+      for (const b of sourceBlocks) {
+        if (b.type !== 'photo' || haveSrcs.has(b.src)) continue;
+        let id = b.id, s = 0;
+        while (usedIds.has(id)) id = `${b.id}_${++s}`;
+        b.id = id;
+        usedIds.add(id);
+        state.blocks[n].push(b);
+      }
     }
     // Uploads dieses Tages, die noch nicht als Block vertreten sind, anhängen.
     const present = new Set(state.blocks[n].filter((b) => b.type === 'upload').map((b) => b.uploadId));
