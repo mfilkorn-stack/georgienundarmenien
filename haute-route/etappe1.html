@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 1 &ndash; Sonntag, 19. Juli &ndash; La Sage, Col du Tsat&eacute;, Cabane de Moiry</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage1.html" lang="en">EN</a></div>
+<h1>Etappe 1 &ndash; Sonntag, 19. Juli &ndash; La Sage, Col du Tsat&eacute;, Cabane de Moiry</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map1" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "La Sage", lat: 46.0953, lng: 7.5218, note: "Start auf 1.667 m, Bergdorf am Sonnenhang", anchor: "lasage" },
+      { name: "Alpage du Tsat&eacute;", lat: 46.0873, lng: 7.5410, note: "Alpsiedlung mit Steinplattend&auml;chern", anchor: "tsate" },
+      { name: "Col du Tsat&eacute;", lat: 46.0772, lng: 7.5563, note: "2.868 m, &Uuml;bergang ins Val de Moiry", anchor: "col" },
+      { name: "Lac de Ch&acirc;teaupr&eacute;", lat: 46.0700, lng: 7.5770, note: "Gletschervorfeld des Glacier de Moiry", anchor: "hoehenweg" },
+      { name: "Cabane de Moiry", lat: 46.0613, lng: 7.5866, note: "2.825 m, Etappenziel mit Gletscherblick", anchor: "cabane" }
+    ];
+    const map = L.map('map1').setView([stops[2].lat, stops[2].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>Auftakt unserer Haute Route &ndash; und gleich die K&ouml;nigsdisziplin: &uuml;ber den Col du Tsat&eacute; von einem Tal ins n&auml;chste. Die klassische Etappe startet unten in Les Hauderes (der Komoot-Plan sagt 13,2 km, 1.923 Hm Aufstieg, 7:10 h) &ndash; wir sind stattdessen im Bergdorf La Sage eingestiegen und haben uns damit die ersten 400 H&ouml;henmeter Anstieg auf Asphalt- und Wiesenwegen gespart. Bleiben immer noch gut 11 km mit rund 1.650 Hm Aufstieg und 500 Hm Abstieg: durch L&auml;rchenwald hinauf zu den Alph&uuml;tten des Tsat&eacute;, &uuml;ber den 2.868 m hohen Pass und auf der anderen Seite am Gletschervorfeld entlang zur Cabane de Moiry.</p>
+<div class="tip"><strong>Tipp:</strong> Der Einstieg in La Sage statt Les Hauderes ist v&ouml;llig legitim &ndash; das Postauto h&auml;lt direkt im Dorf (&bdquo;La Sage, village&ldquo;). Die gesparten H&ouml;henmeter braucht man am Nachmittag f&uuml;r den Schlussanstieg zur H&uuml;tte noch.</div>
+<hr>
+<p id="lasage"><strong>Start in La Sage (1.667 m):</strong> Das kleine Bergdorf klebt am Sonnenhang des Val d&rsquo;H&eacute;rens, hoch &uuml;ber Les Hauderes &ndash; ringsum die f&uuml;r das Wallis typischen sonnenverbrannten Holzh&auml;user und Stadel (Mazots), die auf runden Steinplatten-&bdquo;Pilzen&ldquo; stehen, damit die M&auml;use nicht ans Korn kommen. Hinter den letzten H&auml;usern beginnt der Weg sofort zu steigen, erst &uuml;ber Wiesen, dann durch lichten L&auml;rchenwald.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Val_d%E2%80%99H%C3%A9rens" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/etappe1/01.jpg" alt="Wanderer wechselt am Wegrand in La Sage die Schuhe, dahinter Stadel und Laerchen">
+<p>Letzte Amtshandlung vor dem Aufstieg: Anreiseschuhe raus, Wanderschuhe an &ndash; am Wegrand zwischen den ersten Stadeln von La Sage.</p>
+<hr>
+<p id="tsate"><strong>Alpage du Tsat&eacute; (ca. 2.170 m):</strong> Nach dem Wald &ouml;ffnet sich das Gel&auml;nde und man steht unvermittelt in einer anderen Zeit: Die Alpsiedlung du Tsat&eacute; besteht aus einem guten Dutzend niedriger Steinh&uuml;tten, deren D&auml;cher mit schweren Steinplatten gedeckt sind &ndash; im Sommer wird hier oben bis heute gealpt. An einer der H&uuml;tten h&auml;ngt eine gro&szlig;e Schweizer Fahne, dahinter f&auml;llt der Blick &uuml;ber das ganze Val d&rsquo;H&eacute;rens auf die Bergkette gegen&uuml;ber.</p>
+<img src="images/etappe1/02.jpg" alt="Alpsiedlung du Tsate mit Steinplattendaechern und Schweizer Fahne, dahinter Bergpanorama">
+<p>Die Alph&uuml;tten von du Tsat&eacute; mit ihren Steinplattend&auml;chern &ndash; und der obligatorischen Schweizer Fahne. Von hier sind es noch gut 700 H&ouml;henmeter bis zum Pass.</p>
+<hr>
+<p id="col"><strong>Col du Tsat&eacute; (2.868 m):</strong> Der &Uuml;bergang vom Val d&rsquo;H&eacute;rens ins Val de Moiry, ein Seitental des Val d&rsquo;Anniviers. Die letzte halbe Stunde zieht sich durch Ger&ouml;ll und Schutt, daf&uuml;r ist die Belohnung oben umso gr&ouml;&szlig;er: Auf der anderen Seite liegt pl&ouml;tzlich eine komplett neue Bergwelt &ndash; unten im gr&uuml;nen Becken schimmern die ersten Schmelzwasserseen des Gletschervorfelds, dahinter staffeln sich die Dreitausender um den Glacier de Moiry.</p>
+<img src="images/etappe1/03.jpg" alt="Blick vom Col du Tsate hinunter ins Becken von Moiry mit kleinen Seen">
+<p>Blick vom Col du Tsat&eacute; nach Osten: unten das Becken mit den Seen des Gletschervorfelds, &uuml;ber die Schuttflanke schl&auml;ngelt sich unser Abstiegsweg.</p>
+<hr>
+<p id="moiry"><strong>Lac de Moiry:</strong> Beim Abstieg vom Pass taucht rechts unten der Stausee auf &ndash; ein derart unwirkliches T&uuml;rkis, dass man erst an eine Fototapete denkt. Die Farbe kommt von feinst zermahlenem Gesteinsmehl (&bdquo;Gletschermilch&ldquo;), das der Glacier de Moiry in den See sp&uuml;lt. Die 148 m hohe Bogenstaumauer am Nordende wurde 1958 fertiggestellt; das Wasser flie&szlig;t den Kraftwerken im Val d&rsquo;Anniviers zu.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Lac_de_Moiry" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/etappe1/04.jpg" alt="Tuerkiser Lac de Moiry mit Staumauer von oben">
+<p>Der Lac de Moiry (2.249 m) mit seiner Staumauer &ndash; das T&uuml;rkis ist echt, keine Filterei.</p>
+<hr>
+<p id="hoehenweg"><strong>H&ouml;henweg zur H&uuml;tte:</strong> Statt zum See hinabzusteigen, quert der Weg hoch &uuml;ber dem Talschluss Richtung S&uuml;den. Unten breitet sich das Gletschervorfeld aus: der milchig-t&uuml;rkise Lac de Ch&acirc;teaupr&eacute;, verzweigte Schmelzwasserb&auml;che, frisch geschliffene Felsplatten &ndash; und dar&uuml;ber schiebt sich der Glacier de Moiry mit seinem zerrissenen Eisbruch ins Tal. Das letzte St&uuml;ck zur H&uuml;tte folgt dem blanken Mor&auml;nenkamm &ndash; links Eis, rechts Schutt, geradeaus die H&uuml;tte auf ihrem Felsriegel.</p>
+<img src="images/etappe1/05.jpg" alt="Bergpfad oberhalb des Gletschervorfelds mit tuerkisen Schmelzwasserseen und Glacier de Moiry">
+<p>Auf dem H&ouml;henweg: unten der Lac de Ch&acirc;teaupr&eacute; und die Schmelzwasserarme, rechts der Glacier de Moiry.</p>
+<img src="images/etappe1/06.jpg" alt="Wanderer auf dem Moraenenkamm ueber dem Gletschervorfeld des Glacier de Moiry">
+<p>Auf dem Mor&auml;nenkamm kurz vor der H&uuml;tte &ndash; hinter uns rauscht das Schmelzwasser in Kaskaden aus dem Eisbruch.</p>
+<hr>
+<p id="cabane"><strong>Cabane de Moiry (2.825 m):</strong> Die H&uuml;tte der SAC-Sektion Montreux thront auf einem Felsriegel direkt &uuml;ber dem Eisbruch des Glacier de Moiry &ndash; n&auml;her kommt man einem Gletscher zu Fu&szlig; kaum. 2010 bekam das alte Steinhaus von 1924 seinen markanten Anbau: eine dunkle Stahlkonstruktion mit raumhoher Panoramaverglasung, hinter der man beim Abendessen direkt auf die S&eacute;racs schaut. Wir sind rechtzeitig vor dem Nachmittagsnebel oben &ndash; Zeit f&uuml;r Tee, Kartenspiel und den ersten H&uuml;ttenabend der Tour.</p>
+<p class="more-info">&#8599; <a href="https://fr.wikipedia.org/wiki/Cabane_de_Moiry" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/etappe1/07.jpg" alt="Cabane de Moiry mit moderner Glasfront und Terrasse, rechts der Eisbruch des Glacier de Moiry">
+<p>Die Cabane de Moiry: links der Anbau von 2010 mit seiner Panoramaverglasung, rechts der Eisbruch &ndash; die Terrassenb&auml;nke sind die ersten Logenpl&auml;tze.</p>
+<img src="images/etappe1/08.jpg" alt="Teetasse auf Holztisch der Huettenterrasse, im Hintergrund Nebel ueber dem Gletscher">
+<p>Angekommen: Tee auf der Terrasse, das Kartenspiel liegt schon bereit &ndash; drau&szlig;en zieht der Nachmittagsnebel &uuml;ber den Gletscher.</p>
+<img src="images/etappe1/09.jpg" alt="Wanderer in Crocs auf der Huettenterrasse vor dem Glacier de Moiry">
+<img src="images/etappe1/10.jpg" alt="Zweiter Wanderer in Crocs auf der Huettenterrasse vor dem Glacier de Moiry">
+<p>Feierabend auf 2.825 m: Wanderschuhe aus, Crocs an &ndash; der Gletscherblick geh&ouml;rt zum Abendprogramm.</p>
+<div class="tip"><strong>Tipp:</strong> Die Cabane de Moiry ist im Sommer schnell ausgebucht &ndash; Halbpension fr&uuml;hzeitig reservieren. Und leichte H&uuml;ttenschuhe (oder eben Crocs) einpacken: Die Wanderschuhe bleiben unten im Schuhraum.</div>
+<hr>
+<div class="navbar"><span></span><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage1.html" lang="en">EN</a></div>
+</body>
+</html>

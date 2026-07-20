@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 1 &ndash; Sunday, July 19 &ndash; La Sage, Col du Tsat&eacute;, Cabane de Moiry</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><span></span><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe1.html" lang="de">DE</a></div>
+<h1>Stage 1 &ndash; Sunday, July 19 &ndash; La Sage, Col du Tsat&eacute;, Cabane de Moiry</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map1" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "La Sage", lat: 46.0953, lng: 7.5218, note: "Start at 1,667 m, mountain village on the sunny side", anchor: "lasage" },
+      { name: "Alpage du Tsat&eacute;", lat: 46.0873, lng: 7.5410, note: "Alpine hamlet with stone-slab roofs", anchor: "tsate" },
+      { name: "Col du Tsat&eacute;", lat: 46.0772, lng: 7.5563, note: "2,868 m, crossing into the Val de Moiry", anchor: "col" },
+      { name: "Lac de Ch&acirc;teaupr&eacute;", lat: 46.0700, lng: 7.5770, note: "Glacier forefield of the Glacier de Moiry", anchor: "traverse" },
+      { name: "Cabane de Moiry", lat: 46.0613, lng: 7.5866, note: "2,825 m, stage destination with glacier view", anchor: "cabane" }
+    ];
+    const map = L.map('map1').setView([stops[2].lat, stops[2].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>The opening stage of our Haute Route &ndash; and straight into the discipline that defines this trek: crossing from one valley into the next over a high pass. The classic stage starts down in Les Hauderes (the Komoot plan says 13.2 km, 1,923 m of ascent, 7:10 h) &ndash; we joined in the mountain village of La Sage instead, saving ourselves the first 400 vertical metres on tarmac and meadow paths. That still leaves a good 11 km with around 1,650 m up and 500 m down: through larch forest to the alpine huts of the Tsat&eacute;, over the 2,868 m pass and along the glacier forefield to the Cabane de Moiry on the far side.</p>
+<div class="tip"><strong>Tip:</strong> Starting in La Sage instead of Les Hauderes is perfectly legitimate &ndash; the PostBus stops right in the village (&ldquo;La Sage, village&rdquo;). You will want those saved vertical metres for the final pull up to the hut in the afternoon.</div>
+<hr>
+<p id="lasage"><strong>Start in La Sage (1,667 m):</strong> The little village clings to the sunny flank of the Val d&rsquo;H&eacute;rens, high above Les Hauderes &ndash; all around are the sun-blackened timber houses and granaries (mazots) typical of the Valais, perched on round stone &ldquo;mushroom&rdquo; discs to keep the mice away from the grain. Beyond the last houses the trail starts climbing immediately, first across meadows, then through open larch forest.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Val_d%27H%C3%A9rens" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/etappe1/01.jpg" alt="Hiker changing into boots at the trailhead in La Sage, granaries and larches behind">
+<p>Final act before the climb: travel shoes off, hiking boots on &ndash; at the edge of the path between the first granaries of La Sage.</p>
+<hr>
+<p id="tsate"><strong>Alpage du Tsat&eacute; (approx. 2,170 m):</strong> Above the forest the terrain opens up and you suddenly step into another century: the du Tsat&eacute; alpage is a cluster of a dozen low stone huts roofed with heavy stone slabs &ndash; cattle are still summered up here today. A large Swiss flag hangs on one of the huts, and behind it the view runs down the whole Val d&rsquo;H&eacute;rens to the peaks on the far side.</p>
+<img src="../images/etappe1/02.jpg" alt="Du Tsate alpine hamlet with stone-slab roofs and Swiss flag, mountains behind">
+<p>The du Tsat&eacute; huts with their stone-slab roofs &ndash; and the obligatory Swiss flag. From here it is still a good 700 vertical metres to the pass.</p>
+<hr>
+<p id="col"><strong>Col du Tsat&eacute; (2,868 m):</strong> The crossing from the Val d&rsquo;H&eacute;rens into the Val de Moiry, a side valley of the Val d&rsquo;Anniviers. The last half hour grinds through scree and rubble, but the reward at the top is all the greater: on the far side an entirely new mountain world opens up &ndash; the first meltwater lakes of the glacier forefield shimmer in the green basin below, and behind them the three-thousanders around the Glacier de Moiry stack up.</p>
+<img src="../images/etappe1/03.jpg" alt="View from the Col du Tsate down into the Moiry basin with small lakes">
+<p>Looking east from the Col du Tsat&eacute;: the basin with the forefield lakes below, our descent path winding down the scree flank.</p>
+<hr>
+<p id="moiry"><strong>Lac de Moiry:</strong> On the descent from the pass the reservoir appears below to the right &ndash; a turquoise so unreal you first suspect a photo wallpaper. The colour comes from finely ground rock flour (&ldquo;glacial milk&rdquo;) that the Glacier de Moiry washes into the lake. The 148 m arch dam at the northern end was completed in 1958; the water feeds the power stations of the Val d&rsquo;Anniviers.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Lac_de_Moiry" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/etappe1/04.jpg" alt="Turquoise Lac de Moiry with its dam seen from above">
+<p>Lac de Moiry (2,249 m) and its dam &ndash; the turquoise is real, no filters involved.</p>
+<hr>
+<p id="traverse"><strong>The traverse to the hut:</strong> Instead of dropping to the lake, the trail contours high above the head of the valley towards the south. Below, the glacier forefield spreads out: the milky-turquoise Lac de Ch&acirc;teaupr&eacute;, braided meltwater streams, freshly polished rock slabs &ndash; and above it all the Glacier de Moiry pushes its shattered icefall into the valley. The final stretch follows the bare crest of the moraine &ndash; ice to the left, scree to the right, the hut straight ahead on its rock bar.</p>
+<img src="../images/etappe1/05.jpg" alt="Mountain path above the glacier forefield with turquoise meltwater lakes and the Glacier de Moiry">
+<p>On the high trail: Lac de Ch&acirc;teaupr&eacute; and the braided meltwater channels below, the Glacier de Moiry to the right.</p>
+<img src="../images/etappe1/06.jpg" alt="Hiker on the moraine crest above the forefield of the Glacier de Moiry">
+<p>On the moraine crest just before the hut &ndash; behind us the meltwater cascades out of the icefall.</p>
+<hr>
+<p id="cabane"><strong>Cabane de Moiry (2,825 m):</strong> The hut of the SAC Montreux section sits on a rock bar directly above the icefall of the Glacier de Moiry &ndash; you can hardly get closer to a glacier on foot. In 2010 the old stone house of 1924 received its striking extension: a dark steel structure with floor-to-ceiling panorama glazing, so you look straight onto the s&eacute;racs over dinner. We make it up before the afternoon mist rolls in &ndash; time for tea, a card game and the first hut evening of the trek.</p>
+<p class="more-info">&#8599; <a href="https://fr.wikipedia.org/wiki/Cabane_de_Moiry" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/etappe1/07.jpg" alt="Cabane de Moiry with its modern glass front and terrace, the icefall of the Glacier de Moiry to the right">
+<p>The Cabane de Moiry: the 2010 extension with its panorama glazing on the left, the icefall on the right &ndash; the terrace benches are front-row seats.</p>
+<img src="../images/etappe1/08.jpg" alt="Mug of tea on a wooden terrace table, mist over the glacier behind">
+<p>Arrived: tea on the terrace, the card game already waiting &ndash; outside, the afternoon mist drifts across the glacier.</p>
+<img src="../images/etappe1/09.jpg" alt="Hiker in crocs on the hut terrace in front of the Glacier de Moiry">
+<img src="../images/etappe1/10.jpg" alt="Second hiker in crocs on the hut terrace in front of the Glacier de Moiry">
+<p>Closing time at 2,825 m: boots off, crocs on &ndash; the glacier view is part of the evening programme.</p>
+<div class="tip"><strong>Tip:</strong> The Cabane de Moiry books out quickly in summer &ndash; reserve half board well in advance. And pack light hut shoes (or crocs): hiking boots stay downstairs in the boot room.</div>
+<hr>
+<div class="navbar"><span></span><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe1.html" lang="de">DE</a></div>
+</body>
+</html>
