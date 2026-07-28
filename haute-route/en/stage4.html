@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 4 &ndash; Wednesday, July 22 &ndash; Gruben, Augstbordpass, Jungu, Randa, Europaweg</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="stage3.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe4.html" lang="de">DE</a></div>
+<h1>Stage 4 &ndash; Wednesday, July 22 &ndash; Gruben, Augstbordpass, Jungu, Randa, Europaweg</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map4" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Gruben", lat: 46.1980, lng: 7.6800, note: "Start, 1,829 m", anchor: "start" },
+      { name: "Augstbordpass", lat: 46.2080, lng: 7.7420, note: "2,894 m, crossing into the Mattertal", anchor: "pass" },
+      { name: "Jungu", lat: 46.2075, lng: 7.8100, note: "Car-free hamlet, valley station of the cable car", anchor: "jungu" },
+      { name: "St. Niklaus", lat: 46.1770, lng: 7.8000, note: "Cable car top station, Mattertal railway stop", anchor: "stniklaus" },
+      { name: "Randa", lat: 46.0980, lng: 7.7850, note: "1,407 m, start of the Europaweg", anchor: "randa" },
+      { name: "Europah&uuml;tte", lat: 46.0800, lng: 7.7870, note: "2,220 m, stage destination", anchor: "europahuette" }
+    ];
+    const map = L.map('map4').setView([stops[1].lat, stops[1].lng], 10);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline([latlngs[0], latlngs[1], latlngs[2]], { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    L.polyline([latlngs[2], latlngs[3], latlngs[4]], { color: '#666', weight: 2, dashArray: '2 6' }).addTo(map);
+    L.polyline([latlngs[4], latlngs[5]], { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">A day with two very different halves. Part 1: on foot from Gruben (1,829 m) over the Augstbordpass (2,894 m) down to the car-free hamlet of Jungu (12.5 km, 5:50 h, 1,164 m of ascent, 1,003 m of descent), then cable car down and onward by the Mattertal railway to Randa. Part 2: from Randa on the Europaweg up to the Europah&uuml;tte &ndash; only 3.9 km, but 860 m of ascent in 2:35 h, with virtually no counter-descent. We covered both parts exactly as planned, whether on foot or by transport.</p>
+<div class="tip"><strong>Tip:</strong> Best to check the cable car and train timetables between Jungu and Randa in advance &ndash; connections aren't especially frequent, and missing one costs valuable time on an already long day.</div>
+<hr>
+<p id="pass"><strong>Over the Augstbordpass:</strong> From Gruben the trail first climbs through the upper Turtmanntal, then switchbacks up to the Augstbordpass. At the top, a bare high plateau covered in scree and boulders awaits, dotted with small meltwater pools &ndash; the Augstbordpass traditionally links the Turtmanntal with the Mattertal and is one of the classic stages of the Chamonix-to-Zermatt Haute Route.</p>
+<img src="../images/etappe4/01.jpg" alt="Bare high plateau at the Augstbordpass with scree and a small meltwater pool against the light">
+<p>Bare pass terrain at the Augstbordpass &ndash; scree, a small pool, low morning sun.</p>
+<hr>
+<p id="jungu"><strong>Jungu and the cable car:</strong> On the north side of the pass, the descent leads to the small, car-free hamlet of Jungu &ndash; there's no road access here, only a small cable car down into the Mattertal. The ride through steep forest, with snow-capped peaks in the background, is a welcome break for the legs.</p>
+<img src="../images/etappe4/02.jpg" alt="Red cabin of the small cable car from Jungu in front of forest and snow-capped peaks">
+<p>Down from Jungu by the small cable car &ndash; the only connection this car-free hamlet has to the valley.</p>
+<hr>
+<p id="stniklaus"><strong>By train to Randa:</strong> From the top station above St. Niklaus, the view drops far down onto the village on the valley floor, with the tracks of the Mattertal railway running right through it. Instead of walking the whole valley floor on foot, the train takes over from here up to Randa &ndash; a welcome shortcut that saves the legs for the steep afternoon ahead.</p>
+<img src="../images/etappe4/03.jpg" alt="View from the cable car down onto St. Niklaus in the Mattertal with railway tracks">
+<p>Looking down on St. Niklaus in the Mattertal &ndash; from here the train carries us onward to Randa.</p>
+<hr>
+<p id="randa"><strong>Randa and the Europaweg:</strong> In Randa (1,407 m) the second, short but punchy part of the day begins: the Europaweg, a spectacular balcony trail high above the Mattertal with views of the north face of the Weisshorn and, further on, the Matterhorn. In just 3.9 km it climbs 860 m &ndash; with almost no let-up.</p>
+<hr>
+<p id="bruecke"><strong>Charles Kuonen suspension bridge:</strong> The afternoon's highlight and thrill in one &ndash; the 494 m long suspension bridge spanning the Grabengufer ravine up to around 85 m above the ground. It opened in 2017 after the previous bridge was damaged by a rockfall, and at its opening it was the longest pedestrian suspension bridge in the world. It sways noticeably in the wind &ndash; for anyone comfortable with heights, one of the most spectacular views on the entire route.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Charles_Kuonen_Suspension_Bridge" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<img src="../images/etappe4/04.jpg" alt="Selfie on the Charles Kuonen suspension bridge high above the forested Grabengufer ravine">
+<p>Halfway across the suspension bridge &ndash; the Grabengufer below us, nothing but air all around.</p>
+<hr>
+<p id="europahuette"><strong>Arrival at the Europah&uuml;tte:</strong> Beyond the bridge the climb on the Europaweg continues a while longer until the Europah&uuml;tte (2,220 m) is reached &ndash; a well-earned stage destination after a day of a pass, a cable car, a train and one of the most spectacular bridges in the Alps.</p>
+<div class="tip"><strong>Tip:</strong> The suspension bridge is not for anyone with a pronounced fear of heights &ndash; it sways noticeably in the wind, and there's no way to step aside on the narrow structure.</div>
+<hr>
+<div class="navbar"><a href="stage3.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe4.html" lang="de">DE</a></div>
+</body>
+</html>

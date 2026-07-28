@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 4 &ndash; Mittwoch, 22. Juli &ndash; Gruben, Augstbordpass, Jungu, Randa, Europaweg</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="etappe3.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage4.html" lang="en">EN</a></div>
+<h1>Etappe 4 &ndash; Mittwoch, 22. Juli &ndash; Gruben, Augstbordpass, Jungu, Randa, Europaweg</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map4" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Gruben", lat: 46.1980, lng: 7.6800, note: "Start, 1.829 m", anchor: "start" },
+      { name: "Augstbordpass", lat: 46.2080, lng: 7.7420, note: "2.894 m, &Uuml;bergang ins Mattertal", anchor: "pass" },
+      { name: "Jungu", lat: 46.2075, lng: 7.8100, note: "Autofreie Siedlung, Talstation der Gondelbahn", anchor: "jungu" },
+      { name: "St. Niklaus", lat: 46.1770, lng: 7.8000, note: "Bergstation Gondelbahn, Bahnhof Mattertal-Bahn", anchor: "stniklaus" },
+      { name: "Randa", lat: 46.0980, lng: 7.7850, note: "1.407 m, Start des Europawegs", anchor: "randa" },
+      { name: "Europah&uuml;tte", lat: 46.0800, lng: 7.7870, note: "2.220 m, Etappenziel", anchor: "europahuette" }
+    ];
+    const map = L.map('map4').setView([stops[1].lat, stops[1].lng], 10);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline([latlngs[0], latlngs[1], latlngs[2]], { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    L.polyline([latlngs[2], latlngs[3], latlngs[4]], { color: '#666', weight: 2, dashArray: '2 6' }).addTo(map);
+    L.polyline([latlngs[4], latlngs[5]], { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">Ein Tag mit zwei sehr unterschiedlichen H&auml;lften. Teil 1: zu Fu&szlig; von Gruben (1.829 m) &uuml;ber den Augstbordpass (2.894 m) hinunter zur autofreien Siedlung Jungu (12,5 km, 5:50 h, 1.164 Hm Aufstieg, 1.003 Hm Abstieg), dann Gondelbahn hinab und mit der Mattertal-Bahn weiter nach Randa. Teil 2: von Randa auf dem Europaweg zur Europah&uuml;tte &ndash; nur 3,9 km, aber 860 Hm Aufstieg auf 2:35 h, praktisch ohne Gegenanstieg. Wir sind beide Teile komplett wie geplant gelaufen bzw. gefahren.</p>
+<div class="tip"><strong>Tipp:</strong> Gondelbahn und Zug zwischen Jungu und Randa am besten vorher auf Fahrplan pr&uuml;fen &ndash; die Verbindungen sind nicht allzu dicht getaktet, und ein verpasster Anschluss kostet auf diesem ohnehin langen Tag wertvolle Zeit.</div>
+<hr>
+<p id="pass"><strong>&Uuml;ber den Augstbordpass:</strong> Von Gruben steigt der Weg zun&auml;chst durch das obere Turtmanntal an, dann in Serpentinen hinauf zum Augstbordpass. Oben erwartet einen eine karge, von Geröll und Felsbrocken bedeckte Hochebene mit kleinen Schmelzwassert&uuml;mpeln &ndash; der Augstbordpass verbindet traditionell das Turtmanntal mit dem Mattertal und ist eine der klassischen Etappen der Haute Route zwischen Chamonix und Zermatt.</p>
+<img src="images/etappe4/01.jpg" alt="Karge Hochebene am Augstbordpass mit Geroell und kleinem Schmelzwassertuempel im Gegenlicht">
+<p>Karge Passh&ouml;he am Augstbordpass &ndash; Geröll, ein kleiner T&uuml;mpel, tiefstehende Morgensonne.</p>
+<hr>
+<p id="jungu"><strong>Jungu und die Gondelbahn:</strong> Auf der Nordseite des Passes f&uuml;hrt der Abstieg zur kleinen, autofreien Siedlung Jungu &ndash; von hier gibt es keine Stra&szlig;enanbindung, nur eine kleine Gondelbahn hinunter ins Mattertal. Die Fahrt durch den steilen Wald mit Blick auf die schneebedeckten Gipfel im Hintergrund ist eine willkommene Verschnaufpause f&uuml;r die Beine.</p>
+<img src="images/etappe4/02.jpg" alt="Rote Gondel der kleinen Seilbahn ab Jungu vor Wald und schneebedeckten Gipfeln">
+<p>Mit der kleinen Gondelbahn hinunter aus Jungu &ndash; die einzige Verbindung dieser autofreien Siedlung ins Tal.</p>
+<hr>
+<p id="stniklaus"><strong>Mit der Bahn nach Randa:</strong> Von der Bergstation oberhalb von St. Niklaus f&auml;llt der Blick tief hinunter auf das Dorf im Talgrund, mit den Gleisen der Mattertal-Bahn mittendrin. Statt den ganzen Talboden zu Fu&szlig; zur&uuml;ckzulegen, geht es hier mit dem Zug weiter hinauf nach Randa &ndash; eine willkommene Abk&uuml;rzung, die die Kr&auml;fte f&uuml;r den steilen Nachmittag aufspart.</p>
+<img src="images/etappe4/03.jpg" alt="Blick von der Gondelbahn hinunter auf St. Niklaus im Mattertal mit Bahngleisen">
+<p>Blick von oben auf St. Niklaus im Mattertal &ndash; von hier bringt der Zug uns weiter nach Randa.</p>
+<hr>
+<p id="randa"><strong>Randa und der Europaweg:</strong> In Randa (1.407 m) beginnt der zweite, kurze aber knackige Teil des Tages: der Europaweg, ein spektakul&auml;rer H&ouml;henweg hoch &uuml;ber dem Mattertal mit Blick auf die Nordwand des Weisshorns und, weiter oben, auf das Matterhorn. Auf nur 3,9 km geht es 860 Hm bergauf &ndash; praktisch ohne Verschnaufpause.</p>
+<hr>
+<p id="bruecke"><strong>Charles-Kuonen-H&auml;ngebr&uuml;cke:</strong> Highlight und Nervenkitzel des Nachmittags zugleich &ndash; die 494 m lange H&auml;ngebr&uuml;cke, die den Grabengufer in bis zu rund 85 m H&ouml;he &uuml;berspannt. Sie wurde 2017 er&ouml;ffnet, nachdem die Vorg&auml;ngerbr&uuml;cke durch einen Felssturz besch&auml;digt worden war, und war zur Er&ouml;ffnung die l&auml;ngste Fu&szlig;g&auml;nger-H&auml;ngebr&uuml;cke der Welt. Bei Wind schaukelt sie sp&uuml;rbar &ndash; wer schwindelfrei ist, genie&szlig;t einen der spektakul&auml;rsten Blicke der gesamten Route.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Charles-Kuonen-H%C3%A4ngebr%C3%BCcke" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<img src="images/etappe4/04.jpg" alt="Selfie auf der Charles-Kuonen-Haengebruecke hoch ueber dem bewaldeten Grabengufer">
+<p>Mitten auf der H&auml;ngebr&uuml;cke &ndash; unter uns der Grabengufer, rundherum nichts als Luft.</p>
+<hr>
+<p id="europahuette"><strong>Ankunft Europah&uuml;tte:</strong> Nach der Br&uuml;cke zieht sich der Anstieg auf dem Europaweg noch eine Weile weiter, bis die Europah&uuml;tte (2.220 m) erreicht ist &ndash; ein verdientes Etappenziel nach einem Tag mit Pass, Gondelbahn, Zug und einer der spektakul&auml;rsten Br&uuml;cken der Alpen.</p>
+<div class="tip"><strong>Tipp:</strong> Die H&auml;ngebr&uuml;cke ist nichts f&uuml;r Personen mit ausgepr&auml;gter H&ouml;henangst &ndash; sie schwingt bei Wind sp&uuml;rbar, und ein Ausweichen ist auf der schmalen Konstruktion nicht m&ouml;glich.</div>
+<hr>
+<div class="navbar"><a href="etappe3.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage4.html" lang="en">EN</a></div>
+</body>
+</html>
