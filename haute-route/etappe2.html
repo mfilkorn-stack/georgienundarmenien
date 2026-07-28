@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 2 &ndash; Montag, 20. Juli &ndash; Cabane de Moiry, Lac de Moiry, Zinal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="etappe1.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage2.html" lang="en">EN</a></div>
+<h1>Etappe 2 &ndash; Montag, 20. Juli &ndash; Cabane de Moiry, Lac de Moiry, Zinal</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map2" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Cabane de Moiry", lat: 46.0613, lng: 7.5866, note: "Start, 2.825 m", anchor: "start" },
+      { name: "Barrage de Moiry", lat: 46.0908, lng: 7.5875, note: "148 m hohe Staumauer am Nordende des Sees", anchor: "staumauer" },
+      { name: "Grat unter der Sasseneire", lat: 46.1010, lng: 7.6010, note: "Höchster Punkt der Querung, rund 2.895 m", anchor: "grat" },
+      { name: "Morette", lat: 46.1080, lng: 7.6140, note: "Rastplatz im Wald, Wegweiser-Kreuzung", anchor: "morette" },
+      { name: "Zinal", lat: 46.1294, lng: 7.6300, note: "Etappenziel, 1.675 m im Val d'Anniviers", anchor: "zinal" }
+    ];
+    const map = L.map('map2').setView([stops[2].lat, stops[2].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>Nach dem H&uuml;ttenabend am Gletscher jetzt das Gegenteil: ein reiner Abstiegstag. Laut Planung 16,2 km, 6:15 h, gerade einmal 605 Hm Aufstieg &ndash; daf&uuml;r 1.757 Hm Abstieg, von der Cabane de Moiry (2.825 m) hinunter ins Val d'Anniviers nach Zinal (1.675 m). Wir sind die Route wie geplant komplett gelaufen: erst ein kurzes St&uuml;ck Grat, dann hinab zum Stausee, &uuml;ber die Staumauer und in langen Serpentinen durch den Wald nach Zinal.</p>
+<div class="tip"><strong>Tipp:</strong> An Abstiegstagen wie diesem zahlen sich Teleskopst&ouml;cke aus &ndash; 1.750 Hm bergab gehen ordentlich auf die Knie. Fr&uuml;h starten lohnt sich au&szlig;erdem: Der Morgengrat liegt noch im Schatten, bevor die Sonne den ganzen Abstieg aufheizt.</p>
+<hr>
+<p id="start"><strong>Start am Morgen:</strong> Kurz nach der H&uuml;tte f&uuml;hrt der Weg noch ein St&uuml;ck &uuml;ber felsiges Gel&auml;nde, bevor er zum See hinunterschwenkt &ndash; im tiefstehenden Morgenlicht liegt der ganze Talkessel noch im Schatten, nur die Gipfel gegen&uuml;ber gl&uuml;hen schon. Auf dem Grat vor uns eine offenbar f&uuml;r Gletscher- oder Firnquerungen angeseilte Gruppe, ein Bild wie aus einem anderen Jahrzehnt &ndash; hoch alpine Routen und ganz gew&ouml;hnliche Wanderwege liegen in diesem Gel&auml;nde oft nur wenige Meter auseinander.</p>
+<img src="images/etappe2/01.jpg" alt="Wanderer blickt am Morgen ueber einen felsigen Grat, im Hintergrund eine angeseilte Gruppe">
+<p>Blick zur&uuml;ck &uuml;ber den Morgengrat &ndash; die Seilschaft in der Ferne war nicht unsere Gruppe, sondern offenbar auf dem Weg zu einem anspruchsvolleren Ziel.</p>
+<img src="images/etappe2/02.jpg" alt="Selfie der beiden Wanderer auf dem Grat oberhalb der Cabane de Moiry">
+<p id="grat">Kurz nach dem Aufbruch, auf dem h&ouml;chsten Punkt der Querung unterhalb der Sasseneire (3.254 m): noch einmal der R&uuml;ckblick, bevor es endg&uuml;ltig bergab geht.</p>
+<hr>
+<p id="staumauer"><strong>Zur&uuml;ck am Lac de Moiry:</strong> Von oben zeigt sich der Stausee noch einmal ganz anders als am Vortag &ndash; das t&uuml;rkise Wasser, gerahmt von den kahlen Mor&auml;nenh&auml;ngen des Talschlusses. Der Abstieg f&uuml;hrt direkt auf die 148 m hohe Bogenstaumauer zu, die den See seit 1958 aufstaut.</p>
+<img src="images/etappe2/03.jpg" alt="Tuerkiser Lac de Moiry von oben mit Staumauer und umliegenden Berghaengen">
+<p>Der Lac de Moiry aus einer neuen Perspektive &ndash; von oben, im Abstieg von der H&uuml;tte.</p>
+<img src="images/etappe2/04.jpg" alt="Fussgaenger ueberqueren die Staumauer des Lac de Moiry mit Geruest, im Hintergrund vergletscherte Gipfel">
+<p>Zu Fu&szlig; &uuml;ber die Staumauer &ndash; hinter uns der Talschluss mit den Gipfeln, vor uns geht es endg&uuml;ltig ins Tal hinunter.</p>
+<p class="more-info">&#8599; <a href="https://de.wikipedia.org/wiki/Lac_de_Moiry" target="_blank" rel="noopener noreferrer">Mehr erfahren</a></p>
+<hr>
+<p id="morette"><strong>Rast bei Morette:</strong> Nach der Staumauer f&uuml;hrt der Weg in langen Kehren durch Lärchen- und Arvenwald hinunter &ndash; ein spürbarer Wechsel nach zwei Tagen oberhalb der Baumgrenze. An der Wegkreuzung Morette, umgeben von bl&uuml;hendem Weidenr&ouml;schen, gibt es die erste l&auml;ngere Pause seit dem Fr&uuml;hst&uuml;ck. Ein kleiner Parkplatz markiert hier den tiefsten Punkt, an dem man die Wanderung reggelm&auml;&szlig;ig auch per Auto erreichen k&ouml;nnte &ndash; f&uuml;r uns nur ein Rastplatz, kein Etappenziel.</p>
+<img src="images/etappe2/05.jpg" alt="Wanderer rastet am Wegweiser Morette zwischen bluehendem Weidenroeschen und Wald">
+<p>Verdiente Rast an der Kreuzung Morette &ndash; die H&auml;lfte der H&ouml;henmeter ist gemacht, aber es sind immer noch gut 1.000 weiter bergab bis Zinal.</p>
+<hr>
+<p id="zinal"><strong>Ankunft in Zinal:</strong> Von Morette zieht sich der Abstieg noch eine ganze Weile durch den Wald, bevor die Steigung endlich nachl&auml;sst und das Tal sich &ouml;ffnet. Zinal (1.675 m) ist der oberste Ort im Val d'Anniviers, umgeben von einem imposanten Kranz von Viertausendern &ndash; darunter das Weisshorn und der Zinalrothorn &ndash; und traditionell Ausgangspunkt f&uuml;r Hochtouren ebenso wie f&uuml;r die Haute Route. Nach 1.750 Abstiegsmetern ist der erste Programmpunkt im Dorf entsprechend simpel: Beine hochlegen.</p>
+<div class="tip"><strong>Tipp:</strong> Zinal hat mehrere Lebensmittelgesch&auml;fte und eine gute Auswahl an Restaurants &ndash; nach zwei H&uuml;ttentagen eine willkommene Gelegenheit, den Proviant f&uuml;r die n&auml;chsten Etappen aufzufrischen.</div>
+<hr>
+<div class="navbar"><a href="etappe1.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage2.html" lang="en">EN</a></div>
+</body>
+</html>

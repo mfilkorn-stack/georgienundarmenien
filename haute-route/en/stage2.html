@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 2 &ndash; Monday, July 20 &ndash; Cabane de Moiry, Lac de Moiry, Zinal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="stage1.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe2.html" lang="de">DE</a></div>
+<h1>Stage 2 &ndash; Monday, July 20 &ndash; Cabane de Moiry, Lac de Moiry, Zinal</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map2" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Cabane de Moiry", lat: 46.0613, lng: 7.5866, note: "Start, 2,825 m", anchor: "start" },
+      { name: "Barrage de Moiry", lat: 46.0908, lng: 7.5875, note: "148 m arch dam at the north end of the lake", anchor: "dam" },
+      { name: "Ridge below the Sasseneire", lat: 46.1010, lng: 7.6010, note: "Highest point of the traverse, around 2,895 m", anchor: "ridge" },
+      { name: "Morette", lat: 46.1080, lng: 7.6140, note: "Rest stop in the forest, trail junction", anchor: "morette" },
+      { name: "Zinal", lat: 46.1294, lng: 7.6300, note: "Stage destination, 1,675 m in the Val d'Anniviers", anchor: "zinal" }
+    ];
+    const map = L.map('map2').setView([stops[2].lat, stops[2].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>After the hut evening by the glacier, today is the opposite: a pure descent day. The plan says 16.2 km, 6:15 h, a mere 605 m of ascent &ndash; but 1,757 m of descent, down from the Cabane de Moiry (2,825 m) into the Val d'Anniviers to Zinal (1,675 m). We followed the route exactly as planned: a short stretch of ridge first, then down to the reservoir, across the dam, and down long switchbacks through the forest to Zinal.</p>
+<div class="tip"><strong>Tip:</strong> On descent days like this one, trekking poles earn their keep &ndash; 1,750 m downhill takes a real toll on the knees. It also pays to start early: the morning ridge still lies in shadow before the sun heats up the whole descent.</div>
+<hr>
+<p id="start"><strong>Setting off in the morning:</strong> Just past the hut the trail still crosses a stretch of rocky terrain before swinging down towards the lake &ndash; in the low morning light the whole basin still lies in shadow, only the peaks opposite already glow. Ahead of us on the ridge, a party apparently roped up for a glacier or firn crossing &ndash; a scene from another decade, a reminder that in this terrain high-alpine routes and perfectly ordinary hiking trails often run just metres apart.</p>
+<img src="../images/etappe2/01.jpg" alt="Hiker looks back over a rocky morning ridge, a roped party visible in the background">
+<p>Looking back across the morning ridge &ndash; the roped party in the distance wasn't our group, apparently headed for a more demanding objective.</p>
+<img src="../images/etappe2/02.jpg" alt="Selfie of the two hikers on the ridge above the Cabane de Moiry">
+<p id="ridge">Shortly after setting off, at the highest point of the traverse below the Sasseneire (3,254 m): one more look back before the trail turns decisively downhill.</p>
+<hr>
+<p id="dam"><strong>Back at the Lac de Moiry:</strong> From above, the reservoir looks quite different again from the day before &ndash; the turquoise water framed by the bare moraine slopes at the head of the valley. The descent leads straight to the 148 m arch dam that has held back the lake since 1958.</p>
+<img src="../images/etappe2/03.jpg" alt="Turquoise Lac de Moiry seen from above with its dam and surrounding mountain slopes">
+<p>Lac de Moiry from a new angle &ndash; from above, on the way down from the hut.</p>
+<img src="../images/etappe2/04.jpg" alt="Hikers crossing the dam of the Lac de Moiry on a walkway, glaciated peaks behind">
+<p>On foot across the dam &ndash; behind us the head of the valley with its peaks, ahead the final push down into the valley.</p>
+<p class="more-info">&#8599; <a href="https://en.wikipedia.org/wiki/Lac_de_Moiry" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+<hr>
+<p id="morette"><strong>Rest stop at Morette:</strong> Beyond the dam the trail drops through long switchbacks into larch and arolla pine forest &ndash; a noticeable change after two days above the treeline. At the Morette junction, surrounded by flowering fireweed, we take the first proper break since breakfast. A small car park marks the lowest point here that you could also reach by road &ndash; for us, just a rest stop, not a destination.</p>
+<img src="../images/etappe2/05.jpg" alt="Hiker resting at the Morette signpost among flowering fireweed and forest">
+<p>A well-earned rest at the Morette junction &ndash; half the vertical metres are done, but there is still a good 1,000 m further downhill to Zinal.</p>
+<hr>
+<p id="zinal"><strong>Arrival in Zinal:</strong> From Morette the descent continues through the forest for quite a while before the gradient finally eases and the valley opens up. Zinal (1,675 m) is the highest village in the Val d'Anniviers, ringed by an imposing crown of four-thousanders &ndash; including the Weisshorn and the Zinalrothorn &ndash; and traditionally a starting point for high-alpine climbs as much as for the Haute Route. After 1,750 m of descent, the first order of business in the village is accordingly simple: put your feet up.</p>
+<div class="tip"><strong>Tip:</strong> Zinal has several grocery shops and a good choice of restaurants &ndash; after two hut nights, a welcome chance to restock supplies for the coming stages.</div>
+<hr>
+<div class="navbar"><a href="stage1.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe2.html" lang="de">DE</a></div>
+</body>
+</html>
