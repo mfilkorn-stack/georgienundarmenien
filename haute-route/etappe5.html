@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 5 &ndash; Donnerstag, 23. Juli &ndash; Europah&uuml;tte, Weingartengletscher, T&auml;schh&uuml;tte</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="etappe4.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage5.html" lang="en">EN</a></div>
+<h1>Etappe 5 &ndash; Donnerstag, 23. Juli &ndash; Europah&uuml;tte, Weingartengletscher, T&auml;schh&uuml;tte</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map5" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Europah&uuml;tte", lat: 46.0800, lng: 7.7870, note: "Start, 2.220 m", anchor: "start" },
+      { name: "Weingartengletscher", lat: 46.0620, lng: 7.7780, note: "Hochalpine Gletscherquerung, Alternativroute", anchor: "gletscher" },
+      { name: "H&ouml;chster Punkt", lat: 46.0520, lng: 7.7650, note: "Rundumblick bis zum Matterhorn", anchor: "hochpunkt" },
+      { name: "T&auml;schh&uuml;tte", lat: 46.0450, lng: 7.7500, note: "2.701 m, Etappenziel", anchor: "taeschhuette" }
+    ];
+    const map = L.map('map5').setView([stops[1].lat, stops[1].lng], 11);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">Geplant war ein Umweg: von der Europah&uuml;tte hinunter nach T&auml;sch, mit dem Bus hinauf nach T&auml;schalp und zu Fu&szlig; weiter zur T&auml;schh&uuml;tte (18,2 km, 9:10 h, 1.950 Hm Aufstieg, 1.514 Hm Abstieg). Wir sind stattdessen abgewichen und direkt &uuml;ber den Weingartengletscher gelaufen &ndash; eine hochalpine Alternative, die den Umweg &uuml;ber das Tal spart, daf&uuml;r deutlich steiler ist. Rund zwei Stunden l&auml;nger als der Plan, aber nach eigener Einsch&auml;tzung die Mehrzeit absolut wert: sehr steil, aber wundersch&ouml;n.</p>
+<div class="tip"><strong>Tipp:</strong> Die Variante &uuml;ber den Weingartengletscher ist nichts f&uuml;r spontane Entscheidungen unterwegs &ndash; Gletschererfahrung und passende Ausr&uuml;stung sollten vorher eingeplant sein, und die zwei Stunden Zeitpuffer gegen&uuml;ber der Talroute sollte man fest einrechnen.</p>
+<hr>
+<p id="gletscher"><strong>&Uuml;ber den Weingartengletscher:</strong> Statt des Umwegs durchs Tal f&uuml;hrt die Route direkt &uuml;ber vergletschertes Hochgebirgsterrain &ndash; wilde Fels- und Eislandschaft, weit ab von den Talwegen der &uuml;brigen Wanderer. Der Aufwand macht sich in jedem Blick bezahlt.</p>
+<img src="images/etappe5/01.jpg" alt="Weite Hochgebirgslandschaft mit schneebedeckten Graten waehrend der Querung des Weingartengletschers">
+<p>Mitten in der Gletscherquerung &ndash; ringsum nur Fels, Eis und Grate, kein Wanderer weit und breit.</p>
+<hr>
+<p id="hochpunkt"><strong>H&ouml;chster Punkt mit Matterhorn-Blick:</strong> Am h&ouml;chsten Punkt der Querung liegt eine bizarre Ansammlung hochkant aufgestellter Steinplatten &ndash; ob Wegmarkierung oder einfach das Werk gelangweilter Wanderer, bleibt offen. Der Blick reicht bis zum Matterhorn, das sich links am Horizont durch die Wolken schiebt.</p>
+<img src="images/etappe5/02.jpg" alt="Hochkant aufgestellte Steinplatten am hoechsten Punkt der Querung mit Matterhorn am Horizont">
+<p>Steinformationen am h&ouml;chsten Punkt &ndash; und ganz links am Horizont, klein aber unverkennbar, das Matterhorn.</p>
+<hr>
+<p id="taeschhuette"><strong>Ankunft T&auml;schh&uuml;tte:</strong> Nach dem langen Abstieg vom Hochpunkt erreichen wir die T&auml;schh&uuml;tte (2.701 m) &ndash; zwei Stunden sp&auml;ter als beim Talweg geplant, aber mit Eindr&uuml;cken, die die Umwegvariante allemal rechtfertigen.</p>
+<img src="images/etappe5/03.jpg" alt="Selfie der beiden Wanderer vor der Taeschhuette">
+<img src="images/etappe5/04.jpg" alt="Zweites Selfie der beiden Wanderer vor der Taeschhuette">
+<p>Angekommen an der T&auml;schh&uuml;tte &ndash; geschafft, aber sehr zufrieden mit dem Umweg.</p>
+<p><strong>Skurriles an der H&uuml;tte:</strong> An der T&auml;schh&uuml;tte h&auml;ngt ein Aushang der &bdquo;Kochenden M&auml;nner T&auml;sch&ldquo; &ndash; einer Festwirtschaft, die man hier oben nun wirklich nicht erwartet h&auml;tte. Kein Bezug zur heutigen Route, einfach ein witziger Fund am Wegesrand.</p>
+<img src="images/etappe5/05.jpg" alt="Gaestekarte Kochende Maenner Taesch, gefunden als Aushang an der Taeschhuette">
+<p>Gefunden an der H&uuml;tte: die Gästekarte der &bdquo;Kochenden M&auml;nner T&auml;sch&ldquo; &ndash; wof&uuml;r auch immer.</p>
+<hr>
+<div class="navbar"><a href="etappe4.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage5.html" lang="en">EN</a></div>
+</body>
+</html>

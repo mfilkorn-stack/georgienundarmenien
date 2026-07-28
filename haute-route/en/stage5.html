@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 5 &ndash; Thursday, July 23 &ndash; Europah&uuml;tte, Weingarten Glacier, T&auml;sch Hut</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="stage4.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe5.html" lang="de">DE</a></div>
+<h1>Stage 5 &ndash; Thursday, July 23 &ndash; Europah&uuml;tte, Weingarten Glacier, T&auml;sch Hut</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map5" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Europah&uuml;tte", lat: 46.0800, lng: 7.7870, note: "Start, 2,220 m", anchor: "start" },
+      { name: "Weingarten Glacier", lat: 46.0620, lng: 7.7780, note: "High-alpine glacier crossing, alternative route", anchor: "glacier" },
+      { name: "Highest point", lat: 46.0520, lng: 7.7650, note: "Panorama as far as the Matterhorn", anchor: "highpoint" },
+      { name: "T&auml;sch Hut", lat: 46.0450, lng: 7.7500, note: "2,701 m, stage destination", anchor: "taeschhuette" }
+    ];
+    const map = L.map('map5').setView([stops[1].lat, stops[1].lng], 11);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">The plan was a detour: from the Europah&uuml;tte down to T&auml;sch, by bus up to T&auml;schalp, and on foot onward to the T&auml;sch Hut (18.2 km, 9:10 h, 1,950 m of ascent, 1,514 m of descent). We deviated instead and walked straight over the Weingarten Glacier &ndash; a high-alpine alternative that skips the detour through the valley, but is noticeably steeper. Around two hours longer than the plan, but by our own judgement thoroughly worth the extra time: very steep, but beautiful.</p>
+<div class="tip"><strong>Tip:</strong> The Weingarten Glacier variant is not something to decide on the spur of the moment &ndash; glacier experience and suitable equipment should be planned in advance, and the two-hour time buffer over the valley route should be budgeted for firmly.</div>
+<hr>
+<p id="glacier"><strong>Across the Weingarten Glacier:</strong> Instead of the detour through the valley, the route leads straight across glaciated high-mountain terrain &ndash; wild rock and ice scenery, far from the valley trails used by other hikers. The effort pays off with every view.</p>
+<img src="../images/etappe5/01.jpg" alt="Wide high-mountain landscape with snow-covered ridges during the crossing of the Weingarten Glacier">
+<p>In the middle of the glacier crossing &ndash; nothing but rock, ice and ridges all around, not another hiker in sight.</p>
+<hr>
+<p id="highpoint"><strong>Highest point with a view of the Matterhorn:</strong> At the highest point of the crossing sits a bizarre cluster of stone slabs standing on end &ndash; whether trail markers or simply the work of bored hikers remains an open question. The view reaches as far as the Matterhorn, pushing through the clouds on the horizon to the left.</p>
+<img src="../images/etappe5/02.jpg" alt="Stone slabs standing on end at the highest point of the crossing with the Matterhorn on the horizon">
+<p>Rock formations at the highest point &ndash; and far to the left on the horizon, small but unmistakable, the Matterhorn.</p>
+<hr>
+<p id="taeschhuette"><strong>Arrival at the T&auml;sch Hut:</strong> After the long descent from the high point we reach the T&auml;sch Hut (2,701 m) &ndash; two hours later than planned via the valley route, but with impressions that thoroughly justify the detour.</p>
+<img src="../images/etappe5/03.jpg" alt="Selfie of the two hikers in front of the Taesch Hut">
+<img src="../images/etappe5/04.jpg" alt="Second selfie of the two hikers in front of the Taesch Hut">
+<p>Arrived at the T&auml;sch Hut &ndash; worn out, but very happy with the detour.</p>
+<p><strong>A curiosity at the hut:</strong> A notice for the &ldquo;Kochende M&auml;nner T&auml;sch&rdquo; (Cooking Men of T&auml;sch) hangs at the T&auml;sch Hut &ndash; a festival restaurant association you really wouldn't expect up here. No connection to today's route, just a funny find along the way.</p>
+<img src="../images/etappe5/05.jpg" alt="Guest card of the Kochende Maenner Taesch, found posted at the Taesch Hut">
+<p>Found at the hut: the guest card of the &ldquo;Kochende M&auml;nner T&auml;sch&rdquo; &ndash; whatever that's for.</p>
+<hr>
+<div class="navbar"><a href="stage4.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe5.html" lang="de">DE</a></div>
+</body>
+</html>
