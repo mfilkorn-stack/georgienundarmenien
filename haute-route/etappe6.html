@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 6 &ndash; Freitag, 24. Juli &ndash; T&auml;schh&uuml;tte, T&auml;sch, Heimreise</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="etappe5.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage6.html" lang="en">EN</a></div>
+<h1>Etappe 6 &ndash; Freitag, 24. Juli &ndash; T&auml;schh&uuml;tte, T&auml;sch, Heimreise</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map6" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "T&auml;schh&uuml;tte", lat: 46.0450, lng: 7.7500, note: "Start, 2.701 m", anchor: "start" },
+      { name: "T&auml;sch", lat: 46.0972, lng: 7.7748, note: "1.450 m, Etappenziel und Ausgangspunkt der Heimreise", anchor: "taesch" }
+    ];
+    const map = L.map('map6').setView([stops[0].lat, stops[0].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">Der letzte Tag: ein unspektakul&auml;rer, reiner Abstieg von der T&auml;schh&uuml;tte (2.701 m) hinunter nach T&auml;sch (1.450 m) &ndash; kein Pass, keine besonderen Vorkommnisse, einfach nur Ziel erreicht. Nach f&uuml;nf Tagen mit P&auml;ssen, H&auml;ngebr&uuml;cke und Gletscherquerung ein ruhiger Ausklang.</p>
+<p id="taesch"><strong>Heimreise:</strong> Von T&auml;sch aus geht es mit der Bahn zur&uuml;ck nach Hause &ndash; das Mattertal hinunter und weiter in Richtung Heimat, mit Blick aus dem Zugfenster auf die letzten Gipfel, die in den vergangenen Tagen so nah waren.</p>
+<hr>
+<p><strong>Fazit &ndash; sechs Tage Haute Route:</strong> Von La Sage im Val d&rsquo;H&eacute;rens bis T&auml;sch im Mattertal, &uuml;ber vier P&auml;sse (Col du Tsat&eacute;, Forcletta, Augstbordpass, und statt der Talroute schlie&szlig;lich der Weingartengletscher), vorbei am t&uuml;rkisen Lac de Moiry, &uuml;ber die Charles-Kuonen-H&auml;ngebr&uuml;cke und durch drei Kantone (Wallis von einem Ende zum anderen) &ndash; eine Tour mit gro&szlig;er landschaftlicher Bandbreite: Gletschervorfelder, W&auml;lder, Stauseen, autofreie Weiler und einsame Hochgebirgspfade. Von den geplanten Routen ist unterwegs zweimal bewusst abgewichen worden (der k&uuml;rzere Einstieg in La Sage, die Gletschervariante am f&uuml;nften Tag) &ndash; beide Male mit gutem Ergebnis. Ein Abenteuer, das sich in Erinnerung wie im Fotobuch gleicherma&szlig;en gelohnt hat.</p>
+<hr>
+<div class="navbar"><a href="etappe5.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage6.html" lang="en">EN</a></div>
+</body>
+</html>

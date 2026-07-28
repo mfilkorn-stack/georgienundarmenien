@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 6 &ndash; Friday, July 24 &ndash; T&auml;sch Hut, T&auml;sch, Journey Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="stage5.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe6.html" lang="de">DE</a></div>
+<h1>Stage 6 &ndash; Friday, July 24 &ndash; T&auml;sch Hut, T&auml;sch, Journey Home</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map6" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "T&auml;sch Hut", lat: 46.0450, lng: 7.7500, note: "Start, 2,701 m", anchor: "start" },
+      { name: "T&auml;sch", lat: 46.0972, lng: 7.7748, note: "1,450 m, stage destination and starting point for the journey home", anchor: "taesch" }
+    ];
+    const map = L.map('map6').setView([stops[0].lat, stops[0].lng], 12);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs, { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p id="start">The last day: an unspectacular, pure descent from the T&auml;sch Hut (2,701 m) down to T&auml;sch (1,450 m) &ndash; no pass, nothing special happening, simply reaching the destination. After five days of passes, a suspension bridge and a glacier crossing, a quiet way to close things out.</p>
+<p id="taesch"><strong>Journey home:</strong> From T&auml;sch the train takes over for the journey home &ndash; down the Mattertal and onward towards home, with the last peaks that felt so close over the past days sliding past the train window.</p>
+<hr>
+<p><strong>In summary &ndash; six days on the Haute Route:</strong> From La Sage in the Val d&rsquo;H&eacute;rens to T&auml;sch in the Mattertal, over four passes (Col du Tsat&eacute;, Forcletta, Augstbordpass, and, in place of the valley route on the last day, the Weingarten Glacier), past the turquoise Lac de Moiry, across the Charles Kuonen suspension bridge, and through the Valais from one end to the other &ndash; a trek with tremendous variety: glacier forefields, forests, reservoirs, car-free hamlets and lonely high-alpine trails. Along the way we deliberately deviated from the planned routes twice (the shorter start in La Sage, the glacier variant on day five) &ndash; both times with excellent results. An adventure that was worth it in memory just as much as in the photo book.</p>
+<hr>
+<div class="navbar"><a href="stage5.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe6.html" lang="de">DE</a></div>
+</body>
+</html>
