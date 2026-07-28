@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+<title>Stage 3 &ndash; Tuesday, July 21 &ndash; Zinal, Forcletta, Gruben</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="stage2.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe3.html" lang="de">DE</a></div>
+<h1>Stage 3 &ndash; Tuesday, July 21 &ndash; Zinal, Forcletta, Gruben</h1>
+<h2 class="map-heading">Map</h2>
+<div id="map3" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Zinal", lat: 46.1294, lng: 7.6300, note: "Start, 1,675 m", anchor: "start" },
+      { name: "Forcletta", lat: 46.1740, lng: 7.6430, note: "2,874 m, crossing into the Turtmanntal", anchor: "forcletta" },
+      { name: "Gruben", lat: 46.1980, lng: 7.6800, note: "1,829 m, stage destination in the Turtmanntal", anchor: "gruben" },
+      { name: "Oberems", lat: 46.2900, lng: 7.6300, note: "Overnight stop (reached by vehicle)", anchor: "oberems" }
+    ];
+    const map = L.map('map3').setView([stops[1].lat, stops[1].lng], 11);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap contributors'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Go to diary entry</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs.slice(0, 3), { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    L.polyline([latlngs[2], latlngs[3]], { color: '#666', weight: 2, dashArray: '2 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>After the pure descent day into Zinal, today is a classic pass day again: from Zinal (1,675 m) up to the Forcletta (2,874 m) and down the other side to Gruben (1,829 m) in the Turtmanntal &ndash; the plan says 17.2 km, 7:05 h, 1,218 m of ascent, 1,055 m of descent. We followed the route exactly as planned. The Forcletta is the traditional link between the Val d&rsquo;Anniviers and the Turtmanntal and is one of the standard stages of the Chamonix-to-Zermatt Haute Route.</p>
+<div class="tip"><strong>Tip:</strong> Gruben itself has only one historic hotel with limited capacity &ndash; worth booking well ahead, or doing what we did and taking a room in the next village by car instead.</div>
+<hr>
+<p id="start"><strong>Climbing out of Zinal:</strong> The trail first climbs steeply out of the Zinal basin through open larch forest, past the slopes above St-Jean, with recurring open views back into the Val d&rsquo;Anniviers. Only gradually does the forest thin out, opening onto the bare high terrain of the pass.</p>
+<img src="../images/etappe3/01.jpg" alt="View back into the Val d'Anniviers through larch forest while climbing out of Zinal">
+<p>Climbing through larch forest &ndash; the view back into the valley opens up further with every metre of height gained.</p>
+<hr>
+<p id="forcletta"><strong>Forcletta (2,874 m):</strong> Above the treeline the terrain turns bare and wide open, ringed by rugged three-thousanders. The Forcletta itself is a broad, unspectacular saddle &ndash; but with a panorama in both directions: back into the Val d&rsquo;Anniviers, ahead into the Turtmanntal. Exactly the right spot for a well-earned break at the top.</p>
+<img src="../images/etappe3/02.jpg" alt="Break at the Forcletta pass with Valais dried meat, cheese and bread">
+<p>Refuelling at 2,874 m: Valais dried meat, cheese and bread &ndash; one of the simplest and best pass-top meals of the whole trek.</p>
+<hr>
+<p id="gruben"><strong>Arrival in Gruben:</strong> The descent from the Forcletta into the Turtmanntal is noticeably gentler than the climb out of Zinal. Gruben itself is a handful of houses around a single, long-established hotel &ndash; for generations the only place to stop for miles around, and a fixed point on the route between Zinal and the Augstbordpass. The terrace is properly busy in the afternoon: hikers and a few older guests over coffee and cake, the mountains of the Turtmanntal behind them.</p>
+<img src="../images/etappe3/03.jpg" alt="Cafe terrace of the hotel in Gruben with guests under sun umbrellas and mountain view">
+<p>Afternoon calm on the terrace in Gruben &ndash; after 1,218 m of ascent, a very welcome institution in the middle of the Turtmanntal.</p>
+<hr>
+<p id="oberems"><strong>On to Oberems:</strong> With no beds left in Gruben itself, we continue by vehicle after the break to Oberems, high above the Rhone valley between Turtmann and Leuk. From the accommodation the view drops far down onto the valley floor with its vineyards and orchards, the peaks of the Bernese Alps hazy in the distance beyond.</p>
+<img src="../images/etappe3/04.jpg" alt="Wide view from the balcony in Oberems down into the Rhone valley with vineyards and orchards">
+<p>Evening view from Oberems down into the Rhone valley &ndash; a panorama you wouldn't necessarily expect from this stage of the route.</p>
+<p><strong>A curiosity along the way:</strong> The door of the village shop &ldquo;Konsum Oberems&rdquo; provides some amusement &ndash; in Switzerland &ldquo;Stossen&rdquo; is simply the normal instruction for pushing a door open, but to German ears it is unavoidably a little cheeky.</p>
+<img src="../images/etappe3/05.jpg" alt="Shop door of Konsum Oberems with the word Stossen and opening hours">
+<p>&ldquo;Stossen&rdquo; &ndash; a Swiss classic that German-speaking hikers love to trip over.</p>
+<hr>
+<div class="navbar"><a href="stage2.html">&larr; Previous stage</a><a href="index.html">&#8962; Overview</a><span></span><a class="lang-switch" href="../etappe3.html" lang="de">DE</a></div>
+</body>
+</html>

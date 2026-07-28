@@ -2,7 +2,7 @@
 // chapters beim Anlegen neuer Etappenseiten hochzählen.
 window.TRIP_CONFIG = {
   slug: 'haute-route',
-  chapters: 2,
+  chapters: 3,
   filePrefix: { de: 'etappe', en: 'stage' },
   chapterWord: { de: 'Etappe', en: 'Stage' },
   title: { de: 'Wandertagebuch', en: 'Hiking Diary' },

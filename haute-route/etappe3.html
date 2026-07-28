@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../style.css">
+<title>Etappe 3 &ndash; Dienstag, 21. Juli &ndash; Zinal, Forcletta, Gruben</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<div class="navbar"><a href="etappe2.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage3.html" lang="en">EN</a></div>
+<h1>Etappe 3 &ndash; Dienstag, 21. Juli &ndash; Zinal, Forcletta, Gruben</h1>
+<h2 class="map-heading">Karte</h2>
+<div id="map3" class="map"></div>
+<script>
+  (function() {
+    const stops = [
+      { name: "Zinal", lat: 46.1294, lng: 7.6300, note: "Start, 1.675 m", anchor: "start" },
+      { name: "Forcletta", lat: 46.1740, lng: 7.6430, note: "2.874 m, &Uuml;bergang ins Turtmanntal", anchor: "forcletta" },
+      { name: "Gruben", lat: 46.1980, lng: 7.6800, note: "1.829 m, Etappenziel im Turtmanntal", anchor: "gruben" },
+      { name: "Oberems", lat: 46.2900, lng: 7.6300, note: "&Uuml;bernachtung (per Fahrzeug erreicht)", anchor: "oberems" }
+    ];
+    const map = L.map('map3').setView([stops[1].lat, stops[1].lng], 11);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, HERE, Garmin, USGS, Intermap, NRCan, METI, Esri China (Hong Kong), Esri Korea, Esri (Thailand), NGCC, &copy; OpenStreetMap-Mitwirkende'
+    }).addTo(map);
+    const latlngs = [];
+    stops.forEach(function(stop) {
+      const marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br>' + stop.note + '<br><a href="#' + stop.anchor + '">&#8595; Zum Tagebucheintrag</a>');
+      latlngs.push([stop.lat, stop.lng]);
+    });
+    L.polyline(latlngs.slice(0, 3), { color: '#a33', weight: 3, dashArray: '6 6' }).addTo(map);
+    L.polyline([latlngs[2], latlngs[3]], { color: '#666', weight: 2, dashArray: '2 6' }).addTo(map);
+    map.fitBounds(latlngs, { padding: [30, 30] });
+  })();
+</script>
+<p>Nach dem reinen Abstiegstag nach Zinal heute wieder ein klassischer Passtag: von Zinal (1.675 m) hinauf zum Forcletta (2.874 m) und auf der anderen Seite hinunter nach Gruben (1.829 m) im Turtmanntal &ndash; laut Planung 17,2 km, 7:05 h, 1.218 Hm Aufstieg, 1.055 Hm Abstieg. Wir sind die Route komplett wie geplant gelaufen. Der Forcletta ist der traditionelle Verbindungspass zwischen dem Val d&rsquo;Anniviers und dem Turtmanntal und geh&ouml;rt zu den Standard-Etappen der Halbnate Route von Chamonix nach Zermatt.</p>
+<div class="tip"><strong>Tipp:</strong> In Gruben selbst gibt es nur ein historisches Hotel mit begrenzten Kapazit&auml;ten &ndash; lohnt sich, die &Uuml;bernachtung fr&uuml;h zu buchen oder wie wir auf ein Quartier im n&auml;chsten Ort per Fahrzeug auszuweichen.</div>
+<hr>
+<p id="start"><strong>Aufstieg aus Zinal:</strong> Der Weg f&uuml;hrt zun&auml;chst durch lichten L&auml;rchenwald steil aus dem Talkessel von Zinal hinaus, vorbei an den H&auml;ngen oberhalb von St-Jean, mit immer wieder freien Blicken zur&uuml;ck ins Val d&rsquo;Anniviers. Erst nach und nach lichtet sich der Wald und gibt den Blick auf die karge H&ouml;henlandschaft des Passes frei.</p>
+<img src="images/etappe3/01.jpg" alt="Blick durch Laerchenwald zurueck ins Val d'Anniviers beim Aufstieg von Zinal">
+<p>Aufstieg durch L&auml;rchenwald &ndash; der Blick zur&uuml;ck ins Tal wird mit jedem H&ouml;henmeter weiter.</p>
+<hr>
+<p id="forcletta"><strong>Forcletta (2.874 m):</strong> Oberhalb der Baumgrenze wird das Gel&auml;nde karg und weitl&auml;ufig, von schroffen Dreitausendern ges&auml;umt. Der Forcletta selbst ist ein breiter, unspektakul&auml;rer Sattel &ndash; daf&uuml;r mit Rundumblick in beide Richtungen: zur&uuml;ck ins Val d&rsquo;Anniviers, voraus ins Turtmanntal. Genau der richtige Ort f&uuml;r die verdiente Passh&ouml;hen-Rast.</p>
+<img src="images/etappe3/02.jpg" alt="Rast auf der Forcletta-Passhoehe mit Walliser Trockenfleisch, Kaese und Brot">
+<p>Verpflegung auf 2.874 m: Walliser Trockenfleisch, K&auml;se und Brot &ndash; eine der einfachsten und besten Passh&ouml;hen-Mahlzeiten der ganzen Tour.</p>
+<hr>
+<p id="gruben"><strong>Ankunft in Gruben:</strong> Der Abstieg vom Forcletta ins Turtmanntal ist deutlich sanfter als der Aufstieg von Zinal. Gruben selbst ist eine Handvoll H&auml;user um ein einziges, traditionsreiches Hotel &ndash; seit Generationen die einzige Einkehrm&ouml;glichkeit weit und breit und fester Bestandteil der Route zwischen Zinal und dem Augstbordpass. Auf der Terrasse ist am Nachmittag ordentlich Betrieb: Wanderer und ein paar &auml;ltere G&auml;ste bei Kaffee und Kuchen, im Hintergrund die Berge des Turtmanntals.</p>
+<img src="images/etappe3/03.jpg" alt="Cafe-Terrasse des Hotels in Gruben mit Gaesten unter Sonnenschirmen und Bergblick">
+<p>Nachmittagsruhe auf der Terrasse in Gruben &ndash; nach 1.218 Hm Aufstieg eine sehr willkommene Institution mitten im Turtmanntal.</p>
+<hr>
+<p id="oberems"><strong>Weiter nach Oberems:</strong> Weil in Gruben selbst keine Betten mehr frei waren, geht es nach der Rast per Fahrzeug weiter nach Oberems, hoch &uuml;ber dem Rhonetal zwischen Turtmann und Leuk. Von der Unterkunft aus f&auml;llt der Blick weit hinunter auf die Talebene mit ihren Reben und Obstg&auml;rten, dahinter die Gipfel der Berner Alpen im Dunst.</p>
+<img src="images/etappe3/04.jpg" alt="Weiter Blick vom Balkon in Oberems hinunter ins Rhonetal mit Reben und Obstgaerten">
+<p>Abendlicher Ausblick von Oberems hinunter ins Rhonetal &ndash; ein Panorama, das man sich von der Route selbst so nicht erwartet h&auml;tte.</p>
+<p><strong>Skurriles am Wegesrand:</strong> Am Dorfladen &bdquo;Konsum Oberems&ldquo; sorgt die Bedienungsanleitung an der T&uuml;r f&uuml;r Erheiterung &ndash; &bdquo;Stossen&ldquo; ist in der Schweiz ganz normal die Anweisung zum Aufdr&uuml;cken einer T&uuml;r, f&uuml;r deutsche Ohren aber unweigerlich zweideutig.</p>
+<img src="images/etappe3/05.jpg" alt="Ladentuer des Konsum Oberems mit der Aufschrift Stossen und Oeffnungszeiten">
+<p>&bdquo;Stossen&ldquo; &ndash; ein Schweizer Klassiker, &uuml;ber den deutsche Wanderer gerne stolpern.</p>
+<hr>
+<div class="navbar"><a href="etappe2.html">&larr; Vorherige Etappe</a><a href="index.html">&#8962; &Uuml;bersicht</a><span></span><a class="lang-switch" href="en/stage3.html" lang="en">EN</a></div>
+</body>
+</html>
